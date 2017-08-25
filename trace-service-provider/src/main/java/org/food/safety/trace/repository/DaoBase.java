@@ -1,21 +1,24 @@
 package org.food.safety.trace.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.support.JpaEntityInformation;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
-import java.util.List;
+import javax.persistence.EntityManager;
+import java.io.Serializable;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mq
- * Date: 2017/4/19
- * Time: 14:25
- * To change this template use File | Settings | File Templates.
+ * User: tom
+ * Date: 2017/8/25
  */
 @NoRepositoryBean
-public interface DaoBase<T> extends JpaRepository<T, String>, JpaSpecificationExecutor<T> {
+public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>{
 
-    List<T> findAllBy();
+    public DaoBase(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
+        super(entityInformation, entityManager);
+    }
+
+    public DaoBase(Class<T> domainClass, EntityManager em) {
+        super(domainClass, em);
+    }
 }

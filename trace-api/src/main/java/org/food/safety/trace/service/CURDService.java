@@ -6,24 +6,22 @@ import org.food.safety.trace.dto.SearchFilter;
 
 import org.springframework.data.domain.Page;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mq
- * Date: 2017/4/19
- * Time: 11:55
- * To change this template use File | Settings | File Templates.
+ * CURD 服务 接口
+ * User: tom
+ * Date: 2017/8/25
  */
-public interface CURDService<T> {
+public interface CURDService {
+    List list(String name, ListFilter listFilter);
 
-    List<T> list(ListFilter listFilter);
-
-    Page<T> page(PageSearch var1);
-
-    T detail(String var1);
-
-    T createOrUpdte(T var1);
-
-    void delete(String var1);
+//    Page page(PageSearch pageSearch);
+//
+//    Object detail(ID id);
+//
+//    Object createOrUpdte(T entity);
+//
+//    void delete(ID id);
 }

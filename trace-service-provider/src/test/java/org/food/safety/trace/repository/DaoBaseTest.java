@@ -1,17 +1,11 @@
 package org.food.safety.trace.repository;
 
 import org.food.safety.trace.TestSmartApplication;
-import org.food.safety.trace.entity.User;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 /**
  * 用户信息
@@ -19,19 +13,19 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TestSmartApplication.class)
-@ComponentScan("com.its.smart")
+@ComponentScan("org.food.safety.trace")
 @EnableAutoConfiguration
-public class UserDaoTest {
+public class DaoBaseTest {
 
-    @Autowired
-    private UserDao dao;
-
-    @Test
-    public void findAll() {
-        List<User> users = dao.findAllBy();
-
-        Assert.assertNotNull(users);
-
-        Assert.assertEquals(users.size(), 0);
-    }
+//    @Autowired
+//    private UserDao dao;
+//
+//    @Test
+//    public void findAll() {
+//        List<User> users = dao.findAllBy();
+//
+//        Assert.assertNotNull(users);
+//
+//        Assert.assertEquals(users.size(), 0);
+//    }
 }

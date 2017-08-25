@@ -29,11 +29,9 @@
     <!-- use tomcat server -->
     <dubbo:protocol name="rest" port="7890" threads="500" contextpath="trace/api" server="servlet"
                     accepts="500"
-                    extension="org.food.safety.trace.extension.SmartExceptionMapper,
-                    org.food.safety.trace.extension.TimerFilter,
-                    org.food.safety.trace.extension.PermissionFilter"/>
+                    extension="org.food.safety.trace.extension.RestExceptionMapper,
+                    org.food.safety.trace.extension.TimerFilter"/>
 
     <dubbo:provider timeout="6000"/>
     <dubbo:consumer timeout="6000" check="false"/>
-
 </beans>
