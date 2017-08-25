@@ -3,7 +3,6 @@ package org.food.safety.trace.facade;
 import org.food.safety.trace.dto.RestResult;
 import org.food.safety.trace.dto.SignInDTO;
 import org.food.safety.trace.dto.SignUpDTO;
-import org.food.safety.trace.entity.User;
 import org.food.safety.trace.security.PermissionEnum;
 import org.food.safety.trace.security.credentials.PasswordHelper;
 import org.food.safety.trace.service.UserService;

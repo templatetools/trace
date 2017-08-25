@@ -1,7 +1,6 @@
 package org.food.safety.trace.facade;
 
 import org.food.safety.trace.dto.UserDTO;
-import org.food.safety.trace.entity.User;
 import org.food.safety.trace.service.UserService;
 
 import com.alibaba.dubbo.config.annotation.Service;

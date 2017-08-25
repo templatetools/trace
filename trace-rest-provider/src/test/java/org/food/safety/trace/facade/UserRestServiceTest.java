@@ -1,12 +1,7 @@
 package org.food.safety.trace.facade;
 
-import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
-import org.food.safety.trace.dto.SearchFilter;
 import org.food.safety.trace.dto.Sort;
-import org.food.safety.trace.entity.User;
-
-import com.google.common.collect.ImmutableList;
 
 import com.alibaba.fastjson.JSON;
 

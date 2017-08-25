@@ -1,13 +1,6 @@
 package org.food.safety.trace.security.realm;
 
-import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.SearchFilter;
-import org.food.safety.trace.entity.User;
 import org.food.safety.trace.service.UserService;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -20,9 +13,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by X on 2017/3/17.

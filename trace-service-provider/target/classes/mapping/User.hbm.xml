@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- 
+
+  This mapping is a test mapping for hbm2java
+     
+-->
+<hibernate-mapping package="org.food.safety.trace.entity">
+
+    <class name="UserEntity">
+        <meta attribute="class-description">用户信息</meta>
+
+        <id name="id"
+            length="10" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid"/>
+        </id>
+
+        <property name="name" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">用户名</meta>
+        </property>
+
+        <property name="loginName" type="string" length="16">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">登录用户名</meta>
+        </property>
+
+        <property name="password" type="string" length="16">
+            <meta attribute="field-description">登录密码</meta>
+        </property>
+    </class>
+</hibernate-mapping>
