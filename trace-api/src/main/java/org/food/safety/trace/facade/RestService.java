@@ -20,4 +20,9 @@ public interface RestService {
     @Path("/{version}/{name}/list")
     @ApiOperation("列表")
     RestResult<List> list(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, ListFilter listFilter);
+
+    @POST
+    @Path("/{version}/{name}")
+    @ApiOperation("添加/修改")
+    RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, Object data);
 }

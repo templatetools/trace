@@ -21,7 +21,7 @@ public interface CURDService {
 //
 //    Object detail(ID id);
 //
-//    Object createOrUpdte(T entity);
-//
+    Object createOrUpdte(String name, Object entity);
+
 //    void delete(ID id);
 }

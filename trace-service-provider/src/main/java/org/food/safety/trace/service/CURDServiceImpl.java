@@ -1,32 +1,18 @@
 package org.food.safety.trace.service;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import lombok.Getter;
-import org.apache.commons.collections.MapUtils;
 import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.SearchFilter;
-import org.food.safety.trace.entity.UserEntity;
 import org.food.safety.trace.repository.DaoBase;
-import org.hibernate.jpa.internal.metamodel.EntityTypeImpl;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import javax.management.RuntimeMBeanException;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
 import javax.persistence.metamodel.EntityType;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: tom
@@ -67,6 +53,11 @@ public class CURDServiceImpl implements CURDService {
         DaoBase daoBase = createDao(entityType);
 
         return daoBase.findAllByFilter(listFilter);
+    }
+
+    @Override
+    public Object createOrUpdte(String name, Object entity) {
+        return null;
     }
 
 
