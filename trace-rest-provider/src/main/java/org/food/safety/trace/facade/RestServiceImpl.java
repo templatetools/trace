@@ -1,5 +1,6 @@
 package org.food.safety.trace.facade;
 
+import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import io.swagger.annotations.Api;
@@ -18,6 +19,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -43,7 +45,13 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
-    public RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, Object data) {
-        return null;
+    public RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String data) {
+        log.debug("createOrUpdate:{}", data);
+        Object result = null;
+
+        result = curdService.createOrUpdte(name, data);
+
+        log.debug("createOrUpdate result:{}", result);
+        return RestResult.OK(result);
     }
 }

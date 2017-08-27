@@ -24,5 +24,5 @@ public interface RestService {
     @POST
     @Path("/{version}/{name}")
     @ApiOperation("添加/修改")
-    RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, Object data);
+    RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, String data);
 }
