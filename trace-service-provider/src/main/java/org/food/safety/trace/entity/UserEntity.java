@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-8-25 17:32:12 by Hibernate Tools 5.2.5.Final
+// Generated 2017-8-27 13:09:01 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
  * 用户信息
  */
 @Entity
-@Table(name="UserEntity"
+@Table(name="user_entity"
 )
 public class UserEntity  implements java.io.Serializable {
 
@@ -76,7 +76,7 @@ public class UserEntity  implements java.io.Serializable {
      */
 
     
-    @Column(name="loginName", length=16)
+    @Column(name="login_name", length=16)
     public String getLoginName() {
         return this.loginName;
     }

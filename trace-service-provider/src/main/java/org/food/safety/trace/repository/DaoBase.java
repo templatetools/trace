@@ -1,6 +1,5 @@
 package org.food.safety.trace.repository;
 
-import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
@@ -13,11 +12,6 @@ import java.io.Serializable;
  */
 @NoRepositoryBean
 public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>{
-
-    public DaoBase(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
-        super(entityInformation, entityManager);
-    }
-
     public DaoBase(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
     }
