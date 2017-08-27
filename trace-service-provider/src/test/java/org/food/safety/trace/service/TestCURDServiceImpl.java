@@ -1,5 +1,6 @@
 package org.food.safety.trace.service;
 
+import com.alibaba.dubbo.common.json.JSON;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import lombok.Value;
@@ -25,6 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,11 +51,11 @@ public class TestCURDServiceImpl{
 
     @Test
     @Rollback(false)
-    public void create(){
+    public void create() throws IOException {
         val entityName = "UserEntity";
 
         Map<String, String> entity = ImmutableMap.of("name", "jia","loginName","j","password", "123");
 
-        log.debug("class:{}", curdService.createOrUpdte(entityName, entity));
+        log.debug("class:{}", curdService.createOrUpdte(entityName, JSON.json(entity)));
     }
 }

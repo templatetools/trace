@@ -1,5 +1,6 @@
 package org.food.safety.trace.service;
 
+import lombok.NonNull;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.repository.Dao;
 
@@ -26,7 +27,7 @@ public interface CURDService {
      * @param listFilter 过滤条件
      * @return
      */
-    List list(String name, ListFilter listFilter);
+    List list(@NotNull String name, @NotNull ListFilter listFilter);
 
 //    Page page(PageSearch pageSearch);
 //
@@ -39,7 +40,7 @@ public interface CURDService {
      * @param entity 实体数据
      * @return
      */
-    Object createOrUpdte(String name, Object entity);
+    Object createOrUpdte(@NotNull String name, @NotNull String entity);
 
 //    void delete(ID id);
 }

@@ -1,6 +1,9 @@
 package org.food.safety.trace.service;
 
+import com.alibaba.dubbo.common.json.JSON;
+import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -22,6 +26,7 @@ import java.util.List;
  */
 @Service
 @Getter
+@Slf4j
 public class CURDServiceImpl implements CURDService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
     @Autowired
@@ -62,8 +67,17 @@ public class CURDServiceImpl implements CURDService {
     }
 
     @Override
-    public Object createOrUpdte(String name, Object entity) {
+    @Transactional
+    public Object createOrUpdte(String name, String entityJson) {
         Dao dao = getDAO(name);
+        EntityType entityType = findEntiytyTypeByName(name);
+
+        Object entity = null;
+        try {
+            entity = JSON.parse(entityJson, entityType.getBindableJavaType());
+        } catch (ParseException e) {
+            log.warn("模型数据转换错误:{} to {}", entityJson, entityType.getBindableJavaType());
+        }
 
         return dao.save(entity);
     }

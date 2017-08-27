@@ -8,9 +8,9 @@
         <meta attribute="class-description">用户信息</meta>
 
         <id name="id"
-            length="10" type="string">
+            length="128" type="string">
             <meta attribute="field-description">id</meta>
-            <generator class="uuid"/>
+            <generator class="uuid.hex" />
         </id>
 
         <property name="name" type="string" length="8">

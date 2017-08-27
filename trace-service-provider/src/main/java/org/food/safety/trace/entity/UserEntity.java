@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-8-27 13:09:01 by Hibernate Tools 5.2.5.Final
+// Generated 2017-8-27 17:06:19 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -47,10 +47,10 @@ public class UserEntity  implements java.io.Serializable {
     /**       
      *      * id
      */
-     @GenericGenerator(name="generator", strategy="uuid")@Id @GeneratedValue(generator="generator")
+     @GenericGenerator(name="generator", strategy="uuid.hex")@Id @GeneratedValue(generator="generator")
 
     
-    @Column(name="id", nullable=false, updatable=false, length=10)
+    @Column(name="id", nullable=false, updatable=false, length=128)
     public String getId() {
         return this.id;
     }
