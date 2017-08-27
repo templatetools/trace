@@ -26,7 +26,7 @@ import java.util.List;
  * Date: 2017/8/25
  */
 @NoRepositoryBean
-public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>{
+public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements Dao<T, ID>{
     public DaoBase(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
     }

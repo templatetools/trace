@@ -2,11 +2,13 @@ package org.food.safety.trace.service;
 
 import lombok.Getter;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -42,23 +44,27 @@ public class CURDServiceImpl implements CURDService {
         return entity;
     }
 
-    DaoBase createDao(@NotNull EntityType entity ){
+    private DaoBase createDao(@NotNull EntityType entity ){
         return new DaoBase(entity.getBindableJavaType(), entityManager);
     }
 
     @Override
-    public List list(String name,@NotNull ListFilter listFilter) {
+    public Dao getDAO(String name) {
         EntityType entityType = findEntiytyTypeByName(name);
+        return createDao(entityType);
+    }
 
-        DaoBase daoBase = createDao(entityType);
+    @Override
+    public List list(String name,@NotNull ListFilter listFilter) {
+        DaoBase daoBase = (DaoBase) getDAO(name);
 
         return daoBase.findAllByFilter(listFilter);
     }
 
     @Override
     public Object createOrUpdte(String name, Object entity) {
-        return null;
+        Dao dao = getDAO(name);
+
+        return dao.save(entity);
     }
-
-
 }
