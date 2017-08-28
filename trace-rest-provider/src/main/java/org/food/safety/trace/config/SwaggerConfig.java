@@ -19,9 +19,9 @@ public class SwaggerConfig {
         beanConfig.setResourcePackage("org.food.safety.trace.facade");
         beanConfig.setVersion("1.0");
         beanConfig.setHost("127.0.0.1:7890");
-        beanConfig.setBasePath("/smart/api");
-        beanConfig.setTitle("Smart Api");
-        beanConfig.setDescription("Smart Api");
+        beanConfig.setBasePath("/trace/api");
+        beanConfig.setTitle(" Api");
+        beanConfig.setDescription(" Api");
         beanConfig.setScan(true);
 
         return beanConfig;
