@@ -13,6 +13,7 @@ import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ import java.util.List;
 @Service
 @Getter
 @Slf4j
+@Primary
 public class CURDServiceImpl implements CURDService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
     @Autowired

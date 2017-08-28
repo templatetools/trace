@@ -6,6 +6,7 @@ import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
 import org.food.safety.trace.dto.Viewable;
+import org.food.safety.trace.service.CURDService;
 import org.springframework.data.domain.Page;
 
 import javax.ws.rs.*;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public interface RestService {
     String HEADER_AUTHORIZATION_KEY = "authorization";
+    void setService(CURDService curdService);
 
     @POST
     @Path("/{version}/{name}/list")

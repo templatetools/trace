@@ -5,6 +5,7 @@ import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
@@ -31,10 +32,16 @@ import java.util.List;
 @Produces({ContentType.APPLICATION_JSON_UTF_8})
 @Api(value = "rest", description = "dbrest接口")
 @Getter
+@Setter
 @Slf4j
 public class RestServiceImpl implements RestService {
     @Autowired
     private CURDService curdService;
+
+    @Override
+    public void setService(CURDService curdService) {
+        this.curdService = curdService;
+    }
 
     @Override
     public RestResult<List> list(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, ListFilter listFilter) {
