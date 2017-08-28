@@ -49,7 +49,7 @@ public class RestServiceImpl implements RestService {
     @Override
     public RestResult<Page<Object>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
         log.debug("pageSearch:{}", pageSearch);
-        Page page = curdService.page(pageSearch);
+        Page page = curdService.page(name, pageSearch);
         log.debug("pageSearch result:{}", page);
         return RestResult.OK(page);
     }

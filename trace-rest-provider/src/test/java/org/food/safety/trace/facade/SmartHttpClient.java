@@ -29,7 +29,7 @@ public class SmartHttpClient {
 
     private static final MediaType REQUEST_HEAD = MediaType.parse("application/json; charset=utf-8");
 
-    private static final String HOST = "http://localhost:7890/trace/api";
+    private static final String HOST = "http://localhost:7890/trace/api/rest/v1/";
 
     private OkHttpClient client = new OkHttpClient();
 
@@ -94,7 +94,7 @@ public class SmartHttpClient {
         if (Strings.isNullOrEmpty(token)) {
             request = new Request.Builder().url(uri).post(body).build();
         } else {
-            request = new Request.Builder().addHeader("Cookie", token).url(uri).post(body).build();
+            request = new Request.Builder().addHeader("authorization", token).url(uri).post(body).build();
         }
         Response response = client.newCall(request).execute();
         check(response);
