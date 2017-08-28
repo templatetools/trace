@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.food.safety.trace.TestSmartApplication;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.SearchFilter;
+import org.food.safety.trace.dto.Sort;
 import org.food.safety.trace.entity.UserEntity;
 import org.food.safety.trace.repository.DaoBase;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
@@ -19,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,6 +31,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,12 +46,41 @@ import java.util.Map;
 @EnableAutoConfiguration
 @Slf4j
 public class TestCURDServiceImpl{
+
+    static final String NAME = "UserEntity";
     @Autowired
     CURDService curdService;
     @Test
     public void list(){
-        List list = curdService.list("UserEntity", new ListFilter());
+        List list = curdService.list(NAME, new ListFilter());
         log.debug("list:{}", list);
+    }
+    @Test
+    public void page(){
+        PageSearch pageSearch = new PageSearch();
+        pageSearch.setPageNumber(1);
+        pageSearch.setPageSize(2);
+
+        Sort sort = new Sort();
+        sort.setDirection("desc");
+        sort.setFieldName("name");
+        pageSearch.setSort(sort);
+
+        List<SearchFilter> filters = new ArrayList<>();
+        SearchFilter searchFilter = new SearchFilter();
+        searchFilter.setFieldName("name");
+        searchFilter.setOperator(SearchFilter.Operator.LIKE.toString());
+        searchFilter.setValue("j");
+        filters.add(searchFilter);
+        pageSearch.setFilters(filters);
+        pageSearch.setAndFilters(filters);
+
+        Page result = curdService.page(NAME, pageSearch);
+        log.debug("page:{}", result);
+
+
+        result = curdService.page(NAME, new PageSearch());
+        log.debug("page search is emplty:{}", result);
     }
 
     @Test

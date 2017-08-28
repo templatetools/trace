@@ -2,16 +2,17 @@ package org.food.safety.trace.repository;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.SearchFilter;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.*;
@@ -33,6 +34,16 @@ public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, 
 
     public List findAllByFilter(ListFilter listFilter) {
         return super.findAll(new ExampleSpecification(listFilter), getSort(listFilter));
+    }
+
+    @Override
+    public Page page(PageSearch pageSearch) {
+        ExampleSpecification exampleSpecification = new ExampleSpecification(pageSearch);
+
+        Sort sort = getSort(pageSearch);
+        PageRequest pageable = new PageRequest(pageSearch.getPageNumber() - 1, pageSearch.getPageSize(), sort);
+
+        return super.findAll(exampleSpecification, pageable);
     }
 
     private static class ExampleSpecification<T> implements Specification<T> {

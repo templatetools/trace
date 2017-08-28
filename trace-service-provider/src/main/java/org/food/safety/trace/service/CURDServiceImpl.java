@@ -5,13 +5,14 @@ import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -80,5 +81,11 @@ public class CURDServiceImpl implements CURDService {
         }
 
         return dao.save(entity);
+    }
+
+    @Override
+    public Page page(String name, PageSearch pageSearch) {
+        Dao dao = getDAO(name);
+        return dao.page(pageSearch);
     }
 }

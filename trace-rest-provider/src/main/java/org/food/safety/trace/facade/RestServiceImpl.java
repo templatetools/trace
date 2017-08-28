@@ -7,12 +7,14 @@ import io.swagger.annotations.Api;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
 import org.food.safety.trace.service.CURDService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
@@ -42,6 +44,14 @@ public class RestServiceImpl implements RestService {
         List list = curdService.list(name, listFilter);
         log.debug("list result:{}", list);
         return RestResult.OK(list);
+    }
+
+    @Override
+    public RestResult<Page<Object>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
+        log.debug("pageSearch:{}", pageSearch);
+        Page page = curdService.page(pageSearch);
+        log.debug("pageSearch result:{}", page);
+        return RestResult.OK(page);
     }
 
     @Override

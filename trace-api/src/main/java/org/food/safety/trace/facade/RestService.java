@@ -1,13 +1,13 @@
 package org.food.safety.trace.facade;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
+import org.springframework.data.domain.Page;
 
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import java.util.List;
 
 /**
@@ -25,4 +25,23 @@ public interface RestService {
     @Path("/{version}/{name}")
     @ApiOperation("添加/修改")
     RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, String data);
+
+    @POST
+    @Path("/{version}/{name}/page")
+    @ApiOperation("分页")
+    RestResult<Page<Object>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name,PageSearch pageSearch);
+
+//    @GET
+//    @Path("/{version}/{name}/{id}")
+//    @ApiOperation("详细信息")
+//    RestResult<T> detail(@ApiParam("id") @PathParam("id") String var1);
+//
+//    @POST
+//    @ApiOperation("添加/修改")
+//    RestResult<T> create(T var1);
+//
+//    @DELETE
+//    @Path("{id}")
+//    @ApiOperation("删除")
+//    RestResult<String> delete(@ApiParam("id") @PathParam("id") String var1);
 }

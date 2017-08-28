@@ -37,6 +37,7 @@
         <okhttp3.version>3.6.0</okhttp3.version>
         <fastjson.version>1.2.31</fastjson.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -218,6 +219,11 @@
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

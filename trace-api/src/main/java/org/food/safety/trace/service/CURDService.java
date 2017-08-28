@@ -2,7 +2,9 @@ package org.food.safety.trace.service;
 
 import lombok.NonNull;
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.repository.Dao;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -29,11 +31,6 @@ public interface CURDService {
      */
     List list(@NotNull String name, @NotNull ListFilter listFilter);
 
-//    Page page(PageSearch pageSearch);
-//
-//    Object detail(ID id);
-//
-
     /**
      * 存储对象
      * @param name 实体名称
@@ -42,5 +39,11 @@ public interface CURDService {
      */
     Object createOrUpdte(@NotNull String name, @NotNull String entity);
 
-//    void delete(ID id);
+    /**
+     * 分野查询
+     * @param name 实体名称
+     * @param pageSearch 查询条件
+     * @return
+     */
+    Page page(@NotNull String name, @NotNull PageSearch pageSearch);
 }

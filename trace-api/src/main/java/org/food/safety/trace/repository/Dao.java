@@ -1,6 +1,8 @@
 package org.food.safety.trace.repository;
 
 import org.food.safety.trace.dto.ListFilter;
+import org.food.safety.trace.dto.PageSearch;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -20,5 +22,12 @@ public interface Dao<T, ID extends Serializable> extends JpaRepository<T, ID>, J
      * @param listFilter
      * @return
      */
-    public List findAllByFilter(ListFilter listFilter);
+    List findAllByFilter(ListFilter listFilter);
+
+    /**
+     * 分页数据，根据过滤条件
+     * @param pageSearch 分页信息
+     * @return
+     */
+    Page page(PageSearch pageSearch);
 }
