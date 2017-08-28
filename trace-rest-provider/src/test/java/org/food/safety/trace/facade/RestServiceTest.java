@@ -25,4 +25,8 @@ public class RestServiceTest {
         Map<String, Object> param = Maps.newHashMap();
         client.post(name + "/page", token, JSON.toJSONString(param));
     }
+    @Test
+    public void detail() throws Exception {
+        client.get(name + "/ff8080815e22f191015e22f198aa0000", token);
+    }
 }

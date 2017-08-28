@@ -59,7 +59,7 @@ public class SmartHttpClient {
         if (Strings.isNullOrEmpty(token)) {
             request = new Request.Builder().url(uri).build();
         } else {
-            request = new Request.Builder().addHeader("Cookie", token).url(uri).build();
+            request = new Request.Builder().addHeader("authorization", token).url(uri).build();
         }
         Response response = client.newCall(request).execute();
         check(response);

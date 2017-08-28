@@ -5,10 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.food.safety.trace.TestSmartApplication;
-import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.PageSearch;
-import org.food.safety.trace.dto.SearchFilter;
-import org.food.safety.trace.dto.Sort;
+import org.food.safety.trace.dto.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,11 @@ public class TestCURDServiceImpl{
     static final String NAME = "UserEntity";
     @Autowired
     CURDService curdService;
+    @Test
+    public void detail(){
+        Viewable result = curdService.detail(NAME, "ff8080815e22f191015e22f198aa0000");
+        log.debug("detail:{}", result);
+    }
     @Test
     public void list(){
         List list = curdService.list(NAME, new ListFilter());

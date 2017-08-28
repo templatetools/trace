@@ -3,10 +3,12 @@ package org.food.safety.trace.service;
 import lombok.NonNull;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.repository.Dao;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -37,13 +39,21 @@ public interface CURDService {
      * @param entity 实体数据
      * @return
      */
-    Object createOrUpdte(@NotNull String name, @NotNull String entity);
+    Viewable createOrUpdte(@NotNull String name, @NotNull String entity);
 
     /**
-     * 分野查询
+     * 分页查询
      * @param name 实体名称
      * @param pageSearch 查询条件
      * @return
      */
     Page page(@NotNull String name, @NotNull PageSearch pageSearch);
+
+    /**
+     * 详情
+     * @param name 实体名称
+     * @param id id
+     * @return
+     */
+    Viewable detail(@NotNull String name, @NotNull Serializable id);
 }

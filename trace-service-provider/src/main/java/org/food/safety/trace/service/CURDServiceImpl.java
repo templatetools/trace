@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
@@ -19,6 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -69,7 +71,7 @@ public class CURDServiceImpl implements CURDService {
 
     @Override
     @Transactional
-    public Object createOrUpdte(String name, String entityJson) {
+    public Viewable createOrUpdte(String name, String entityJson) {
         Dao dao = getDAO(name);
         EntityType entityType = findEntiytyTypeByName(name);
 
@@ -80,12 +82,18 @@ public class CURDServiceImpl implements CURDService {
             log.warn("模型数据转换错误:{} to {}", entityJson, entityType.getBindableJavaType());
         }
 
-        return dao.save(entity);
+        return (Viewable) dao.save(entity);
     }
 
     @Override
     public Page page(String name, PageSearch pageSearch) {
         Dao dao = getDAO(name);
         return dao.page(pageSearch);
+    }
+
+    @Override
+    public Viewable detail(@NotNull String name, @NotNull Serializable id) {
+        Dao dao = getDAO(name);
+        return (Viewable) dao.findOne(id);
     }
 }

@@ -1,6 +1,5 @@
 package org.food.safety.trace.facade;
 
-import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import io.swagger.annotations.Api;
@@ -12,9 +11,6 @@ import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
 import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.service.CURDService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
@@ -23,7 +19,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -57,8 +53,14 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
-    public RestResult<Viewable> detail(@ApiParam("id") String id) {
-        return null;
+    public RestResult<Viewable> detail(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name,@ApiParam("id") String id) {
+        log.debug("detail:{}", id);
+        Object result = null;
+
+        result = curdService.detail(name, id);
+
+        log.debug("detail result:{}", result);
+        return RestResult.OK(result);
     }
 
     @Override

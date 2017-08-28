@@ -9,6 +9,7 @@ import org.food.safety.trace.dto.Viewable;
 import org.springframework.data.domain.Page;
 
 import javax.ws.rs.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public interface RestService {
     @GET
     @Path("/{version}/{name}/{id}")
     @ApiOperation("详细信息")
-    RestResult<Viewable> detail(@ApiParam("id") @PathParam("id") String id);
+    RestResult<Viewable> detail(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name,@ApiParam("id") @PathParam("id") String id);
 //
 //    @POST
 //    @ApiOperation("添加/修改")
