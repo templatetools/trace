@@ -37,13 +37,9 @@ public interface RestService {
     @Path("/{version}/{name}/{id}")
     @ApiOperation("详细信息")
     RestResult<Viewable> detail(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name,@ApiParam("id") @PathParam("id") String id);
-//
-//    @POST
-//    @ApiOperation("添加/修改")
-//    RestResult<T> create(T var1);
-//
-//    @DELETE
-//    @Path("{id}")
-//    @ApiOperation("删除")
-//    RestResult<String> delete(@ApiParam("id") @PathParam("id") String var1);
+
+    @DELETE
+    @Path("/{version}/{name}/{id}")
+    @ApiOperation("删除")
+    RestResult<String> delete(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name,@ApiParam("id") @PathParam("id") String id);
 }

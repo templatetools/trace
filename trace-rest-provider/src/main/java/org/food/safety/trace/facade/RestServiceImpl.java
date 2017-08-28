@@ -64,6 +64,17 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
+    public RestResult<String> delete(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, @ApiParam("id") String id) {
+        log.debug("delete:{}", id);
+        Object result = null;
+
+        result = curdService.delete(name, id);
+
+        log.debug("delete result:{}", result);
+        return RestResult.OK(result);
+    }
+
+    @Override
     public RestResult<Viewable> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String data) {
         log.debug("createOrUpdate:{}", data);
         Object result = null;

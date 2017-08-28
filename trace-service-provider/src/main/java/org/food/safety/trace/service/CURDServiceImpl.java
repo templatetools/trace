@@ -96,4 +96,17 @@ public class CURDServiceImpl implements CURDService {
         Dao dao = getDAO(name);
         return (Viewable) dao.findOne(id);
     }
+
+    @Override
+    @Transactional
+    public Boolean delete(String name, String id) {
+        try {
+            Dao dao = getDAO(name);
+            dao.delete(id);
+        }catch (Exception e){
+            log.warn("delete exception:{}", id, e);
+            return false;
+        }
+        return true;
+    }
 }

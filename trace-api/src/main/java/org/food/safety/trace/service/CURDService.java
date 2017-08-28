@@ -56,4 +56,12 @@ public interface CURDService {
      * @return
      */
     Viewable detail(@NotNull String name, @NotNull Serializable id);
+
+    /**
+     * 删除
+     * @param name
+     * @param id
+     * @return
+     */
+    Boolean delete(String name, String id);
 }

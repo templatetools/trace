@@ -36,6 +36,11 @@ public class TestCURDServiceImpl{
     @Autowired
     CURDService curdService;
     @Test
+    public void delete(){
+        boolean result = curdService.delete(NAME, "ff8080815e26bfc2015e26bfccfb0000");
+        log.debug("delete:{}", result);
+    }
+    @Test
     public void detail(){
         Viewable result = curdService.detail(NAME, "ff8080815e22f191015e22f198aa0000");
         log.debug("detail:{}", result);
