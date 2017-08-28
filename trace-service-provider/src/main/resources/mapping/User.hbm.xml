@@ -5,6 +5,8 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity">
     <class name="UserEntity" entity-name="user_entity">
+        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+
         <meta attribute="class-description">用户信息</meta>
 
         <id name="id"

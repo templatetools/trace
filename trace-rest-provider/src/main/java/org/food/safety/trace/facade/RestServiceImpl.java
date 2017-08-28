@@ -4,11 +4,13 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
+import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.service.CURDService;
 
 import org.slf4j.Logger;
@@ -47,7 +49,7 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
-    public RestResult<Page<Object>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
+    public RestResult<Page<Viewable>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
         log.debug("pageSearch:{}", pageSearch);
         Page page = curdService.page(name, pageSearch);
         log.debug("pageSearch result:{}", page);
@@ -55,7 +57,12 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
-    public RestResult<Object> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String data) {
+    public RestResult<Viewable> detail(@ApiParam("id") String id) {
+        return null;
+    }
+
+    @Override
+    public RestResult<Viewable> createOrUpdate(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String data) {
         log.debug("createOrUpdate:{}", data);
         Object result = null;
 

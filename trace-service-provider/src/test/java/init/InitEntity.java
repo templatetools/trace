@@ -1,5 +1,7 @@
 package init;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableListMultimap;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -26,7 +28,7 @@ public class InitEntity {
         exporter.getProperties().setProperty("ejb3", "true");
         exporter.start();
 
-        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR));
+//        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR),ImmutableList.of("/work/001_code/github/java/trace/trace-rest-provider/target/trace-rest-provider-1.0-SNAPSHOT.jar"));
 
         configuration.buildSessionFactory();
     }
