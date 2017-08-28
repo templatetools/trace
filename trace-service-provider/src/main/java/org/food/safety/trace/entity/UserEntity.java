@@ -2,12 +2,9 @@ package org.food.safety.trace.entity;
 // Generated 2017-8-28 11:23:45 by Hibernate Tools 5.2.5.Final
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * 用户信息

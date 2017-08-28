@@ -1,14 +1,14 @@
 package org.food.safety.trace.dto;
 
-import java.io.Serializable;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * DTO to customize the returned message
  *
- * @author lishen
+ * @author tom
  */
 @Getter
 @Setter

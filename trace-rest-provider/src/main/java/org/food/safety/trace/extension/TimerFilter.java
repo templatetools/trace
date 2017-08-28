@@ -18,21 +18,20 @@ package org.food.safety.trace.extension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.time.Instant;
-
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import java.io.IOException;
+import java.time.Instant;
 
 /**
  * URL地址检查
  * 放过sigin-in,sign-ou;如果cookie不等null放过
  *
- * @author MQ
+ * @author tom
  */
 @Priority(Priorities.USER)
 public class TimerFilter implements ContainerRequestFilter, ContainerResponseFilter {

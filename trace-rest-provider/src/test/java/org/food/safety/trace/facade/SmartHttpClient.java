@@ -1,24 +1,16 @@
 package org.food.safety.trace.facade;
 
-import org.food.safety.trace.dto.RestResult;
-
+import com.alibaba.fastjson.JSON;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
-
-import com.alibaba.fastjson.JSON;
-
+import okhttp3.*;
+import org.food.safety.trace.dto.RestResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by X on 2017/4/14.

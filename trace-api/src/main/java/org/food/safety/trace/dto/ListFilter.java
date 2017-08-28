@@ -1,18 +1,17 @@
 package org.food.safety.trace.dto;
 
 import com.google.common.collect.Lists;
-
-import java.io.Serializable;
-import java.util.List;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
- * User: mq
+ * User: tom
  * Date: 2017/4/25
  * Time: 14:22
  * To change this template use File | Settings | File Templates.

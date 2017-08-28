@@ -10,7 +10,6 @@ import org.food.safety.trace.service.CURDService;
 import org.springframework.data.domain.Page;
 
 import javax.ws.rs.*;
-import java.io.Serializable;
 import java.util.List;
 
 /**

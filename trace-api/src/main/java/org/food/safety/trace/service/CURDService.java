@@ -1,6 +1,5 @@
 package org.food.safety.trace.service;
 
-import lombok.NonNull;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.Viewable;
