@@ -14,6 +14,7 @@ export default modelExtend(pageModel, {
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
+    modalName:'',
     selectedRowKeys: [],
     isMotion: window.localStorage.getItem(`${prefix}userIsMotion`) === 'true',
   },
@@ -34,6 +35,9 @@ export default modelExtend(pageModel, {
 
     * query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
+
+      yield put({ type: 'updateState', payload: { modalName: payload.name } })
+
       if (data) {
         yield put({
           type: 'querySuccess',

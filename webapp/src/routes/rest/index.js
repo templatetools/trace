@@ -8,32 +8,32 @@ import Filter from './Filter'
 import Modal from './Modal'
 
 const Rest = ({ location, dispatch, rest, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = rest
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,modalName } = rest
   const { pageSize } = pagination
 
   const modalProps = {
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,
-    confirmLoading: loading.effects['user/update'],
-    title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
+    confirmLoading: loading.effects['rest/update'],
+    title: `${modalType === 'create' ? 'Create ' : 'Update '}` + modalName,
     wrapClassName: 'vertical-center-modal',
     onOk (data) {
       dispatch({
-        type: `user/${modalType}`,
+        type: `rest/${modalType}`,
         payload: data,
       })
     },
     onCancel () {
       dispatch({
-        type: 'user/hideModal',
+        type: 'rest/hideModal',
       })
     },
   }
 
   const listProps = {
     dataSource: list,
-    loading: loading.effects['user/query'],
+    loading: loading.effects['rest/query'],
     pagination,
     location,
     isMotion,
@@ -43,7 +43,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         pathname,
         query: {
           ...query,
-          page: page.current,
+          pageNumber: page.current,
           pageSize: page.pageSize,
         },
       }))
@@ -104,7 +104,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
     onAdd () {
       dispatch({
-        type: 'user/showModal',
+        type: 'rest/showModal',
         payload: {
           modalType: 'create',
         },
