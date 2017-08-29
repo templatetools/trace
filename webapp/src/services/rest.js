@@ -5,7 +5,7 @@ const { user } = api
 
 export async function query (params) {
   return request({
-    url: '/rest/api/v1/' + params.name + '/page',
+    url: '/rest/api/v1/' + params.modalName + '/page',
     method: 'post',
     data: params.data,
   })
@@ -13,9 +13,9 @@ export async function query (params) {
 
 export async function create (params) {
   return request({
-    url: users,
+    url: '/rest/api/v1/' + params.modalName,
     method: 'post',
-    data: params,
+    data: params.data,
   })
 }
 

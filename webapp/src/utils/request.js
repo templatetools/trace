@@ -53,9 +53,20 @@ const fetch = (options) => {
     data = null
   }
 
-  axios.defaults.headers.common['authorization'] = 'AUTH_TOKEN';
-  axios.defaults.headers.post['Content-Type'] = 'application/json';
-  axios.defaults.headers.get['Content-Type'] = 'application/json';
+  // 添加请求拦截器
+  axios.interceptors.request.use(function (config) {
+    config.headers['authorization'] = 'AUTH_TOKEN'
+    config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+
+    console.log('axios headers:', config.headers);
+
+    // 在发送请求之前做些什么
+    return config;
+  }, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+  });
+   
 
   switch (method.toLowerCase()) {
     case 'get':

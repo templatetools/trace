@@ -25,7 +25,7 @@ export default modelExtend(pageModel, {
         console.log('rest', location.pathname);
         const match = pathToRegexp('/rest/:name').exec(location.pathname)
         if (match) {
-          dispatch({ type: 'query', payload: { name: match[1], data:{} } })
+          dispatch({ type: 'query', payload: { modalName: match[1], data:{} } })
         }
       })
     },
@@ -36,7 +36,7 @@ export default modelExtend(pageModel, {
     * query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
 
-      yield put({ type: 'updateState', payload: { modalName: payload.name } })
+      yield put({ type: 'updateState', payload: { modalName: payload.modalName } })
 
       if (data) {
         yield put({
@@ -78,7 +78,7 @@ export default modelExtend(pageModel, {
       const data = yield call(create, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
-        yield put({ type: 'query' })
+        yield put({ type: 'query' ,payload:{modalName:payload.modalName,data:{}}})
       } else {
         throw data
       }

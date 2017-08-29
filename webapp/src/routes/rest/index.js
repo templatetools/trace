@@ -21,7 +21,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     onOk (data) {
       dispatch({
         type: `rest/${modalType}`,
-        payload: data,
+        payload: {modalName:modalName, data:data},
       })
     },
     onCancel () {
@@ -107,6 +107,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         type: 'rest/showModal',
         payload: {
           modalType: 'create',
+          modalName: modalName
         },
       })
     },
