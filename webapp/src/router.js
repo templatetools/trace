@@ -30,6 +30,14 @@ const Routers = function ({ history, app }) {
             }, 'dashboard')
           },
         }, {
+          path: 'rest/:name',
+          getComponent (nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('models/rest'))
+              cb(null, require('routes/rest/'))
+            }, 'rest')
+          },
+        }, {
           path: 'user',
           getComponent (nextState, cb) {
             require.ensure([], (require) => {

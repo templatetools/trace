@@ -24,10 +24,10 @@ let database = [
   },
   {
     id: '21',
-    mpid: '-1',
-    bpid: '2',
+    bpid: '1',
+    icon: 'user',
     name: 'User Detail',
-    route: '/user/:id',
+    route: '/rest/UserEntity',
   },
   {
     id: '3',
