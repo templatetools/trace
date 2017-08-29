@@ -86,7 +86,7 @@ const User = ({ location, dispatch, user, loading }) => {
         pathname: location.pathname,
         query: {
           ...value,
-          page: 1,
+          pageNumber: 1,
           pageSize,
         },
       }))

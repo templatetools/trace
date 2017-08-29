@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="org.food.safety.trace.entity">
-    <class name="UserEntity" entity-name="user_entity">
+    <class name="UserEntity">
         <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
 
         <meta attribute="class-description">用户信息</meta>
@@ -12,7 +12,7 @@
         <id name="id"
             length="128" type="string">
             <meta attribute="field-description">id</meta>
-            <generator class="uuid.hex" />
+            <generator class="uuid.hex"/>
         </id>
 
         <property name="name" type="string" length="8">
@@ -20,13 +20,34 @@
             <meta attribute="field-description">用户名</meta>
         </property>
 
-        <property name="loginName" column="login_name" type="string" length="16">
+        <property name="nickName" type="string" length="16">
             <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="field-description">登录用户名</meta>
+            <meta attribute="field-description">昵称</meta>
         </property>
 
-        <property name="password" type="string" length="16">
-            <meta attribute="field-description">登录密码</meta>
+        <property name="age" type="int">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">年龄</meta>
+        </property>
+        <property name="phone" type="string" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">电话</meta>
+        </property>
+        <property name="address" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">联系地址</meta>
+        </property>
+
+        <property name="isMale" type="boolean">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">性别</meta>
+        </property>
+        <property name="email" type="string" length="16">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">电子邮件</meta>
+        </property>
+        <property name="createTime" type="timestamp" not-null="true">
+            <meta attribute="field-description">创建时间</meta>
         </property>
     </class>
 </hibernate-mapping>

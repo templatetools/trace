@@ -5,8 +5,16 @@ const { users } = api
 
 export async function query (params) {
   return request({
+    url: users + '/page',
+    method: 'post',
+    data: params,
+  })
+}
+
+export async function create (params) {
+  return request({
     url: users,
-    method: 'get',
+    method: 'post',
     data: params,
   })
 }

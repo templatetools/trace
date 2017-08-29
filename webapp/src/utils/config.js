@@ -10,7 +10,6 @@ module.exports = {
   iconFontJS: '/iconfont.js',
   CORS: [],
   openPages: ['/login'],
-  debug: false,  // 是否开启debug模式, 不会请求后端接口, 使用mock的数据
   apiPrefix: '/api/v1',
   APIV1,
   APIV2,
@@ -18,7 +17,7 @@ module.exports = {
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,
     userInfo: `${APIV1}/userInfo`,
-    users: `${APIV1}/users`,
+    users: `${APIV1}/UserEntity`,
     posts: `${APIV1}/posts`,
     user: `${APIV1}/user/:id`,
     dashboard: `${APIV1}/dashboard`,

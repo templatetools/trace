@@ -1,3 +1,8 @@
+# 开发说明
+1. .roadhogrc.js 配置文件的 proxy 属性，如果 api 已经配置了 proxy，那么就不走mock
+2. 
+
+
 # Antd Admin
 
 [![React](https://img.shields.io/badge/react-^15.6.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
@@ -16,7 +21,7 @@
 -   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践。
 -   基于Antd UI 设计语言，提供后台管理系统常见使用场景。
 -   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载。
--   使用[roadhog](https://github.com/sorrycc/roadhog)本地调试和构建，其中Mock功能实现脱离后端独立开发。
+-   使用[roadhog](https://g脱离后端ithub.com/sorrycc/roadhog)本地调试和构建，其中Mock功能实现独立开发。
 -   浅度响应式设计。
 
 ## 更新日志

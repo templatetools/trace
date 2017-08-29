@@ -19,11 +19,16 @@ export default {
       "changeOrigin": true,
       "pathRewrite": { "^/api/v1/weather" : "/v3/weather" }
     },
-    "/api/v1/users": {
-      "target": "http://localhost:8080",
+    "/api/v1/UserEntity": {
+      "target": "http://localhost:7890",
       "changeOrigin": true,
-      "pathRewrite": { "^/api/v1" : "/api/v1" }
+      "pathRewrite": { "^/api/v1/UserEntity" : "/trace/api/rest/v1/UserEntity" }
     }
+    // "/api/v1/user": {
+    //   "target": "http://localhost:7890",
+    //   "changeOrigin": true,
+    //   "pathRewrite": { "^/api/v1/user" : "/trace/api/rest/v1/UserEntity" }
+    // }
   },
   env : {
     development: {

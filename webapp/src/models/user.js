@@ -1,11 +1,11 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
 import { config } from 'utils'
-import { create, remove, update } from 'services/user'
+import { remove, update } from 'services/user'
 import * as usersService from 'services/users'
 import { pageModel } from './common'
 
-const { query } = usersService
+const { query, create } = usersService
 const { prefix } = config
 
 export default modelExtend(pageModel, {
@@ -40,11 +40,11 @@ export default modelExtend(pageModel, {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data.data.content,
             pagination: {
-              current: Number(payload.page) || 1,
+              current: Number(payload.pageNumber) || 1,
               pageSize: Number(payload.pageSize) || 10,
-              total: data.total,
+              total: data.data.totalPages,
             },
           },
         })

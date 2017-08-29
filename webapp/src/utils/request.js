@@ -53,6 +53,10 @@ const fetch = (options) => {
     data = null
   }
 
+  axios.defaults.headers.common['authorization'] = 'AUTH_TOKEN';
+  axios.defaults.headers.post['Content-Type'] = 'application/json';
+  axios.defaults.headers.get['Content-Type'] = 'application/json';
+
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, {

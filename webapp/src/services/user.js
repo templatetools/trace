@@ -11,13 +11,13 @@ export async function query (params) {
   })
 }
 
-export async function create (params) {
-  return request({
-    url: user.replace('/:id', ''),
-    method: 'post',
-    data: params,
-  })
-}
+// export async function create (params) {
+//   return request({
+//     url: user.replace('/:id', ''),
+//     method: 'post',
+//     data: params,
+//   })
+// }
 
 export async function remove (params) {
   return request({
