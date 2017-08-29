@@ -1,0 +1,10 @@
+.test {
+  $class-slug: for !default;
+
+  @for $i from 1 through 3 {
+    .div-#{$i} {
+      height: 30px;
+      background-color: #0BB20C;
+    }
+  }
+}

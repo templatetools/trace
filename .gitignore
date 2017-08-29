@@ -11,6 +11,9 @@
 .mtj.tmp/
 target/
 .idea/
+node_modules/
+dist/
+
 # Package Files #
 *.jar
 *.war

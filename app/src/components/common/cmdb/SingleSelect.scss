@@ -1,0 +1,13 @@
+.SingleSelect {
+  .page-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .page {
+    top: 50px;
+    bottom: 50px;
+  }
+}
