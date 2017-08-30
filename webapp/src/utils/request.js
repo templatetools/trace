@@ -74,9 +74,7 @@ const fetch = (options) => {
         params: cloneData,
       })
     case 'delete':
-      return axios.delete(url, {
-        data: cloneData,
-      })
+      return axios.delete(url+'/'+cloneData)
     case 'post':
       return axios.post(url, cloneData)
     case 'put':

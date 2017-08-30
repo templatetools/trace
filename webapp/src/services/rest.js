@@ -21,9 +21,9 @@ export async function create (params) {
 
 export async function remove (params) {
   return request({
-    url: user,
+    url: '/rest/api/v1/' + params.modalName,
     method: 'delete',
-    data: params,
+    data: params.id,
   })
 }
 

@@ -50,16 +50,17 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
     onDeleteItem (id) {
       dispatch({
-        type: 'user/delete',
-        payload: id,
+        type: 'rest/delete',
+        payload: {data:id,modalName:modalName}
       })
     },
     onEditItem (item) {
       dispatch({
-        type: 'user/showModal',
+        type: 'rest/showModal',
         payload: {
           modalType: 'update',
-          currentItem: item,
+          data:item,
+          modalName:modalName,
         },
       })
     },
@@ -67,7 +68,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
       selectedRowKeys,
       onChange: (keys) => {
         dispatch({
-          type: 'user/updateState',
+          type: 'rest/updateState',
           payload: {
             selectedRowKeys: keys,
           },
@@ -93,13 +94,13 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/user',
+        pathname: '/rest',
         query: {
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
         },
       })) : dispatch(routerRedux.push({
-        pathname: '/user',
+        pathname: '/rest',
       }))
     },
     onAdd () {
@@ -112,13 +113,13 @@ const Rest = ({ location, dispatch, rest, loading }) => {
       })
     },
     switchIsMotion () {
-      dispatch({ type: 'user/switchIsMotion' })
+      dispatch({ type: 'rest/switchIsMotion' })
     },
   }
 
   const handleDeleteItems = () => {
     dispatch({
-      type: 'user/multiDelete',
+      type: 'rest/multiDelete',
       payload: {
         ids: selectedRowKeys,
       },
