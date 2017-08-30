@@ -19,6 +19,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     title: `${modalType === 'create' ? 'Create ' : 'Update '}` + modalName,
     wrapClassName: 'vertical-center-modal',
     onOk (data) {
+      console.log(`rest/${modalName}/${modalType}`, data);
       dispatch({
         type: `rest/${modalType}`,
         payload: {modalName:modalName, data:data},
@@ -59,7 +60,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         type: 'rest/showModal',
         payload: {
           modalType: 'update',
-          data:item,
+          currentItem:item,
           modalName:modalName,
         },
       })

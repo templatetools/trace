@@ -12,7 +12,6 @@ export async function query (params) {
   let filters = [];
 
   for (var key in params.data){
-    console.log('typeof(params.data[key])', typeof(params.data[key]));
     if (params.data[key] instanceof  Array){
       params.data[key].map((item,index)=>{
         filters.push({'fieldName':key, 'operator':'LIKE', 'value':item});  
@@ -49,8 +48,8 @@ export async function remove (params) {
 
 export async function update (params) {
   return request({
-    url: user,
-    method: 'patch',
-    data: params,
+    url: '/rest/api/v1/' + params.modalName,
+    method: 'post',
+    data: params.data,
   })
 }
