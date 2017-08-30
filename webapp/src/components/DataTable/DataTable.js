@@ -85,9 +85,6 @@ class DataTable extends React.Component {
     const { fetch, ...tableProps } = this.props
     const { loading, dataSource, pagination } = this.state
 
-    // pagination.showTotal = total => `共 ${total} 条`
-    console.log('pagination', pagination)
-
     return (<Table
       ref="DataTable"
       bordered

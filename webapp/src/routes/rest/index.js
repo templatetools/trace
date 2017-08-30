@@ -34,7 +34,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
   const listProps = {
     dataSource: list,
     loading: loading.effects['rest/query'],
-    pagination:{showTotal: total => `共 ${total} 条`},
+    pagination:{...pagination, showTotal: total => `共 ${total} 条`},
     location,
     isMotion,
     onChange (page) {
