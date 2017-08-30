@@ -58,8 +58,6 @@ const fetch = (options) => {
     config.headers['authorization'] = 'AUTH_TOKEN'
     config.headers['Content-Type'] = 'application/json;charset=UTF-8'
 
-    console.log('axios headers:', config.headers);
-
     // 在发送请求之前做些什么
     return config;
   }, function (error) {

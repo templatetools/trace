@@ -34,7 +34,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
   const listProps = {
     dataSource: list,
     loading: loading.effects['rest/query'],
-    pagination,
+    pagination:{showTotal: total => `共 ${total} 条`},
     location,
     isMotion,
     onChange (page) {
@@ -122,6 +122,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
       type: 'rest/multiDelete',
       payload: {
         ids: selectedRowKeys,
+        modalName: modalName
       },
     })
   }
@@ -133,9 +134,9 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         selectedRowKeys.length > 0 &&
         <Row style={{ marginBottom: 24, textAlign: 'right', fontSize: 13 }}>
           <Col>
-            {`Selected ${selectedRowKeys.length} items `}
-            <Popconfirm title={'Are you sure delete these items?'} placement="left" onConfirm={handleDeleteItems}>
-              <Button type="primary" size="large" style={{ marginLeft: 8 }}>Remove</Button>
+            {`已选择 ${selectedRowKeys.length} 记录 `}
+            <Popconfirm title={'您确定删除这些记录吗?'} placement="left" onConfirm={handleDeleteItems}>
+              <Button type="primary" size="large" style={{ marginLeft: 8 }}>删除</Button>
             </Popconfirm>
           </Col>
         </Row>
