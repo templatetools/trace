@@ -4,10 +4,30 @@ const { api } = config
 const { user } = api
 
 export async function query (params) {
+  let page = {'pageNumber':params.data.pageNumber, 'pageSize':params.data.pageSize}
+
+  delete params.data.pageNumber
+  delete params.data.pageSize
+
+  let filters = [];
+
+  for (var key in params.data){
+    console.log('typeof(params.data[key])', typeof(params.data[key]));
+    if (params.data[key] instanceof  Array){
+      params.data[key].map((item,index)=>{
+        filters.push({'fieldName':key, 'operator':'LIKE', 'value':item});  
+      })
+    }else{
+      filters.push({'fieldName':key, 'operator':'LIKE', 'value':params.data[key]});
+    }
+  }
+
+  page['filters'] = filters;
+
   return request({
     url: '/rest/api/v1/' + params.modalName + '/page',
     method: 'post',
-    data: params.data,
+    data: page,
   })
 }
 

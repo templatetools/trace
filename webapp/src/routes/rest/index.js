@@ -94,13 +94,13 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/rest',
+        pathname: '/rest/' + modalName,
         query: {
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
         },
       })) : dispatch(routerRedux.push({
-        pathname: '/rest',
+        pathname: '/rest/' + modalName,
       }))
     },
     onAdd () {

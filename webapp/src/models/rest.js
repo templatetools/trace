@@ -25,7 +25,7 @@ export default modelExtend(pageModel, {
         console.log('rest', location.pathname);
         const match = pathToRegexp('/rest/:name').exec(location.pathname)
         if (match) {
-          dispatch({ type: 'query', payload: { modalName: match[1], data:{} } })
+          dispatch({ type: 'query', payload: { modalName: match[1], data:location.query } })
         }
       })
     },
