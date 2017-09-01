@@ -54,7 +54,7 @@ export default modelExtend(pageModel, {
     },
 
     * delete ({ payload }, { call, put, select }) {
-      const data = yield call(remove, { id: payload.data, modalName: payload.modalName})
+      const data = yield call(remove, { data: payload.data, modalName: payload.modalName})
       const { selectedRowKeys } = yield select(_ => _.rest)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: selectedRowKeys.filter(_ => _ !== payload) } })
@@ -65,10 +65,11 @@ export default modelExtend(pageModel, {
     },
 
     * multiDelete ({ payload }, { call, put }) {
-      const data = yield call(usersService.remove, payload)
+      console.log('multiDelete', payload)
+      const data = yield call(remove, {modalName: payload.modalName,data:payload.ids})
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
-        yield put({ type: 'query' })
+        yield put({ type: 'query',payload:{modalName: payload.modalName,data:{}}})
       } else {
         throw data
       }

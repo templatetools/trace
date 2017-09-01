@@ -39,10 +39,16 @@ export async function create (params) {
 }
 
 export async function remove (params) {
+    let ids = '';
+    if (params.data instanceof  Array){
+      ids = params.data.join(',')
+    }else{
+      ids = params.data;
+    }
+    console.log('remove', '/rest/api/v1/' + params.modalName + '/' + ids)
   return request({
-    url: '/rest/api/v1/' + params.modalName,
-    method: 'delete',
-    data: params.id,
+    url: '/rest/api/v1/' + params.modalName + '/' + ids,
+    method: 'delete'
   })
 }
 

@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.util.StringUtils;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.Viewable;
@@ -22,6 +23,7 @@ import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -101,12 +103,19 @@ public class CURDServiceImpl implements CURDService {
 
     @Override
     @Transactional
-    public Boolean delete(String name, String id) {
+    public Boolean delete(String name, String ids) {
+
         try {
             Dao dao = getDAO(name);
-            dao.delete(id);
+            if (org.apache.commons.lang3.StringUtils.indexOf(ids, ",") > -1){
+                for (String id:StringUtils.split(ids, ',')){
+                    dao.delete(id);
+                }
+            }else{
+                dao.delete(ids);
+            }
         }catch (Exception e){
-            log.warn("delete exception:{}", id, e);
+            log.warn("delete exception:{}", ids, e);
             return false;
         }
         return true;
