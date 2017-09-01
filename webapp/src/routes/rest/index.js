@@ -3,12 +3,16 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Row, Col, Button, Popconfirm } from 'antd'
+import {Modal}  from 'antd'
 import List from './List'
 import Filter from './Filter'
-import Modal from './Modal'
+import ModalForm from './Modal'
+import { DropOption } from 'components'
+
+const confirm = Modal.confirm
 
 const Rest = ({ location, dispatch, rest, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,modalName } = rest
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,modalName,columns } = rest
   const { pageSize } = pagination
 
   const modalProps = {
@@ -32,10 +36,41 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
   }
 
+  const handleMenuClick = (record, e) => {
+    if (e.key === '1') {
+      dispatch({
+        type: 'rest/showModal',
+        payload: {
+          modalType: 'update',
+          currentItem:record,
+          modalName:modalName,
+        },
+      })
+    } else if (e.key === '2') {
+      confirm({
+        title: '您确定删除这条记录?',
+        onOk () {
+          dispatch({
+            type: 'rest/delete',
+            payload: {data:record.id,modalName:modalName}
+          })
+        },
+      })
+    }
+  }
+
   const listProps = {
     dataSource: list,
     loading: loading.effects['rest/query'],
-    pagination:{...pagination, showTotal: total => `共 ${total} 条`},
+    pagination:pagination,
+    columns:[...columns, {
+          title: 'Operation',
+          key: 'operation',
+          width: 100,
+          render: (text, record) => {
+            return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: '修改' }, { key: '2', name: '删除' }]} />
+          },
+        }],
     location,
     isMotion,
     onChange (page) {
@@ -48,22 +83,6 @@ const Rest = ({ location, dispatch, rest, loading }) => {
           pageSize: page.pageSize,
         },
       }))
-    },
-    onDeleteItem (id) {
-      dispatch({
-        type: 'rest/delete',
-        payload: {data:id,modalName:modalName}
-      })
-    },
-    onEditItem (item) {
-      dispatch({
-        type: 'rest/showModal',
-        payload: {
-          modalType: 'update',
-          currentItem:item,
-          modalName:modalName,
-        },
-      })
     },
     rowSelection: {
       selectedRowKeys,
@@ -143,7 +162,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         </Row>
       }
       <List {...listProps} />
-      {modalVisible && <Modal {...modalProps} />}
+      {modalVisible && <ModalForm {...modalProps} />}
     </div>
   )
 }

@@ -18,7 +18,7 @@ const pageModel = modelExtend(model, {
     pagination: {
       showSizeChanger: true,
       showQuickJumper: true,
-      showTotal: total => `Total ${total} Items`,
+      showTotal: total => `总 ${total} 条`,
       current: 1,
       total: 0,
     },
@@ -40,8 +40,40 @@ const pageModel = modelExtend(model, {
 
 })
 
+const pageColumnModel = modelExtend(model, {
+
+  state: {
+    list: [],
+    columns:[],
+    pagination: {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => `总 ${total} 条`,
+      current: 1,
+      total: 0,
+    },
+  },
+
+  reducers: {
+    querySuccess (state, { payload }) {
+      const { list, pagination,columns } = payload
+      return {
+        ...state,
+        list,
+        columns,
+        pagination: {
+          ...state.pagination,
+          ...pagination,
+        },
+      }
+    },
+  },
+
+})
+
 
 module.exports = {
   model,
   pageModel,
+  pageColumnModel
 }

@@ -3,11 +3,13 @@ import modelExtend from 'dva-model-extend'
 import pathToRegexp from 'path-to-regexp'
 import { config } from 'utils'
 import { query, create,remove, update } from 'services/rest'
-import { pageModel } from './common'
+import { pageColumnModel } from './common'
+import { Link } from 'dva/router'
+import { DropOption } from 'components'
 
 const { prefix } = config
 
-export default modelExtend(pageModel, {
+export default modelExtend(pageColumnModel, {
   namespace: 'rest',
 
   state: {
@@ -35,6 +37,51 @@ export default modelExtend(pageModel, {
 
     * query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
+      const columns = [
+        {
+          title: 'Avatar',
+          dataIndex: 'avatar',
+          key: 'avatar',
+          width: 64,
+          render: text => <img alt={'avatar'} width={24} src={text} />,
+        }, {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
+        }, {
+          title: 'NickName',
+          dataIndex: 'nickName',
+          key: 'nickName',
+        }, {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+        }, {
+          title: 'Gender',
+          dataIndex: 'isMale',
+          key: 'isMale',
+          render: text => (<span>{text
+            ? 'Male'
+            : 'Female'}</span>),
+        }, {
+          title: 'Phone',
+          dataIndex: 'phone',
+          key: 'phone',
+        }, {
+          title: 'Email',
+          dataIndex: 'email',
+          key: 'email',
+        }, {
+          title: 'Address',
+          dataIndex: 'address',
+          key: 'address',
+        }, {
+          title: 'CreateTime',
+          dataIndex: 'createTime',
+          key: 'createTime',
+        }
+      ]
 
       yield put({ type: 'updateState', payload: { modalName: payload.modalName } })
 
@@ -43,6 +90,7 @@ export default modelExtend(pageModel, {
           type: 'querySuccess',
           payload: {
             list: data.data.content,
+            columns:columns,
             pagination: {
               current: Number(payload.pageNumber) || 1,
               pageSize: Number(payload.pageSize) || 10,
