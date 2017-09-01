@@ -17,16 +17,19 @@
 
         <property name="name" type="string" length="8">
             <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
             <meta attribute="field-description">用户名</meta>
         </property>
 
         <property name="nickName" type="string" length="16">
             <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
             <meta attribute="field-description">昵称</meta>
         </property>
 
         <property name="age" type="int">
             <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
             <meta attribute="field-description">年龄</meta>
         </property>
         <property name="phone" type="string" length="11">

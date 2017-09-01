@@ -14,5 +14,6 @@
         <property name="format_sql">True</property>
         <property name="use_sql_comments">True</property>
         <mapping resource="mapping/User.hbm.xml"/>
+        <mapping resource="mapping/ListView.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

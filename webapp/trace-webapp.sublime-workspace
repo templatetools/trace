@@ -1,0 +1,1030 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"yyy",
+				"yyyy-MM-dd"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"$sc",
+				"$scope\tAngularJS"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/models/rest.js",
+			"settings":
+			{
+				"buffer_size": 4733,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/router.js",
+			"settings":
+			{
+				"buffer_size": 5108,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/routes/rest/List.js",
+			"settings":
+			{
+				"buffer_size": 1165,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/models/common.js",
+			"settings":
+			{
+				"buffer_size": 1274,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/routes/rest/index.js",
+			"settings":
+			{
+				"buffer_size": 4499,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"json",
+				"Pretty JSON: Format and Sort JSON"
+			],
+			[
+				"ham",
+				"Set Syntax: Ruby Haml"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"react",
+				"ReactIDE: Make import for current file"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"en co",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: l",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/work/001_code/github/java/trace/webapp",
+		"/work/001_code/github/java/trace/webapp/src",
+		"/work/001_code/github/java/trace/webapp/src/models",
+		"/work/001_code/github/java/trace/webapp/src/routes",
+		"/work/001_code/github/java/trace/webapp/src/routes/rest",
+		"/work/001_code/github/java/trace/webapp/src/routes/UIElement",
+		"/work/001_code/github/java/trace/webapp/src/routes/UIElement/dataTable",
+		"/work/001_code/github/java/trace/webapp/src/services"
+	],
+	"file_history":
+	[
+		"/work/001_code/github/java/trace/webapp/src/routes/user/index.js",
+		"/work/001_code/github/java/trace/webapp/src/routes/rest/Modal.js",
+		"/work/001_code/github/java/trace/webapp/src/routes/UIElement/dataTable/index.js",
+		"/work/001_code/github/java/trace/webapp/src/components/DataTable/DataTable.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/report/AmchartController.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/javascripts/services.js",
+		"/Users/tom/Desktop/问题",
+		"/work/001_code/github/js/fiona-html5/source/views/report/amchart/dashboard.html",
+		"/usr/local/etc/nginx/nginx.conf",
+		"/work/001_code/github/js/fiona-html5/source/views/guest/vip/vip_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/guest/pet/_modify.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/guest/PetController.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/guest/VipController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/guest/vip/_modify.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/commons/vip/_portal_vip_form.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/javascripts/BaseController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/guest/vip/_pet_form.haml",
+		"/usr/local/etc/nginx/nginx-fiona.conf",
+		"/work/001_code/github/js/fiona-html5/source/assets/plugins/amcharts/amcharts/amcharts.js",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/curemanager/_print_body.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_sidebar.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/basic/MenusController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/fosterage/fosterage_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/direct/FosterageController.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/direct/InhospitalController.js",
+		"/work/001_code/github/js/fiona-html5/data/direct-fosteragedetail.yml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_portal_table.haml",
+		"/work/001_code/github/js/fiona-html5/config.rb",
+		"/work/001_code/github/js/fiona-html5/data/direct-inhospitalprescriptiondetail.yml",
+		"/work/001_code/github/js/fiona-html5/data/report-amchartdashboard.yml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/inhospital/inhospital_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/fosterage/_modify.html.haml",
+		"/work/001_code/github/js/fiona-html5/data/direct-fosterage.yml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_service_pet.haml",
+		"/work/001_code/github/js/fiona-html5/data/cure-prescriptiondetail.yml",
+		"/work/001_code/github/js/fiona-html5/data/direct-inhospitaldetail.yml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_modal-portal-view-full.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_modal-portal-body.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_modal_toolbar.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/fosterage/_view.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/stock/instorage/_view.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_modal-portal-full.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/registration/RegisterController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/fosterage/_fosteragehealth.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/cure/MedicalrecordController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/medicalrecord/_pay_return_visit.haml",
+		"/work/001_code/github/js/fiona-html5/data/guest-pet.yml",
+		"/work/001_code/github/js/fiona-html5/source/views/guest/pet/pet_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/_date_ym.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/commons/pet/_portal_pet_form.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/_textview.haml",
+		"/work/001_code/github/js/fiona-html5/data/cure-medicalrecord.yml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/cure/CuremanagerController.js",
+		"/work/001_code/github/js/fiona-html5/build/views/cure/curemanager/curemanager_list.html",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/curemanager/curemanager_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/data/cure-curemanager.yml",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/medicalrecord/_view.haml",
+		"/Users/tom/Downloads/ui-select2-master/demo/app.js",
+		"/Users/tom/Downloads/ui-select2-master/demo/index.html",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/_select.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/_select2.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/partials/_navbar.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/cure/InvaccineController.js",
+		"/Users/tom/Downloads/ui-select2-master/bower_components/select2/select2.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/plugins/select2/select2.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/plugins/select2/select2.css",
+		"/work/001_code/github/js/fiona-html5/source/layouts/application.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/javascripts/layout.min.js",
+		"/work/001_code/github/js/fiona-html5/source/assets/javascripts/application.js.erb",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_service_vip_select.haml",
+		"/Users/tom/Downloads/angularjs-select2-master/index.html",
+		"/work/001_code/github/js/fiona-html5/source/assets/plugins/jquery.min.js",
+		"/Users/tom/Downloads/angularjs-select2-master/js/index.js",
+		"/Users/tom/Downloads/angularjs-select2-master/common/common.js",
+		"/Users/tom/Downloads/angularjs-select2-master/common/common.css",
+		"/Users/tom/Downloads/angularjs-select2-master/common/plugins/jquery/dist/jquery.js",
+		"/Users/tom/Desktop/版本升级记录 详细说明小版本 接口变动情况",
+		"/work/001_code/github/js/fiona-html5/data/sidebar.yml",
+		"/Users/tom/Desktop/smart.2017-08-01 - 副本.log",
+		"/Users/tom/Desktop/test.html",
+		"/Users/tom/Downloads/patchca-master/pom.xml",
+		"/Applications/apache-tomcat-6.0.48/logs/catalina.out",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/medicalrecord/list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/prescription/prescription_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/stock/StockController.js",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_portal_view.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/inhospital/_inhospitalprescription.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/curemanager/_doctorprescript.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/inhospital/_inhospitalprescriptiontemplate.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/cure/prescription/_prescriptiontype.haml",
+		"/Users/tom/Desktop/relax微信端测试沟通效率",
+		"/Users/tom/Downloads/fiona_pet_business-2017-07-30_091655.sql",
+		"/work/001_code/github/js/fiona-html5/data/registration-register.yml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_side.haml",
+		"/work/001_code/github/js/fiona-html5/build/views/direct/inhospital/inhospital_list.html",
+		"/work/001_code/github/js/fiona-html5/data/guest-vip.yml",
+		"/work/001_code/github/js/fiona-html5/source/views/registration/register/_modify.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/_date.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/inputs/line/_text_btn.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_service_vip.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/widget/_modal_print.haml",
+		"/work/001_code/github/js/fiona-html5/source/layouts/buttons/_btn.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/commons/print_dump.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/commons/_register_vip.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/direct/appointment/_registervip.html.haml",
+		"/work/001_code/github/js/fiona-html5/data/cure-prescription.yml",
+		"/work/001_code/github/js/fiona-html5/data/basic-product.yml",
+		"/work/001_code/github/js/fiona-html5/data/cure-doctorprescript.yml",
+		"/work/001_code/github/js/fiona-html5/data/cure-doctorprescriptdetail.yml",
+		"/work/001_code/github/js/fiona-html5/source/node_modules/node-gyp/test/fixtures/server.crt",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/report/DoctorController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/report/doctor/dashboard.html",
+		"/work/001_code/github/js/fiona-html5/source/views/stock/stock/_modify.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/basic/ProductController.js",
+		"/work/001_code/github/js/fiona-html5/source/views/basic/product/_modify.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/views/basic/product/product_list.html.haml",
+		"/work/001_code/github/js/fiona-html5/source/assets/pages/api/CasesController.js.erb",
+		"/Users/tom/Desktop/untitled.json",
+		"/Users/tom/Desktop/fiona_pet_business-2017-06-22_020001.sql",
+		"/Users/tom/Downloads/20170602 LFASR2.0/lfasr-sdk-demo/src/com/iflytek/msp/lfasr/TestLfasr.java",
+		"/Users/tom/Library/Application Support/Sublime Text 3/Packages/Pretty JSON/Pretty JSON.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/work/001_code/github/java/trace/webapp/src",
+			"/work/001_code/github/js/fiona-html5/source",
+			"<current file>",
+			"/work/001_code/github/js/fiona-html5/",
+			"/work/001_code/github/js/fiona-html5/source",
+			"<current file>",
+			"/work/001_code/github/js/fiona-html5/source",
+			"/work/001_code/github/js/fiona-html5/data",
+			"/work/001_code/github/js/fiona-html5/source",
+			"<current file>",
+			"/work/001_code/github/js/fiona-html5/source",
+			"<current file>",
+			"<current file>,/work/001_code/github/js/fiona-html5",
+			"<current file>",
+			"/work/001_code/github/js/fiona-html5/source,<current file>",
+			"/work/001_code/github/js/fiona-html5/source",
+			"/work/001_code/github/js/fiona-html5/source/views",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"modal",
+			"DataTable",
+			"date-picker",
+			"院电话",
+			"北京福",
+			"北京福来",
+			"192.168.1.254",
+			"localhost",
+			"sellPrice",
+			"sellP",
+			"delete",
+			"searchAll",
+			"fosteragedetailportal",
+			"baseCUD",
+			"bindTextEvent",
+			"resize",
+			"bindTextEvent",
+			"resize",
+			"fosterage",
+			"192.168.1.254",
+			"localhost",
+			"tab",
+			"vipprepay",
+			"portal_view",
+			"=> ",
+			"vipprepayportal",
+			"VipPopupCheckedPanelController",
+			"person",
+			"yyyy年MM月",
+			"pet.petBirthday ",
+			"pet.petBirthday | yyyy年MM月",
+			"yyyy年MM月",
+			"pet.petBirthday | yyyy年MM月",
+			"宠物信息",
+			"pet",
+			"cure_pet",
+			"curent",
+			"notificationSize",
+			"刷新",
+			"prepareOpts",
+			"isPlaceholderOptionSelected",
+			"selected",
+			"default",
+			"select2",
+			"z-index",
+			"component",
+			"update",
+			"open",
+			"select2-container-",
+			"select2-container--open",
+			"triggerSelect",
+			"onselect",
+			"select",
+			"select2-choice",
+			"select2-chosen",
+			"z-index",
+			"z-",
+			"change",
+			"select2",
+			"select2.css",
+			"select2",
+			"select",
+			"jquery",
+			"bootstrap",
+			"layout.js",
+			"layout",
+			"192.168.1.254",
+			"localhost",
+			"修改按钮",
+			"`fiona`@`%`",
+			"fiona",
+			"192.168.1.254",
+			"localhost",
+			"name",
+			"inhospitalprescriptionportal",
+			"inhospitalprescriptiondetailportal",
+			"inhospitalprescriptionportal",
+			"switched",
+			"复制",
+			"date",
+			"datepicker",
+			"destroy",
+			"layouts/inputs/date",
+			"出生日期",
+			"pet_pictures",
+			"挂号状态",
+			"pet",
+			"192.168.1.254",
+			"localhost",
+			"valid",
+			"curemanagerportal",
+			"checked",
+			"recipeUnit",
+			"searchByWhere",
+			"192.168.1.254",
+			"localhost",
+			"$scope.data",
+			"selectchange",
+			"所属分类",
+			"dropdownWithTable",
+			"192.168.1.254",
+			" ",
+			"\n{\"jsonrpc\":\"2.0\",\"method\":\"/v2/login/isAuthenticated\",\"id\":1,\"params\":null}",
+			"{\"jsonrpc\":\"2.0\",\"method\":\"/v2/login/isAuthenticated\",\"id\":1,\"params\":null}"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"localhost",
+			"192.168.1.254",
+			"localhost",
+			"192.168.1.254",
+			"localhost",
+			"192.168.1.254",
+			"`test`@`%`",
+			"localhost",
+			"192.168.1.254",
+			"localhost",
+			"192.168.1.254",
+			"localhost",
+			"192.168.1.254",
+			"localhost",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/models/rest.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4733,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								313,
+								274
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 172.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/router.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5108,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								955,
+								959
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 190.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/routes/rest/List.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								96,
+								96
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/models/common.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1274,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								369,
+								369
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 570.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/routes/rest/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4499,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								371,
+								371
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "trace-webapp.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"table",
+				"src/components/DataTable/DataTable.js"
+			],
+			[
+				"amc",
+				"source/assets/plugins/amcharts/amcharts/amcharts.js"
+			],
+			[
+				"repo",
+				"source/assets/pages/report/AmchartController.js"
+			],
+			[
+				"s",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"basecont",
+				"source/assets/javascripts/BaseController.js"
+			],
+			[
+				"vip",
+				"source/assets/pages/guest/VipController.js"
+			],
+			[
+				"petc",
+				"source/assets/pages/guest/PetController.js"
+			],
+			[
+				"ser",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"menus",
+				"source/assets/pages/basic/MenusController.js"
+			],
+			[
+				"sild",
+				"source/layouts/partials/_sidebar.haml"
+			],
+			[
+				"servi",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"inh",
+				"source/assets/pages/direct/InhospitalController.js"
+			],
+			[
+				"base",
+				"source/assets/javascripts/BaseController.js"
+			],
+			[
+				"foster",
+				"data/direct-fosteragedetail.yml"
+			],
+			[
+				"fost",
+				"source/assets/pages/direct/FosterageController.js"
+			],
+			[
+				"report",
+				"source/assets/pages/report/AmchartController.js"
+			],
+			[
+				"dash",
+				"data/report-amchartdashboard.yml"
+			],
+			[
+				"dashboard",
+				"data/report-amchartdashboard.yml"
+			],
+			[
+				"fostera",
+				"data/direct-fosteragedetail.yml"
+			],
+			[
+				"f",
+				"source/assets/pages/direct/FosterageController.js"
+			],
+			[
+				"portal",
+				"source/layouts/widget/_portal_table.haml"
+			],
+			[
+				"inho",
+				"source/assets/pages/direct/InhospitalController.js"
+			],
+			[
+				"fosterage",
+				"source/assets/pages/direct/FosterageController.js"
+			],
+			[
+				"service",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"sid",
+				"source/layouts/partials/_sidebar.haml"
+			],
+			[
+				"pre",
+				"data/cure-prescriptiondetail.yml"
+			],
+			[
+				"modal_toolbar",
+				"source/layouts/partials/_modal_toolbar.haml"
+			],
+			[
+				"modal-portal-body",
+				"source/layouts/partials/_modal-portal-body.haml"
+			],
+			[
+				"modal-portal-full",
+				"source/layouts/partials/_modal-portal-full.haml"
+			],
+			[
+				"fos",
+				"source/views/direct/fosterage/fosterage_list.html.haml"
+			],
+			[
+				"inhospital",
+				"source/views/direct/inhospital/inhospital_list.html.haml"
+			],
+			[
+				"register",
+				"source/assets/pages/registration/RegisterController.js"
+			],
+			[
+				"service_pet",
+				"source/layouts/widget/_service_pet.haml"
+			],
+			[
+				"medicalrecord",
+				"source/assets/pages/cure/MedicalrecordController.js"
+			],
+			[
+				"data/pet",
+				"data/guest-pet.yml"
+			],
+			[
+				"petl",
+				"source/views/guest/pet/pet_list.html.haml"
+			],
+			[
+				"pet",
+				"source/views/commons/pet/_portal_pet_form.haml"
+			],
+			[
+				"cure",
+				"source/assets/pages/cure/CuremanagerController.js"
+			],
+			[
+				"",
+				"data/cure-curemanager.yml"
+			],
+			[
+				"cure-",
+				"data/cure-curemanager.yml"
+			],
+			[
+				"curemanager",
+				"source/views/cure/curemanager/curemanager_list.html.haml"
+			],
+			[
+				"servic",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"medicr",
+				"source/views/cure/medicalrecord/_view.haml"
+			],
+			[
+				"medic",
+				"data/cure-medicalrecord.yml"
+			],
+			[
+				"select2.js",
+				"source/assets/plugins/select2/select2.js"
+			],
+			[
+				"navcon",
+				"source/assets/pages/cure/InvaccineController.js"
+			],
+			[
+				"basecontroller",
+				"source/assets/javascripts/BaseController.js"
+			],
+			[
+				"select",
+				"source/assets/plugins/select2/select2.css"
+			],
+			[
+				"select2.css",
+				"source/assets/plugins/select2/select2.css"
+			],
+			[
+				"service_vip_select",
+				"source/layouts/widget/_service_vip_select.haml"
+			],
+			[
+				"pet_l",
+				"source/views/guest/pet/pet_list.html.haml"
+			],
+			[
+				"layout.min",
+				"source/assets/javascripts/layout.min.js"
+			],
+			[
+				"jquery.min.js",
+				"source/assets/plugins/jquery.min.js"
+			],
+			[
+				"menu",
+				"source/assets/pages/basic/MenusController.js"
+			],
+			[
+				"side",
+				"source/layouts/partials/_sidebar.haml"
+			],
+			[
+				"medica",
+				"data/cure-medicalrecord.yml"
+			],
+			[
+				"stock",
+				"source/assets/pages/stock/StockController.js"
+			],
+			[
+				"medi",
+				"data/cure-medicalrecord.yml"
+			],
+			[
+				"prescription",
+				"source/views/cure/prescription/prescription_list.html.haml"
+			],
+			[
+				"presc",
+				"source/views/cure/prescription/_prescriptiontype.haml"
+			],
+			[
+				"datepicker",
+				"source/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"
+			],
+			[
+				"petlis",
+				"source/views/guest/pet/pet_list.html.haml"
+			],
+			[
+				"vipl",
+				"source/views/guest/vip/vip_list.html.haml"
+			],
+			[
+				"button",
+				"source/layouts/buttons/_btn.haml"
+			],
+			[
+				"curem",
+				"source/assets/pages/cure/CuremanagerController.js"
+			],
+			[
+				"modal_print",
+				"source/layouts/widget/_modal_print.haml"
+			],
+			[
+				"print_dump",
+				"source/views/commons/print_dump.html.haml"
+			],
+			[
+				"curecon",
+				"source/assets/pages/cure/CuremanagerController.js"
+			],
+			[
+				"view/",
+				"source/views/commons/_register_vip.haml"
+			],
+			[
+				"view/petv",
+				"source/views/direct/appointment/_registervip.html.haml"
+			],
+			[
+				"view/pet",
+				"source/views/guest/pet/pet_list.html.haml"
+			],
+			[
+				"view/cure",
+				"source/views/cure/curemanager/curemanager_list.html.haml"
+			],
+			[
+				"curec",
+				"source/assets/pages/cure/CuremanagerController.js"
+			],
+			[
+				"curdcontr",
+				"source/assets/pages/cure/MedicalrecordController.js"
+			],
+			[
+				"cur",
+				"data/cure-doctorprescriptdetail.yml"
+			],
+			[
+				"c",
+				"data/cure-doctorprescript.yml"
+			],
+			[
+				"curm",
+				"data/cure-curemanager.yml"
+			],
+			[
+				"product",
+				"data/basic-product.yml"
+			],
+			[
+				"serv",
+				"source/assets/javascripts/services.js"
+			],
+			[
+				"server",
+				"source/node_modules/node-gyp/test/fixtures/server.crt"
+			],
+			[
+				"report/doctor",
+				"source/views/report/doctor/dashboard.html"
+			],
+			[
+				"doctor",
+				"source/assets/pages/report/DoctorController.js"
+			],
+			[
+				"stock/mdo",
+				"source/views/stock/stock/_modify.html.haml"
+			],
+			[
+				"productcon",
+				"source/assets/pages/basic/ProductController.js"
+			],
+			[
+				"services.js",
+				"source/assets/javascripts/services.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 665.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 261.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

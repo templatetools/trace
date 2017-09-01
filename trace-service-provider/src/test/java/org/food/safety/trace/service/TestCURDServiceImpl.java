@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.food.safety.trace.TestSmartApplication;
 import org.food.safety.trace.dto.*;
+import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.metamodel.EntityType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,27 @@ public class TestCURDServiceImpl{
     static final String NAME = "UserEntity";
     @Autowired
     CURDService curdService;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    private EntityType findEntiytyTypeByName(String name){
+        MetamodelImpl metamodel = (MetamodelImpl)entityManager.getEntityManagerFactory().getMetamodel();
+
+        EntityType entity = null;
+        for (EntityType entityType : metamodel.getEntities()){
+            if (entityType.getName().endsWith(name)){
+                entity = entityType;
+            }
+        }
+
+        if (null == entity){
+            throw new RuntimeException("not fond " + name + " entity!");
+        }
+
+        return entity;
+    }
+
     @Test
     public void delete(){
         boolean result = curdService.delete(NAME, "ff8080815e26bfc2015e26bfccfb0000");
@@ -87,4 +111,12 @@ public class TestCURDServiceImpl{
 
         log.debug("class:{}", curdService.createOrUpdte(entityName, JSON.json(entity)));
     }
+
+    @Test
+    public void fields(){
+        EntityType entityType = findEntiytyTypeByName(NAME);
+
+        log.debug("entity:{}", entityType);
+    }
+
 }
