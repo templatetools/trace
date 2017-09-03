@@ -63,4 +63,11 @@ public interface CURDService {
      * @return
      */
     Boolean delete(String name, String id);
+
+    /**
+     * 对象 列表视图信息
+     * @param name 名称
+     * @return
+     */
+    List viewList(String name);
 }

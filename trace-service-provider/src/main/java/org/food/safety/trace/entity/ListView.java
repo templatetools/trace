@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-1 15:42:57 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-3 16:20:14 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -34,14 +34,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       * 列名
      */
      private String name;
+     /**
+      * 字段类型
+     */
+     private String fieldType;
 
     public ListView() {
     }
 
-    public ListView(String entityName, String title, String name) {
+    public ListView(String entityName, String title, String name, String fieldType) {
        this.entityName = entityName;
        this.title = title;
        this.name = name;
+       this.fieldType = fieldType;
     }
    
     /**       
@@ -97,6 +102,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public void setName(String name) {
         this.name = name;
     }
+    /**       
+     *      * 字段类型
+     */
+
+    
+    @Column(name="fieldType", length=32)
+    public String getFieldType() {
+        return this.fieldType;
+    }
+    
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
+    }
 
     /**
      * toString
@@ -109,6 +127,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("entityName").append("='").append(getEntityName()).append("' ");			
       buffer.append("title").append("='").append(getTitle()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("fieldType").append("='").append(getFieldType()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();

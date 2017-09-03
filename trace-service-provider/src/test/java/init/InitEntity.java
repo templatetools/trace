@@ -56,6 +56,8 @@ public class InitEntity {
         exporter.getProperties().setProperty("ejb3", "true");
         exporter.start();
 
+        configuration.buildSessionFactory();
+
         //init view list
         Metadata metadata = MetadataHelper.getMetadata(configuration);
 
@@ -66,7 +68,7 @@ public class InitEntity {
                 if (property.getMetaAttributes().containsKey(LIST_VIEW_KEY)) {
                     log.debug("property:{}", property, property.getMetaAttribute(LIST_VIEW_KEY).getValue());
                 }
-                Map<String, String> entity = ImmutableMap.of("entityName", persistentClass.getEntityName(), "title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue(), "name", property.getName());
+                Map<String, String> entity = ImmutableMap.of("entityName", persistentClass.getEntityName(), "title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue(), "name", property.getName(),"fieldType", property.getType().getName());
 
                 try {
                     log.debug("class:{}", curdService.createOrUpdte(LIST_VIEW_ENTITY_NAME, JSON.json(entity)));
@@ -78,6 +80,6 @@ public class InitEntity {
 
 //        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR),ImmutableList.of("/work/001_code/github/java/trace/trace-rest-provider/target/trace-rest-provider-1.0-SNAPSHOT.jar"));
 
-        configuration.buildSessionFactory();
+
     }
 }

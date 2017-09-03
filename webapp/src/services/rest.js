@@ -3,6 +3,14 @@ import { request, config } from 'utils'
 const { api } = config
 const { user } = api
 
+
+export async function columns (params) {
+  return request({
+    url: '/rest/api/v1/' + params.modalName + '/view/list',
+    method: 'get'
+  })
+}
+
 export async function query (params) {
   let page = {'pageNumber':params.data.pageNumber, 'pageSize':params.data.pageSize}
 

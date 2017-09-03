@@ -51,6 +51,14 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
+    public RestResult<List> viewList(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name) {
+        log.debug("viewList:{}", name);
+        List list = curdService.viewList(name);
+        log.debug("viewList result:{}", list);
+        return RestResult.OK(list);
+    }
+
+    @Override
     public RestResult<Page<Viewable>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
         log.debug("pageSearch:{}", pageSearch);
         Page page = curdService.page(name, pageSearch);

@@ -1,8 +1,8 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
 import pathToRegexp from 'path-to-regexp'
-import { config } from 'utils'
-import { query, create,remove, update } from 'services/rest'
+import { config, render } from 'utils'
+import { query, create,remove, update,columns } from 'services/rest'
 import { pageColumnModel } from './common'
 import { Link } from 'dva/router'
 import { DropOption } from 'components'
@@ -34,55 +34,18 @@ export default modelExtend(pageColumnModel, {
   },
 
   effects: {
-
     * query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
-      const columns = [
-        {
-          title: 'Avatar',
-          dataIndex: 'avatar',
-          key: 'avatar',
-          width: 64,
-          render: text => <img alt={'avatar'} width={24} src={text} />,
-        }, {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
-          render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
-        }, {
-          title: 'NickName',
-          dataIndex: 'nickName',
-          key: 'nickName',
-        }, {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
-        }, {
-          title: 'Gender',
-          dataIndex: 'isMale',
-          key: 'isMale',
-          render: text => (<span>{text
-            ? 'Male'
-            : 'Female'}</span>),
-        }, {
-          title: 'Phone',
-          dataIndex: 'phone',
-          key: 'phone',
-        }, {
-          title: 'Email',
-          dataIndex: 'email',
-          key: 'email',
-        }, {
-          title: 'Address',
-          dataIndex: 'address',
-          key: 'address',
-        }, {
-          title: 'CreateTime',
-          dataIndex: 'createTime',
-          key: 'createTime',
-        }
-      ]
+      const fields = yield call(columns, payload)
+      let listColumns = [];
+      fields.data.map((item,index)=>{
+        let c = {title:item.title,dataIndex:item.name,key:item.name }
+        render(c, item);
+        listColumns.push(c);
+      })
 
+      console.log('listColumns', listColumns);      
+      
       yield put({ type: 'updateState', payload: { modalName: payload.modalName } })
 
       if (data) {
@@ -90,7 +53,7 @@ export default modelExtend(pageColumnModel, {
           type: 'querySuccess',
           payload: {
             list: data.data.content,
-            columns:columns,
+            columns:listColumns,
             pagination: {
               current: Number(payload.pageNumber) || 1,
               pageSize: Number(payload.pageSize) || 10,

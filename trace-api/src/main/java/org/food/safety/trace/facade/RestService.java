@@ -24,6 +24,11 @@ public interface RestService {
     @ApiOperation("列表")
     RestResult<List> list(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, ListFilter listFilter);
 
+    @GET
+    @Path("/{version}/{name}/view/list")
+    @ApiOperation("列表视图")
+    RestResult<List> viewList(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name);
+
     @POST
     @Path("/{version}/{name}")
     @ApiOperation("添加/修改")

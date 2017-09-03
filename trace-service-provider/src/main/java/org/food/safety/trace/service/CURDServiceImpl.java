@@ -10,6 +10,7 @@ import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
+import org.food.safety.trace.repository.ListViewDao;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +37,16 @@ import java.util.List;
 @Primary
 public class CURDServiceImpl implements CURDService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
+
+    /**
+     * 视图信息
+     */
+    private static final String LISTVIEW_ENTITY = "ListView";
+
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    protected ListViewDao listViewDao;
 
     private EntityType findEntiytyTypeByName(String name){
         MetamodelImpl metamodel = (MetamodelImpl)entityManager.getEntityManagerFactory().getMetamodel();
@@ -119,5 +128,11 @@ public class CURDServiceImpl implements CURDService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List viewList(String name) {
+        List result = listViewDao.findByEntityNameLike('%' + name);
+        return result;
     }
 }
