@@ -13,26 +13,29 @@
             <meta attribute="field-description">id</meta>
             <generator class="uuid.hex"/>
         </id>
-
         <property name="entityName" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">实体名称</meta>
         </property>
-
         <property name="title" type="string" length="32">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">标题</meta>
         </property>
-
         <property name="name" type="string" length="32">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">列名</meta>
         </property>
-
-        <property name="fieldType" type="string" length="32">
+        <property name="rules" type="string" length="512">
             <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="field-description">字段类型</meta>
+            <meta attribute="field-description">规则</meta>
         </property>
-
+        <property name="itemType" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">渲染元素类型</meta>
+        </property>
+        <property name="itemValue" type="string" length="512">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">备选数据</meta>
+        </property>
     </class>
 </hibernate-mapping>

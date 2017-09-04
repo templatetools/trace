@@ -16,6 +16,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
   const { pageSize } = pagination
 
   const modalProps = {
+    columns:columns,
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,

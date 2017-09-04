@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-3 16:20:14 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-4 16:42:13 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -35,18 +35,28 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String name;
      /**
-      * 字段类型
+      * 规则
      */
-     private String fieldType;
+     private String rules;
+     /**
+      * 渲染元素类型
+     */
+     private String itemType;
+     /**
+      * 备选数据
+     */
+     private String itemValue;
 
     public ListView() {
     }
 
-    public ListView(String entityName, String title, String name, String fieldType) {
+    public ListView(String entityName, String title, String name, String rules, String itemType, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.name = name;
-       this.fieldType = fieldType;
+       this.rules = rules;
+       this.itemType = itemType;
+       this.itemValue = itemValue;
     }
    
     /**       
@@ -103,17 +113,43 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.name = name;
     }
     /**       
-     *      * 字段类型
+     *      * 规则
      */
 
     
-    @Column(name="fieldType", length=32)
-    public String getFieldType() {
-        return this.fieldType;
+    @Column(name="rules", length=512)
+    public String getRules() {
+        return this.rules;
     }
     
-    public void setFieldType(String fieldType) {
-        this.fieldType = fieldType;
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+    /**       
+     *      * 渲染元素类型
+     */
+
+    
+    @Column(name="itemType", length=32)
+    public String getItemType() {
+        return this.itemType;
+    }
+    
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+    /**       
+     *      * 备选数据
+     */
+
+    
+    @Column(name="itemValue", length=512)
+    public String getItemValue() {
+        return this.itemValue;
+    }
+    
+    public void setItemValue(String itemValue) {
+        this.itemValue = itemValue;
     }
 
     /**
@@ -127,7 +163,9 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("entityName").append("='").append(getEntityName()).append("' ");			
       buffer.append("title").append("='").append(getTitle()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("fieldType").append("='").append(getFieldType()).append("' ");			
+      buffer.append("rules").append("='").append(getRules()).append("' ");			
+      buffer.append("itemType").append("='").append(getItemType()).append("' ");			
+      buffer.append("itemValue").append("='").append(getItemValue()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();

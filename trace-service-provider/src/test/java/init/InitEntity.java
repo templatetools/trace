@@ -4,12 +4,15 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.food.safety.trace.TestSmartApplication;
 import org.food.safety.trace.service.CURDService;
 import org.hibernate.boot.Metadata;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.mapping.MetaAttribute;
 import org.hibernate.mapping.PersistentClass;
 import org.hibernate.mapping.Property;
+import org.hibernate.tool.hbm2x.MetaAttributeHelper;
 import org.hibernate.tool.hbm2x.POJOExporter;
 import org.hibernate.tool.util.MetadataHelper;
 import org.junit.Test;
@@ -23,6 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -41,6 +45,8 @@ public class InitEntity {
     public static final String LIST_VIEW_ENTITY_NAME = "ListView";
     public static final String LIST_VIEW_KEY = "use-in-list";
     public static final String LIST_VIEW_FIELD_DESCRIPTION = "field-description";
+    public static final String FIELD_ITEM_VALUE= "item-value";
+    public static final String FIELD_ITEM_TYPE= "item-type";
 
     @Autowired
     CURDService curdService;
@@ -68,7 +74,21 @@ public class InitEntity {
                 if (property.getMetaAttributes().containsKey(LIST_VIEW_KEY)) {
                     log.debug("property:{}", property, property.getMetaAttribute(LIST_VIEW_KEY).getValue());
                 }
-                Map<String, String> entity = ImmutableMap.of("entityName", persistentClass.getEntityName(), "title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue(), "name", property.getName(),"fieldType", property.getType().getName());
+                Map<String, String> entity = new HashedMap();
+                entity.put("entityName", persistentClass.getEntityName());
+                entity.put("title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue());
+                entity.put("name", property.getName());
+                entity.put("fieldType", property.getType().getName());
+                entity.put("rules", getRules(property));
+                if (null != property.getMetaAttribute(FIELD_ITEM_TYPE)) {
+                    entity.put("itemType", property.getMetaAttribute(FIELD_ITEM_TYPE).getValue());
+                }else{
+                    entity.put("itemType", "Input");
+                }
+
+                if (null != property.getMetaAttribute(FIELD_ITEM_VALUE)) {
+                    entity.put("itemValue", property.getMetaAttribute(FIELD_ITEM_VALUE).getValue());
+                }
 
                 try {
                     log.debug("class:{}", curdService.createOrUpdte(LIST_VIEW_ENTITY_NAME, JSON.json(entity)));
@@ -81,5 +101,20 @@ public class InitEntity {
 //        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR),ImmutableList.of("/work/001_code/github/java/trace/trace-rest-provider/target/trace-rest-provider-1.0-SNAPSHOT.jar"));
 
 
+    }
+
+    private String getRules(Property property) {
+        Map<String, String> rules = new HashMap<String, String>();
+        try {
+            for (Object metaAttribute:property.getMetaAttributes().entrySet()){
+                Map.Entry<String, MetaAttribute> map = (Map.Entry<String, MetaAttribute>) metaAttribute;
+                if (map.getKey().startsWith("rules")){
+                    rules.put(map.getKey().replaceAll("rules-", ""), MetaAttributeHelper.getMetaAsString(map.getValue()));
+                }
+            }
+            return JSON.json(rules);
+        } catch (IOException e) {
+            return "{}";
+        }
     }
 }

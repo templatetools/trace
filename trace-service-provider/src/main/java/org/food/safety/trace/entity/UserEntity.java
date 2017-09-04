@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-3 16:20:14 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-4 16:42:13 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -38,21 +38,21 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
      */
      private int age;
      /**
-      * 电话
-     */
-     private String phone;
-     /**
-      * 联系地址
-     */
-     private String address;
-     /**
       * 性别
      */
      private boolean isMale;
      /**
+      * 电话
+     */
+     private String phone;
+     /**
       * 电子邮件
      */
      private String email;
+     /**
+      * 联系地址
+     */
+     private String address;
      /**
       * 创建时间
      */
@@ -65,14 +65,14 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
     public UserEntity(Date createTime) {
         this.createTime = createTime;
     }
-    public UserEntity(String name, String nickName, int age, String phone, String address, boolean isMale, String email, Date createTime) {
+    public UserEntity(String name, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
        this.name = name;
        this.nickName = nickName;
        this.age = age;
-       this.phone = phone;
-       this.address = address;
        this.isMale = isMale;
+       this.phone = phone;
        this.email = email;
+       this.address = address;
        this.createTime = createTime;
     }
    
@@ -130,32 +130,6 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
         this.age = age;
     }
     /**       
-     *      * 电话
-     */
-
-    
-    @Column(name="phone", length=11)
-    public String getPhone() {
-        return this.phone;
-    }
-    
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    /**       
-     *      * 联系地址
-     */
-
-    
-    @Column(name="address", length=128)
-    public String getAddress() {
-        return this.address;
-    }
-    
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    /**       
      *      * 性别
      */
 
@@ -169,6 +143,19 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
         this.isMale = isMale;
     }
     /**       
+     *      * 电话
+     */
+
+    
+    @Column(name="phone", length=11)
+    public String getPhone() {
+        return this.phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    /**       
      *      * 电子邮件
      */
 
@@ -180,6 +167,19 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
     
     public void setEmail(String email) {
         this.email = email;
+    }
+    /**       
+     *      * 联系地址
+     */
+
+    
+    @Column(name="address", length=128)
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
     }
     /**       
      *      * 创建时间
@@ -206,10 +206,10 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("nickName").append("='").append(getNickName()).append("' ");			
       buffer.append("age").append("='").append(getAge()).append("' ");			
-      buffer.append("phone").append("='").append(getPhone()).append("' ");			
-      buffer.append("address").append("='").append(getAddress()).append("' ");			
       buffer.append("isMale").append("='").append(isIsMale()).append("' ");			
+      buffer.append("phone").append("='").append(getPhone()).append("' ");			
       buffer.append("email").append("='").append(getEmail()).append("' ");			
+      buffer.append("address").append("='").append(getAddress()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();
