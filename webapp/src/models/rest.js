@@ -39,7 +39,11 @@ export default modelExtend(pageColumnModel, {
       const fields = yield call(columns, payload)
       let listColumns = [];
       fields.data.map((item,index)=>{
-        let c = {title:item.title,dataIndex:item.name,key:item.name }
+        let rules = JSON.parse(item.rules);
+        if (rules.hasOwnProperty("pattern")){
+          rules.pattern = eval(rules.pattern);
+        }
+        let c = {title:item.title,dataIndex:item.name,key:item.name, rules: rules, itemType: item.itemType, itemValue: item.itemValue}
         render(c, item);
         listColumns.push(c);
       })

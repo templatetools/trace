@@ -37,10 +37,28 @@ const modal = ({
       onOk(data)
     })
   }
+  const getItem = (item, val) => {
+    switch(item){
+      case 'InputNumber':{
+        return <InputNumber />  
+      }
+      case 'Radio':{
+        let v = JSON.parse(val);
+        return (<Radio.Group>
+                  {v.map((item,index)=>{
+                    return <Radio value={item.val} key={index} >{item.text}</Radio>  
+                  })}
+                </Radio.Group>)
+      }
+      default:
+        return <Input />
+    }
+  }
 
   const modalOpts = {
     ...modalProps,
     onOk: handleOk,
+    getItem:getItem
   }
 
   return (
@@ -49,15 +67,13 @@ const modal = ({
       {
         modalOpts.columns.map((col, index)=>{
           console.log('column:', col);
-          return (<FormItem label={col.title} hasFeedback {...formItemLayout}>
+          return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
             {getFieldDecorator(col.key, {
               initialValue: item[col.dataIndex],
               rules: [
-                {
-                  required: true,
-                },
+                col.rules,
               ],
-            })(<Input />)}
+            })(getItem(col.itemType,col.itemValue))}
           </FormItem>)
         })
       }

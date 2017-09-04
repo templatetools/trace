@@ -40,7 +40,7 @@
             <meta attribute="rules-required">true</meta>
             <meta attribute="rules-type">boolean</meta>
             <meta attribute="item-type">Radio</meta>
-            <meta attribute="item-value">[{text:'男', val:'true'},{text:'女', val:'false'}]</meta>
+            <meta attribute="item-value">[{"text":"男", "val":true},{"text":"女", "val":false}]</meta>
             <meta attribute="field-description">性别</meta>
         </property>
         <property name="phone" type="string" length="11">
