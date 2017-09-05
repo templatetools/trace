@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity">
+    <class name="Menu">
+        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+
+        <meta attribute="class-description">菜单信息</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" type="string" length="16">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">名称</meta>
+        </property>
+        <property name="icon" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">图标</meta>
+        </property>
+        <property name="route" type="string" length="64">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">路由</meta>
+        </property>
+        <property name="mpid" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">父级菜单</meta>
+        </property>
+        <property name="createTime" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">创建时间</meta>
+
+            <column name ="createTime" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

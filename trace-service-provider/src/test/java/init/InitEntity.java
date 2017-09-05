@@ -1,11 +1,10 @@
 package init;
 
 import com.alibaba.dubbo.common.json.JSON;
-import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.food.safety.trace.TestSmartApplication;
+import org.food.safety.trace.repository.MenuDaoTest;
 import org.food.safety.trace.service.CURDService;
 import org.hibernate.boot.Metadata;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +16,7 @@ import org.hibernate.tool.hbm2x.POJOExporter;
 import org.hibernate.tool.util.MetadataHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +34,9 @@ import java.util.Map;
  * Created by tom on 2017/8/25.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@Suite.SuiteClasses({
+        MenuDaoTest.class
+})
 @SpringBootTest(classes = TestSmartApplication.class)
 @ComponentScan("org.food.safety.trace")
 @EnableAutoConfiguration
@@ -97,6 +100,8 @@ public class InitEntity {
                 }
             }
         }
+
+
 
 //        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR),ImmutableList.of("/work/001_code/github/java/trace/trace-rest-provider/target/trace-rest-provider-1.0-SNAPSHOT.jar"));
 
