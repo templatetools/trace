@@ -54,6 +54,7 @@ export default {
       if (success && user) {
         const { data } = yield call(menusService.query)
         let list = data;
+        
         const { permissions } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
