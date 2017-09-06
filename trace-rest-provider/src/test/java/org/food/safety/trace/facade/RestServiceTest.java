@@ -25,4 +25,10 @@ public class RestServiceTest {
     public void detail() throws Exception {
         client.get(name + "/ff8080815e22f191015e22f198aa0000", token);
     }
+    @Test
+    public void method() throws Exception {
+        Map<String, Object> param = Maps.newHashMap();
+        param.put("name", "bai");
+        client.post(name + "/login", token, JSON.toJSONString(param));
+    }
 }

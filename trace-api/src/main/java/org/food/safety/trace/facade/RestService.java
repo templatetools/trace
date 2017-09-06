@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 
 import javax.ws.rs.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by X on 2017/4/17.
@@ -23,6 +24,11 @@ public interface RestService {
     @Path("/{version}/{name}/list")
     @ApiOperation("列表")
     RestResult<List> list(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, ListFilter listFilter);
+
+    @POST
+    @Path("/{version}/{name}/{method}")
+    @ApiOperation("扩展方法")
+    RestResult<Object> method(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, @PathParam("version") String version, @PathParam("name") String name, @PathParam("method") String method, Map data);
 
     @GET
     @Path("/{version}/{name}/view/list")

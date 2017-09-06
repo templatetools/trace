@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.MethodUtils;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.RestResult;
@@ -20,7 +21,9 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by X on 2017/8/25.
@@ -48,6 +51,19 @@ public class RestServiceImpl implements RestService {
         List list = curdService.list(name, listFilter);
         log.debug("list result:{}", list);
         return RestResult.OK(list);
+    }
+
+    @Override
+    public RestResult<Object> method(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String method, Map data) {
+        Object result = null;
+
+        try {
+            result = MethodUtils.invokeMethod(this.getCurdService(), method, data);
+        } catch (Exception e) {
+            throw new RuntimeException("execute method "+ method + " error!", e);
+        }
+
+        return RestResult.OK(result);
     }
 
     @Override
