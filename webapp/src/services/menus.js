@@ -5,8 +5,8 @@ const { menus } = api
 
 export async function query (params) {
   return request({
-    url: menus,
-    method: 'get',
-    data: params,
+    url: menus + '/list',
+    method: 'post',
+    data: {},
   })
 }

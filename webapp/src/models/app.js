@@ -52,7 +52,8 @@ export default {
     }, { call, put }) {
       const { success, user } = yield call(query, payload)
       if (success && user) {
-        const { list } = yield call(menusService.query)
+        const { data } = yield call(menusService.query)
+        let list = data;
         const { permissions } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {

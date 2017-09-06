@@ -62,8 +62,12 @@
             <meta attribute="rules-required">true</meta>
             <meta attribute="field-description">联系地址</meta>
         </property>
-        <property name="createTime" type="timestamp" not-null="true">
+        <property name="createTime" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">创建时间</meta>
+
+            <column name ="createTime" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
         </property>
     </class>
 </hibernate-mapping>

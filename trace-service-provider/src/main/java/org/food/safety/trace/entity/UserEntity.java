@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-5 16:44:55 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-6 14:38:32 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -61,10 +61,6 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
     public UserEntity() {
     }
 
-	
-    public UserEntity(Date createTime) {
-        this.createTime = createTime;
-    }
     public UserEntity(String name, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
        this.name = name;
        this.nickName = nickName;
@@ -186,7 +182,7 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
      */
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="createTime", nullable=false)
+    @Column(name="createTime", nullable=false, insertable=false, updatable=false)
     public Date getCreateTime() {
         return this.createTime;
     }

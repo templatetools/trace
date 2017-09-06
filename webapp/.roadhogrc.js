@@ -24,6 +24,11 @@ export default {
       "changeOrigin": true,
       "pathRewrite": { "^/api/v1/UserEntity" : "/trace/api/rest/v1/UserEntity" }
     },
+    "/api/v1/Menu": {
+      "target": "http://localhost:7890",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api/v1/Menu" : "/trace/api/rest/v1/Menu" }
+    },
     "/rest/api/v1": {
       "target": "http://localhost:7890",
       "changeOrigin": true,
