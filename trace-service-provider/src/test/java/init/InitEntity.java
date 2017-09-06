@@ -47,6 +47,7 @@ public class InitEntity {
     public static final String TARGET_DIR = PROJCET_PATH + "target/classes";
     public static final String LIST_VIEW_ENTITY_NAME = "ListView";
     public static final String LIST_VIEW_KEY = "use-in-list";
+    public static final String VIEW_USE_IN_SEARCH = "use-in-search";
     public static final String LIST_VIEW_FIELD_DESCRIPTION = "field-description";
     public static final String FIELD_ITEM_VALUE= "item-value";
     public static final String FIELD_ITEM_TYPE= "item-type";
@@ -77,9 +78,10 @@ public class InitEntity {
                 if (property.getMetaAttributes().containsKey(LIST_VIEW_KEY)) {
                     log.debug("property:{}", property, property.getMetaAttribute(LIST_VIEW_KEY).getValue());
                 }
-                Map<String, String> entity = new HashedMap();
+                Map<String, Object> entity = new HashedMap();
                 entity.put("entityName", persistentClass.getEntityName());
                 entity.put("title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue());
+                entity.put("searchable", MetaAttributeHelper.getMetaAsBool(property.getMetaAttribute(VIEW_USE_IN_SEARCH), false));
                 entity.put("name", property.getName());
                 entity.put("fieldType", property.getType().getName());
                 entity.put("rules", getRules(property));

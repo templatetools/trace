@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-6 14:38:32 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-6 15:49:02 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -31,6 +31,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String title;
      /**
+      * 是否支持搜索
+     */
+     private boolean searchable;
+     /**
       * 列名
      */
      private String name;
@@ -50,9 +54,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, String name, String rules, String itemType, String itemValue) {
+    public ListView(String entityName, String title, boolean searchable, String name, String rules, String itemType, String itemValue) {
        this.entityName = entityName;
        this.title = title;
+       this.searchable = searchable;
        this.name = name;
        this.rules = rules;
        this.itemType = itemType;
@@ -98,6 +103,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     
     public void setTitle(String title) {
         this.title = title;
+    }
+    /**       
+     *      * 是否支持搜索
+     */
+
+    
+    @Column(name="searchable")
+    public boolean isSearchable() {
+        return this.searchable;
+    }
+    
+    public void setSearchable(boolean searchable) {
+        this.searchable = searchable;
     }
     /**       
      *      * 列名
@@ -162,6 +180,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("entityName").append("='").append(getEntityName()).append("' ");			
       buffer.append("title").append("='").append(getTitle()).append("' ");			
+      buffer.append("searchable").append("='").append(isSearchable()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("rules").append("='").append(getRules()).append("' ");			
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			

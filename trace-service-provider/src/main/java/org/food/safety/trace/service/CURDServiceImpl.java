@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.util.StringUtils;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.SearchFilter;
 import org.food.safety.trace.dto.Viewable;
+import org.food.safety.trace.entity.ListView;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.food.safety.trace.repository.ListViewDao;
@@ -35,13 +37,14 @@ import java.util.List;
 @Getter
 @Slf4j
 @Primary
-public class CURDServiceImpl implements CURDService {
+public class CURDServiceImpl implements CURDService,SearchService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
 
     /**
      * 视图信息
      */
     private static final String LISTVIEW_ENTITY = "ListView";
+    private static final String SEARCH_TEXT = "searchText";
 
     @Autowired
     private EntityManager entityManager;
@@ -101,6 +104,9 @@ public class CURDServiceImpl implements CURDService {
     @Override
     public Page page(String name, PageSearch pageSearch) {
         Dao dao = getDAO(name);
+
+        searchBefore(name, pageSearch);
+
         return dao.page(pageSearch);
     }
 
@@ -135,4 +141,30 @@ public class CURDServiceImpl implements CURDService {
         List result = listViewDao.findByEntityNameLike('%' + name);
         return result;
     }
+
+    @Override
+    public ListFilter searchBefore(@NotNull String name, @NotNull ListFilter filters) {
+        if (null != filters.getFilters()){
+            String searchText = null;
+            for (SearchFilter searchFilter: filters.getFilters()){
+                if (SEARCH_TEXT.equalsIgnoreCase(searchFilter.getFieldName())){
+                    searchText = searchFilter.getValue()+"";
+
+                    filters.getFilters().remove(searchFilter);
+
+                    List<ListView> columns = viewList(name);
+                    for (ListView view: columns){
+                        if (view.isSearchable()){
+                            SearchFilter sf = new SearchFilter(view.getName(), SearchFilter.Operator.LIKE, searchText + "%");
+                            filters.getFilters().add(sf);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        return filters;
+    }
+
 }
