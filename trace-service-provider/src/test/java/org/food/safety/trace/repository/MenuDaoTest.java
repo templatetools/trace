@@ -44,6 +44,13 @@ public class MenuDaoTest {
         setting.setMpid(root.getId());
         setting = menuDao.save(setting);
 
+        menu = new Menu();
+        menu.setName("角色管理");
+        menu.setIcon("role");
+        menu.setRoute("/rest/Role");
+        menu.setMpid(setting.getId());
+
+        menuDao.save(menu);
 
         menu = new Menu();
         menu.setName("用户管理");

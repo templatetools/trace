@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity">
+    <class name="Role">
+        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+
+        <meta attribute="class-description">角色信息</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="name" type="string" length="16">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">名称</meta>
+        </property>
+        <property name="menus" type="string" length="512">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">图标</meta>
+        </property>
+        <property name="createTime" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">创建时间</meta>
+
+            <column name ="createTime" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

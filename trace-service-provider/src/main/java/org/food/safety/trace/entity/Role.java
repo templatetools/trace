@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 菜单信息
+ * 角色信息
  */
 @Entity
-@Table(name="Menu"
+@Table(name="Role"
 )
-public class Menu  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
+public class Role  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
 
 
      /**
@@ -32,28 +32,18 @@ public class Menu  implements org.food.safety.trace.dto.Viewable,java.io.Seriali
      /**
       * 图标
      */
-     private String icon;
-     /**
-      * 路由
-     */
-     private String route;
-     /**
-      * 父级菜单
-     */
-     private String mpid;
+     private String menus;
      /**
       * 创建时间
      */
      private Date createTime;
 
-    public Menu() {
+    public Role() {
     }
 
-    public Menu(String name, String icon, String route, String mpid, Date createTime) {
+    public Role(String name, String menus, Date createTime) {
        this.name = name;
-       this.icon = icon;
-       this.route = route;
-       this.mpid = mpid;
+       this.menus = menus;
        this.createTime = createTime;
     }
    
@@ -89,39 +79,13 @@ public class Menu  implements org.food.safety.trace.dto.Viewable,java.io.Seriali
      */
 
     
-    @Column(name="icon", length=32)
-    public String getIcon() {
-        return this.icon;
+    @Column(name="menus", length=512)
+    public String getMenus() {
+        return this.menus;
     }
     
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-    /**       
-     *      * 路由
-     */
-
-    
-    @Column(name="route", length=64)
-    public String getRoute() {
-        return this.route;
-    }
-    
-    public void setRoute(String route) {
-        this.route = route;
-    }
-    /**       
-     *      * 父级菜单
-     */
-
-    
-    @Column(name="mpid", length=128)
-    public String getMpid() {
-        return this.mpid;
-    }
-    
-    public void setMpid(String mpid) {
-        this.mpid = mpid;
+    public void setMenus(String menus) {
+        this.menus = menus;
     }
     /**       
      *      * 创建时间
@@ -146,9 +110,7 @@ public class Menu  implements org.food.safety.trace.dto.Viewable,java.io.Seriali
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("icon").append("='").append(getIcon()).append("' ");			
-      buffer.append("route").append("='").append(getRoute()).append("' ");			
-      buffer.append("mpid").append("='").append(getMpid()).append("' ");			
+      buffer.append("menus").append("='").append(getMenus()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();

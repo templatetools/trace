@@ -66,12 +66,14 @@ public class InitEntity {
         exporter.getProperties().setProperty("ejb3", "true");
         exporter.start();
 
+        JavaUtil.compile();
+
         configuration.buildSessionFactory();
 
         //init view list
         Metadata metadata = MetadataHelper.getMetadata(configuration);
 
-        for (PersistentClass persistentClass: metadata.getEntityBindings()){
+        for (PersistentClass persistentClass : metadata.getEntityBindings()) {
             Iterator propertyIterator = persistentClass.getPropertyIterator();
             while (propertyIterator.hasNext()) {
                 Property property = (Property) propertyIterator.next();
@@ -87,7 +89,7 @@ public class InitEntity {
                 entity.put("rules", getRules(property));
                 if (null != property.getMetaAttribute(FIELD_ITEM_TYPE)) {
                     entity.put("itemType", property.getMetaAttribute(FIELD_ITEM_TYPE).getValue());
-                }else{
+                } else {
                     entity.put("itemType", "Input");
                 }
 
@@ -102,12 +104,6 @@ public class InitEntity {
                 }
             }
         }
-
-
-
-//        JavaUtil.compile(new File(OUTPUT_DIR), new File(TARGET_DIR),ImmutableList.of("/work/001_code/github/java/trace/trace-rest-provider/target/trace-rest-provider-1.0-SNAPSHOT.jar"));
-
-
     }
 
     private String getRules(Property property) {
