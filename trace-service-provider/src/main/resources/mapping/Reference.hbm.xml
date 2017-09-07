@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity">
+    <class name="Reference">
+        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+
+        <meta attribute="class-description">对象关系表</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="targetName" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">目标对象</meta>
+        </property>
+        <property name="targetId" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">目标</meta>
+        </property>
+        <property name="sourceName" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">源对象</meta>
+        </property>
+        <property name="sourceId" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">源</meta>
+        </property>
+    </class>
+</hibernate-mapping>

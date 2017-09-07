@@ -26,8 +26,9 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>
-            <meta attribute="item-type">Input</meta>
-            <meta attribute="field-description">图标</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="ref-type">Menu</meta>
+            <meta attribute="field-description">菜单</meta>
         </property>
         <property name="createTime" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">创建时间</meta>

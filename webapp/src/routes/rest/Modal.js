@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, InputNumber, Radio, Modal, Cascader } from 'antd'
+import { Form, Input, InputNumber, Radio, Modal, Cascader,Select } from 'antd'
 import city from '../../utils/city'
+import UserRemoteSelect from '../../components/UserRemoteSelect'
 
 const FormItem = Form.Item
 
@@ -17,6 +18,8 @@ const formItemLayout = {
 const modal = ({
   item = {},
   onOk,
+  onSelectFilterChange,
+  selectData,
   form: {
     getFieldDecorator,
     validateFields,
@@ -37,10 +40,29 @@ const modal = ({
       onOk(data)
     })
   }
+
+  const handleChange = (value) => {
+    onSelectFilterChange(value);
+  }
+
   const getItem = (item, val) => {
     switch(item){
       case 'InputNumber':{
         return <InputNumber />  
+      }
+      case 'Select':{
+        return <Select
+        mode="multiple"
+        labelInValue
+        placeholder="Select users"
+        notFoundContent={null}
+        filterOption={false}
+        onSearch={handleChange}
+        onChange={handleChange}
+        style={{ width: '100%' }}
+      >
+        {selectData.map(d => <Option key={d.value}>{d.text}</Option>)}
+      </Select>
       }
       case 'Radio':{
         let v = JSON.parse(val);

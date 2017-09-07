@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-7 9:45:43 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-7 14:37:07 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -47,6 +47,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String itemType;
      /**
+      * 引用数据类型
+     */
+     private String refType;
+     /**
       * 备选数据
      */
      private String itemValue;
@@ -54,13 +58,14 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean searchable, String name, String rules, String itemType, String itemValue) {
+    public ListView(String entityName, String title, boolean searchable, String name, String rules, String itemType, String refType, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.searchable = searchable;
        this.name = name;
        this.rules = rules;
        this.itemType = itemType;
+       this.refType = refType;
        this.itemValue = itemValue;
     }
    
@@ -157,6 +162,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.itemType = itemType;
     }
     /**       
+     *      * 引用数据类型
+     */
+
+    
+    @Column(name="refType", length=32)
+    public String getRefType() {
+        return this.refType;
+    }
+    
+    public void setRefType(String refType) {
+        this.refType = refType;
+    }
+    /**       
      *      * 备选数据
      */
 
@@ -184,6 +202,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("rules").append("='").append(getRules()).append("' ");			
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
+      buffer.append("refType").append("='").append(getRefType()).append("' ");			
       buffer.append("itemValue").append("='").append(getItemValue()).append("' ");			
       buffer.append("]");
       

@@ -170,3 +170,7 @@ web
 移动
 
 ![](assets/4.2.1-demo-2.gif)
+
+## 组件说明
+https://ant.design/components/select/
+<http://lucifier129.github.io/ant-design/components/select/#demo-coordinate>

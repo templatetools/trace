@@ -17,6 +17,7 @@
 
         <mapping resource="mapping/User.hbm.xml"/>
         <mapping resource="mapping/ListView.hbm.xml"/>
+        <mapping resource="mapping/Reference.hbm.xml"/>
         <mapping resource="mapping/Menu.hbm.xml"/>
         <mapping resource="mapping/Role.hbm.xml"/>
     </session-factory>

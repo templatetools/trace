@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-7 9:45:43 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-7 14:37:07 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -30,7 +30,7 @@ public class Role  implements org.food.safety.trace.dto.Viewable,java.io.Seriali
      */
      private String name;
      /**
-      * 图标
+      * 菜单
      */
      private String menus;
      /**
@@ -75,7 +75,7 @@ public class Role  implements org.food.safety.trace.dto.Viewable,java.io.Seriali
         this.name = name;
     }
     /**       
-     *      * 图标
+     *      * 菜单
      */
 
     

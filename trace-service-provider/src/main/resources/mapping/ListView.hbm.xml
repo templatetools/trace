@@ -37,6 +37,10 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">渲染元素类型</meta>
         </property>
+        <property name="refType" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">引用数据类型</meta>
+        </property>
         <property name="itemValue" type="string" length="512">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">备选数据</meta>

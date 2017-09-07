@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.food.safety.trace.facade.RestService;
 import org.food.safety.trace.service.CURDService;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -39,9 +40,11 @@ public class ServiceInterceptor {
 
             CURDService curdService = (CURDService) applicationContext.getBean(captureName(name) + "ServiceImpl");
 
-            if (null != curdService){
+            if (null != curdService) {
                 restService.setService(curdService);
             }
+        }catch (NoSuchBeanDefinitionException noSuchBeanDefinitionException){
+            log.info("{}, 无扩展服务!", name);
         } catch (Exception e) {
             log.warn("动态服务注册失败!", e);
         }

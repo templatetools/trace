@@ -2,6 +2,15 @@
 -- ----------------------------
 -- Table structure for t_user
 -- ----------------------------
+
+RoleMenu
+CREATE TABLE `RoleMenu` (
+  `id` VARCHAR(128) NOT NULL,
+  `role_id` VARCHAR(128) NOT NULL,
+  `menu_id` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `id` VARCHAR(36) NOT NULL,

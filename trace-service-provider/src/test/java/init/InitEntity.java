@@ -51,6 +51,7 @@ public class InitEntity {
     public static final String LIST_VIEW_FIELD_DESCRIPTION = "field-description";
     public static final String FIELD_ITEM_VALUE= "item-value";
     public static final String FIELD_ITEM_TYPE= "item-type";
+    public static final String FIELD_REF_TYPE= "ref-type";
 
     @Autowired
     CURDService curdService;
@@ -84,18 +85,12 @@ public class InitEntity {
                 entity.put("entityName", persistentClass.getEntityName());
                 entity.put("title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue());
                 entity.put("searchable", MetaAttributeHelper.getMetaAsBool(property.getMetaAttribute(VIEW_USE_IN_SEARCH), false));
+                entity.put("itemType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_TYPE), "Input"));
+                entity.put("itemValue", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_VALUE), "{}"));
+                entity.put("refType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_REF_TYPE), ""));
                 entity.put("name", property.getName());
                 entity.put("fieldType", property.getType().getName());
                 entity.put("rules", getRules(property));
-                if (null != property.getMetaAttribute(FIELD_ITEM_TYPE)) {
-                    entity.put("itemType", property.getMetaAttribute(FIELD_ITEM_TYPE).getValue());
-                } else {
-                    entity.put("itemType", "Input");
-                }
-
-                if (null != property.getMetaAttribute(FIELD_ITEM_VALUE)) {
-                    entity.put("itemValue", property.getMetaAttribute(FIELD_ITEM_VALUE).getValue());
-                }
 
                 try {
                     log.debug("class:{}", curdService.createOrUpdte(LIST_VIEW_ENTITY_NAME, JSON.json(entity)));

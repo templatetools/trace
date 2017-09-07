@@ -23,12 +23,16 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     confirmLoading: loading.effects['rest/update'],
     title: `${modalType === 'create' ? 'Create ' : 'Update '}` + modalName,
     wrapClassName: 'vertical-center-modal',
+    selectData:[{'value':1, 'text':'你好'}],
     onOk (data) {
       console.log(`rest/${modalName}/${modalType}`, data);
       dispatch({
         type: `rest/${modalType}`,
         payload: {modalName:modalName, data:data},
       })
+    },
+    onSelectFilterChange(val){
+      console.log('onSelectFilterChange', val);
     },
     onCancel () {
       dispatch({
