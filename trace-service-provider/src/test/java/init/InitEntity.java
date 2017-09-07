@@ -85,12 +85,15 @@ public class InitEntity {
                 entity.put("entityName", persistentClass.getEntityName());
                 entity.put("title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue());
                 entity.put("searchable", MetaAttributeHelper.getMetaAsBool(property.getMetaAttribute(VIEW_USE_IN_SEARCH), false));
+                entity.put("insertable", property.isInsertable());
+                entity.put("updatetable", property.isUpdateable());
                 entity.put("itemType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_TYPE), "Input"));
                 entity.put("itemValue", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_VALUE), "{}"));
                 entity.put("refType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_REF_TYPE), ""));
                 entity.put("name", property.getName());
                 entity.put("fieldType", property.getType().getName());
                 entity.put("rules", getRules(property));
+
 
                 try {
                     log.debug("class:{}", curdService.createOrUpdte(LIST_VIEW_ENTITY_NAME, JSON.json(entity)));

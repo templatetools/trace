@@ -26,7 +26,6 @@ import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -81,8 +80,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
     @Override
     public List list(String name,@NotNull ListFilter listFilter) {
         DaoBase daoBase = (DaoBase) getDAO(name);
+        List data = daoBase.findAllByFilter(listFilter);
 
-        return daoBase.findAllByFilter(listFilter);
+        queryAfter(name, data);
+
+        return data;
     }
 
     @Override
@@ -107,7 +109,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
         searchBefore(name, pageSearch);
 
-        return dao.page(pageSearch);
+        Page page = dao.page(pageSearch);
+
+        queryAfter(name, page.getContent());
+
+        return page;
     }
 
     @Override
@@ -165,6 +171,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
         }
 
         return filters;
+    }
+
+    @Override
+    public void queryAfter(String name, @NotNull List data) {
+        return;
     }
 
 }

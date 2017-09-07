@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity">
     <class name="Role">
-        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+        <meta attribute="extends">org.food.safety.trace.dto.RoleView</meta>
 
         <meta attribute="class-description">角色信息</meta>
 
@@ -22,7 +22,7 @@
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">名称</meta>
         </property>
-        <property name="menus" type="string" length="512">
+        <property name="menus" type="string" length="512" >
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>

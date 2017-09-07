@@ -25,6 +25,14 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">是否支持搜索</meta>
         </property>
+        <property name="updateable" type="boolean">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">是否修改</meta>
+        </property>
+        <property name="insertable" type="boolean">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">是否添加</meta>
+        </property>
         <property name="name" type="string" length="32">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">列名</meta>

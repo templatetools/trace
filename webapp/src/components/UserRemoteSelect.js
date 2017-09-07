@@ -35,6 +35,7 @@ class UserRemoteSelect extends React.Component {
       });
   }
   handleChange = (value) => {
+    console.log('value:', value);
     this.setState({
       value,
       data: [],

@@ -44,24 +44,29 @@ const modal = ({
   const handleChange = (value) => {
     onSelectFilterChange(value);
   }
+  const onSearch = (value, typeName) => {
+    console.log('val', value, typeName);
+    onSelectFilterChange(value);
+  }
 
-  const getItem = (item, val) => {
+  const getItem = (item, refType, val) => {
     switch(item){
       case 'InputNumber':{
         return <InputNumber />  
       }
       case 'Select':{
+        console.log('select value:', item.menusList)
         return <Select
         mode="multiple"
         labelInValue
-        placeholder="Select users"
+        placeholder="选择"
         notFoundContent={null}
         filterOption={false}
-        onSearch={handleChange}
+        onSearch={(val)=>{onSearch(val, refType)}}
         onChange={handleChange}
         style={{ width: '100%' }}
       >
-        {selectData.map(d => <Option key={d.value}>{d.text}</Option>)}
+        {selectData.map(d => <Option key={d.key}>{d.label}</Option>)}
       </Select>
       }
       case 'Radio':{
@@ -88,14 +93,18 @@ const modal = ({
       <Form layout="horizontal">
       {
         modalOpts.columns.map((col, index)=>{
-          console.log('column:', col);
+          console.log('column and item:', col, item);
+          let key = col.itemType === 'Select'?col.dataIndex + "List" : col.key;
+          if (!col.insertable){
+            return;
+          }
           return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
-            {getFieldDecorator(col.key, {
-              initialValue: item[col.dataIndex],
+            {getFieldDecorator(key, {
+              initialValue: item[key],
               rules: [
                 col.rules,
               ],
-            })(getItem(col.itemType,col.itemValue))}
+            })(getItem(col.itemType,col.refType, col.itemValue))}
           </FormItem>)
         })
       }

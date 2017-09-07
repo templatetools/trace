@@ -23,7 +23,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     confirmLoading: loading.effects['rest/update'],
     title: `${modalType === 'create' ? 'Create ' : 'Update '}` + modalName,
     wrapClassName: 'vertical-center-modal',
-    selectData:[{'value':1, 'text':'你好'}],
+    selectData:[{key:'1', label:'1'}],
     onOk (data) {
       console.log(`rest/${modalName}/${modalType}`, data);
       dispatch({
@@ -33,6 +33,10 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     },
     onSelectFilterChange(val){
       console.log('onSelectFilterChange', val);
+      // dispatch({
+      //   type: `rest/${modalType}/reference`,
+      //   payload: {modalName:modalName, data:val},
+      // })
     },
     onCancel () {
       dispatch({
@@ -69,7 +73,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     loading: loading.effects['rest/query'],
     pagination:pagination,
     columns:[...columns, {
-          title: 'Operation',
+          title: '操作',
           key: 'operation',
           width: 100,
           render: (text, record) => {

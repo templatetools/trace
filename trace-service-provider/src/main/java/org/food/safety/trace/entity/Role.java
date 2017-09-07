@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-7 14:37:07 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-7 17:39:41 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="Role"
 )
-public class Role  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
+public class Role extends org.food.safety.trace.dto.RoleView implements java.io.Serializable {
 
 
      /**

@@ -1,7 +1,6 @@
 package org.food.safety.trace.service;
 
 import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.SearchFilter;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -19,4 +18,11 @@ public interface SearchService {
      * @return
      */
     ListFilter searchBefore(@NotNull String name, @NotNull ListFilter filters);
+
+    /**
+     * 处理查询数据
+     * @param name
+     * @param data 查询结果
+     */
+    void queryAfter(String name, @NotNull final List data);
 }

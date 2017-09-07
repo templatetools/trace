@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-7 14:37:07 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-7 17:39:41 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -35,6 +35,14 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private boolean searchable;
      /**
+      * 是否修改
+     */
+     private boolean updateable;
+     /**
+      * 是否添加
+     */
+     private boolean insertable;
+     /**
       * 列名
      */
      private String name;
@@ -58,10 +66,12 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean searchable, String name, String rules, String itemType, String refType, String itemValue) {
+    public ListView(String entityName, String title, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.searchable = searchable;
+       this.updateable = updateable;
+       this.insertable = insertable;
        this.name = name;
        this.rules = rules;
        this.itemType = itemType;
@@ -121,6 +131,32 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     
     public void setSearchable(boolean searchable) {
         this.searchable = searchable;
+    }
+    /**       
+     *      * 是否修改
+     */
+
+    
+    @Column(name="updateable")
+    public boolean isUpdateable() {
+        return this.updateable;
+    }
+    
+    public void setUpdateable(boolean updateable) {
+        this.updateable = updateable;
+    }
+    /**       
+     *      * 是否添加
+     */
+
+    
+    @Column(name="insertable")
+    public boolean isInsertable() {
+        return this.insertable;
+    }
+    
+    public void setInsertable(boolean insertable) {
+        this.insertable = insertable;
     }
     /**       
      *      * 列名
@@ -199,6 +235,8 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("entityName").append("='").append(getEntityName()).append("' ");			
       buffer.append("title").append("='").append(getTitle()).append("' ");			
       buffer.append("searchable").append("='").append(isSearchable()).append("' ");			
+      buffer.append("updateable").append("='").append(isUpdateable()).append("' ");			
+      buffer.append("insertable").append("='").append(isInsertable()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("rules").append("='").append(getRules()).append("' ");			
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
