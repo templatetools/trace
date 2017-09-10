@@ -43,6 +43,7 @@ const modal = ({
 
   const handleChange = (value) => {
     // onSelectFilterChange(value);
+    console.log('handleChange');
   }
   const onSearch = (value, typeName) => {
     console.log('val', value, typeName);
@@ -56,6 +57,7 @@ const modal = ({
       }
       case 'Select':{
         console.log('select value:', item.menusList)
+        
         return <Select
         mode="multiple"
         labelInValue
@@ -63,7 +65,6 @@ const modal = ({
         notFoundContent={null}
         filterOption={false}
         onSearch={(val)=>{onSearch(val, refType)}}
-        onChange={handleChange}
         style={{ width: '100%' }}
       >
         {selectData.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
