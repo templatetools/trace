@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-7 17:39:41 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-10 16:47:08 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;

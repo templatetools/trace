@@ -35,6 +35,7 @@ public class RoleServiceImpl extends CURDServiceImpl {
                         List<Reference> references = referenceDao.findBySourceId(PropertyUtils.getProperty(d, "id") + "");
 
                         List<SelectItemView> selectItemViews = new ArrayList<>();
+                        List<String> titles = new ArrayList<>();
 
                         for (Reference reference : references) {
                             SelectItemView selectItemView = new SelectItemView();
@@ -44,9 +45,11 @@ public class RoleServiceImpl extends CURDServiceImpl {
 
                             selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
                             selectItemViews.add(selectItemView);
+                            titles.add(selectItemView.getLabel());
                         }
 
                         PropertyUtils.setProperty(d, view.getName() + "List", selectItemViews);
+                        PropertyUtils.setProperty(d, view.getName(), StringUtils.join(titles,","));
                     } catch (Exception e) {
                         log.debug("set list:{}", view.getName(), e);
                     }
