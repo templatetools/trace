@@ -12,7 +12,7 @@ import { DropOption } from 'components'
 const confirm = Modal.confirm
 
 const Rest = ({ location, dispatch, rest, loading }) => {
-  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,modalName,columns } = rest
+  const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys,modalName,columns,selectData} = rest
   const { pageSize } = pagination
 
   const modalProps = {
@@ -23,7 +23,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     confirmLoading: loading.effects['rest/update'],
     title: `${modalType === 'create' ? 'Create ' : 'Update '}` + modalName,
     wrapClassName: 'vertical-center-modal',
-    selectData:[{key:'1', label:'1'}],
+    selectData:selectData,
     onOk (data) {
       console.log(`rest/${modalName}/${modalType}`, data);
       dispatch({
@@ -31,12 +31,12 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         payload: {modalName:modalName, data:data},
       })
     },
-    onSelectFilterChange(val){
-      console.log('onSelectFilterChange', val);
-      // dispatch({
-      //   type: `rest/${modalType}/reference`,
-      //   payload: {modalName:modalName, data:val},
-      // })
+    onSelectFilterChange(val, typeName){
+      console.log('onSelectFilterChange', val, typeName);
+      dispatch({
+        type: `rest/reference`,
+        payload: {modalName:typeName, data:val}
+      })
     },
     onCancel () {
       dispatch({

@@ -42,11 +42,11 @@ const modal = ({
   }
 
   const handleChange = (value) => {
-    onSelectFilterChange(value);
+    // onSelectFilterChange(value);
   }
   const onSearch = (value, typeName) => {
     console.log('val', value, typeName);
-    onSelectFilterChange(value);
+    onSelectFilterChange(value,typeName);
   }
 
   const getItem = (item, refType, val) => {

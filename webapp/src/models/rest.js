@@ -2,7 +2,7 @@
 import modelExtend from 'dva-model-extend'
 import pathToRegexp from 'path-to-regexp'
 import { config, render } from 'utils'
-import { query, create,remove, update,columns } from 'services/rest'
+import { query, create,remove, update,columns,reference } from 'services/rest'
 import { pageColumnModel } from './common'
 import { Link } from 'dva/router'
 import { DropOption } from 'components'
@@ -111,6 +111,21 @@ export default modelExtend(pageColumnModel, {
         throw data
       }
     },
+
+    * reference ({payload},{call, put}){
+      console.log('reference:', payload);
+      const data = yield call(reference, {modalName:payload.modalName,data:payload.data})
+      console.log('reference data:', data);
+      if (data.success) {
+        let selectData = [];
+        data.data.map((item,index)=>{
+          selectData.push({key:item.id, label:item['name']});
+        });
+        yield put({ type: 'updateState', payload: { selectData: selectData} })
+      }else {
+        throw data
+      }
+    }
 
   },
 

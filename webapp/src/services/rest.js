@@ -67,3 +67,15 @@ export async function update (params) {
     data: params.data,
   })
 }
+
+export async function reference (params) {
+  let filters = [{'fieldName':'searchText', 'operator':'LIKE', 'value':params.data}];
+
+  return request({
+    url: '/rest/api/v1/' + params.modalName + '/list',
+    method: 'post',
+    data: {filters:filters},
+  })
+}
+
+

@@ -80,6 +80,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
     @Override
     public List list(String name,@NotNull ListFilter listFilter) {
         DaoBase daoBase = (DaoBase) getDAO(name);
+
+        searchBefore(name, listFilter);
+
         List data = daoBase.findAllByFilter(listFilter);
 
         queryAfter(name, data);
