@@ -4,15 +4,15 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.shiro.util.StringUtils;
-import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.PageSearch;
-import org.food.safety.trace.dto.SearchFilter;
-import org.food.safety.trace.dto.Viewable;
+import org.food.safety.trace.dto.*;
 import org.food.safety.trace.entity.ListView;
+import org.food.safety.trace.entity.Reference;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.food.safety.trace.repository.ListViewDao;
+import org.food.safety.trace.repository.ReferenceDao;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,10 @@ import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: tom
@@ -49,6 +52,8 @@ public class CURDServiceImpl implements CURDService,SearchService {
     private EntityManager entityManager;
     @Autowired
     protected ListViewDao listViewDao;
+    @Autowired
+    private ReferenceDao referenceDao;
 
     private EntityType findEntiytyTypeByName(String name){
         MetamodelImpl metamodel = (MetamodelImpl)entityManager.getEntityManagerFactory().getMetamodel();
@@ -99,11 +104,53 @@ public class CURDServiceImpl implements CURDService,SearchService {
         Object entity = null;
         try {
             entity = JSON.parse(entityJson, entityType.getBindableJavaType());
+            createBefore(name, entity);
         } catch (ParseException e) {
             log.warn("模型数据转换错误:{} to {}", entityJson, entityType.getBindableJavaType());
         }
 
-        return (Viewable) dao.save(entity);
+        dao.save(entity);
+
+        createAfter(name, entity);
+
+        return (Viewable) entity;
+    }
+
+    public void createBefore(String name, final Object entity) {
+
+    }
+
+    @Override
+    public void createAfter(@NotNull String name, @NotNull Object entity) {
+        if (entity instanceof RoleView){
+            List selectItemViews = ((RoleView) entity).getMenusList();
+            String id = null;
+
+            try {
+                id = PropertyUtils.getProperty(entity, "id") + "";
+            }catch (Exception e) {
+                log.warn("sourceId not found",e);
+            }
+
+            if (null ==  id){
+                return;
+            }
+
+            referenceDao.deleteBySourceId(id);
+
+            for (int i = 0; i < selectItemViews.size();i++){
+                Map<String, String> map = (Map<String, String>)selectItemViews.get(i);
+
+                Reference reference = new Reference();
+
+                reference.setTargetId(map.get("key"));
+                reference.setTargetName("Menu");
+                reference.setSourceName(name);
+                reference.setSourceId(id);
+
+                referenceDao.save(reference);
+            }
+        }
     }
 
     @Override

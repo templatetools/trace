@@ -41,6 +41,20 @@ public interface CURDService {
     Viewable createOrUpdte(@NotNull String name, @NotNull String entity);
 
     /**
+     * 创建对象之前
+     * @param name 实体名称
+     * @param entity 实体数据
+     */
+    void createBefore(@NotNull String name,@NotNull final Object entity);
+
+    /**
+     * 创建对象之后
+     * @param name 实体名称
+     * @param entity 实体数据
+     */
+    void createAfter(@NotNull String name,@NotNull final Object entity);
+
+    /**
      * 分页查询
      * @param name 实体名称
      * @param pageSearch 查询条件

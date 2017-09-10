@@ -66,7 +66,7 @@ const modal = ({
         onChange={handleChange}
         style={{ width: '100%' }}
       >
-        {selectData.map(d => <Option key={d.key}>{d.label}</Option>)}
+        {selectData.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
       </Select>
       }
       case 'Radio':{
