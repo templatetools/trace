@@ -58,17 +58,32 @@ const modal = ({
       case 'Select':{
         console.log('select value:', item.menusList)
         
-        return <Select
-        mode="multiple"
-        labelInValue
-        placeholder="选择"
-        notFoundContent={null}
-        filterOption={false}
-        onSearch={(val)=>{onSearch(val, refType)}}
-        style={{ width: '100%' }}
-      >
-        {selectData.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
-      </Select>
+        if ('multiple' === val){
+          return <Select
+            mode='multiple'
+            multiple='false'
+            labelInValue
+            placeholder="选择"
+            notFoundContent={null}
+            filterOption={false}
+            onSearch={(val)=>{onSearch(val, refType)}}
+            onFocus={(val)=>{onSearch('', refType)}}
+            style={{ width: '100%' }}
+          >
+            {selectData.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
+          </Select>
+        }else{
+          return <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="选择"
+            optionFilterProp="children"
+            onFocus={(val)=>{onSearch('', refType)}}
+            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            {selectData.map(d => <Select.Option key={d.key} value={d.key}>{d.label}</Select.Option>)}
+          </Select>
+        }
       }
       case 'Radio':{
         let v = JSON.parse(val);
@@ -95,7 +110,7 @@ const modal = ({
       {
         modalOpts.columns.map((col, index)=>{
           console.log('column and item:', col, item);
-          let key = col.itemType === 'Select'?col.dataIndex + "List" : col.key;
+          let key = (col.itemType === 'Select' && col.itemValue === 'multiple')?col.dataIndex + "List" : col.key;
           if (!col.insertable){
             return;
           }

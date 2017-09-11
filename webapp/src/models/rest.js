@@ -44,7 +44,7 @@ export default modelExtend(pageColumnModel, {
           rules.pattern = eval(rules.pattern);
         }
         let c = {title:item.title,
-          dataIndex:item.name,
+          dataIndex:('Select' === item.itemType && 'combobox' === item.itemValue)?item.name+'SelectItem':item.name,
           key:item.name, rules: rules, 
           itemType: item.itemType,
           refType:item.refType,

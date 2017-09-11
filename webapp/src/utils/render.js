@@ -12,6 +12,12 @@ export default function render (col, field) {
 			}
 		}
 	}
+	if ('Select' === field.itemType && 'combobox' === field.itemValue){
+		col.render = function(text){
+			console.log('select render:', text);
+			return text?text['label']:text;
+		}
+	}
 	if ('DatePicker' === field.itemType){
 		col.render = function(text){return dateUtil.datetimeFormat(text)}
 	}
