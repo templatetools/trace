@@ -39,7 +39,7 @@ export default modelExtend(pageColumnModel, {
       const fields = yield call(columns, payload)
       let listColumns = [];
       fields.data.map((item,index)=>{
-        if (item.listable){
+        // if (item.listable){
           let rules = JSON.parse(item.rules);
           if (rules.hasOwnProperty("pattern")){
             rules.pattern = eval(rules.pattern);
@@ -50,10 +50,11 @@ export default modelExtend(pageColumnModel, {
             itemType: item.itemType,
             refType:item.refType,
             itemValue: item.itemValue,
-            insertable:item.insertable}
+            insertable:item.insertable,
+            listable:item.listable}
           render(c, item);
           listColumns.push(c);
-        }
+        // }
       })
 
       console.log('listColumns', listColumns);      

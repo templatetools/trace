@@ -72,7 +72,7 @@ const Rest = ({ location, dispatch, rest, loading }) => {
     dataSource: list,
     loading: loading.effects['rest/query'],
     pagination:pagination,
-    columns:[...columns, {
+    columns:[...columns.filter((val)=>{console.log('filter', val);return val.listable}), {
           title: '操作',
           key: 'operation',
           width: 100,
