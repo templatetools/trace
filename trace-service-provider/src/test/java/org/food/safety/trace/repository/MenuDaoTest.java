@@ -32,14 +32,12 @@ public class MenuDaoTest {
         menu.setName("首页");
         menu.setIcon("laptop");
         menu.setRoute("/dashboard");
-        menu.setMpid("-1");
 
         Menu root = menuDao.save(menu);
 
         Menu setting = new Menu();
         setting.setName("设置");
         setting.setIcon("setting");
-        setting.setMpid(root.getId());
         setting = menuDao.save(setting);
 
         menu = new Menu();

@@ -27,6 +27,7 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -225,7 +226,48 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
     @Override
     public void queryAfter(String name, @NotNull List data) {
-        return;
+        ReferenceDao referenceDao = getReferenceDao();
+
+        List<ListView> columns = viewList(name);
+        for (ListView view : columns) {
+            if (org.apache.commons.lang3.StringUtils.isNotEmpty(view.getRefType())) {
+
+                for (Object d : data) {
+                    try {
+                        if ("multiple".equalsIgnoreCase(view.getItemValue())) {
+                            List<Reference> references = referenceDao.findBySourceId(PropertyUtils.getProperty(d, "id") + "");
+
+                            List<SelectItemView> selectItemViews = new ArrayList<>();
+                            List<String> titles = new ArrayList<>();
+
+                            for (Reference reference : references) {
+                                SelectItemView selectItemView = new SelectItemView();
+                                selectItemView.setKey(reference.getTargetId());
+
+                                Object target = this.detail(reference.getTargetName(), reference.getTargetId());
+
+                                selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                selectItemViews.add(selectItemView);
+                                titles.add(selectItemView.getLabel());
+                            }
+
+                            PropertyUtils.setProperty(d, view.getName() + "List", selectItemViews);
+                            PropertyUtils.setProperty(d, view.getName(), org.apache.commons.lang3.StringUtils.join(titles, ","));
+                        }else{
+                            SelectItemView selectItemView = new SelectItemView();
+                            selectItemView.setKey(PropertyUtils.getProperty(d, view.getName()) + "");
+
+                            Object target = this.detail(view.getRefType(), selectItemView.getKey());
+
+                            selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                            PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);
+                        }
+                    } catch (Exception e) {
+                        log.debug("set list:{}", view.getName(), e);
+                    }
+                }
+            }
+        }
     }
 
 }

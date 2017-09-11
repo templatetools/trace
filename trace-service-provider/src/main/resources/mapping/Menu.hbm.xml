@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity">
     <class name="Menu">
-        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+        <meta attribute="extends">org.food.safety.trace.dto.MenuView</meta>
 
         <meta attribute="class-description">菜单信息</meta>
 
@@ -32,15 +32,17 @@
         <property name="route" type="string" length="64">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-required">false</meta>
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">路由</meta>
         </property>
         <property name="mpid" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">true</meta>
-            <meta attribute="item-type">Input</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">Menu</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
             <meta attribute="field-description">父级菜单</meta>
         </property>
         <property name="createTime" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
