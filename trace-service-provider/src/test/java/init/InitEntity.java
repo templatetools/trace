@@ -78,13 +78,11 @@ public class InitEntity {
             Iterator propertyIterator = persistentClass.getPropertyIterator();
             while (propertyIterator.hasNext()) {
                 Property property = (Property) propertyIterator.next();
-                if (property.getMetaAttributes().containsKey(LIST_VIEW_KEY)) {
-                    log.debug("property:{}", property, property.getMetaAttribute(LIST_VIEW_KEY).getValue());
-                }
                 Map<String, Object> entity = new HashedMap();
                 entity.put("entityName", persistentClass.getEntityName());
                 entity.put("title", property.getMetaAttribute(LIST_VIEW_FIELD_DESCRIPTION).getValue());
                 entity.put("searchable", MetaAttributeHelper.getMetaAsBool(property.getMetaAttribute(VIEW_USE_IN_SEARCH), false));
+                entity.put("listable", MetaAttributeHelper.getMetaAsBool(property.getMetaAttribute(LIST_VIEW_KEY), false));
                 entity.put("insertable", property.isInsertable());
                 entity.put("updatetable", property.isUpdateable());
                 entity.put("itemType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_TYPE), "Input"));

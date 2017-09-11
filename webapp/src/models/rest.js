@@ -39,19 +39,21 @@ export default modelExtend(pageColumnModel, {
       const fields = yield call(columns, payload)
       let listColumns = [];
       fields.data.map((item,index)=>{
-        let rules = JSON.parse(item.rules);
-        if (rules.hasOwnProperty("pattern")){
-          rules.pattern = eval(rules.pattern);
+        if (item.listable){
+          let rules = JSON.parse(item.rules);
+          if (rules.hasOwnProperty("pattern")){
+            rules.pattern = eval(rules.pattern);
+          }
+          let c = {title:item.title,
+            dataIndex:('Select' === item.itemType && 'combobox' === item.itemValue)?item.name+'SelectItem':item.name,
+            key:item.name, rules: rules, 
+            itemType: item.itemType,
+            refType:item.refType,
+            itemValue: item.itemValue,
+            insertable:item.insertable}
+          render(c, item);
+          listColumns.push(c);
         }
-        let c = {title:item.title,
-          dataIndex:('Select' === item.itemType && 'combobox' === item.itemValue)?item.name+'SelectItem':item.name,
-          key:item.name, rules: rules, 
-          itemType: item.itemType,
-          refType:item.refType,
-          itemValue: item.itemValue,
-          insertable:item.insertable}
-        render(c, item);
-        listColumns.push(c);
       })
 
       console.log('listColumns', listColumns);      

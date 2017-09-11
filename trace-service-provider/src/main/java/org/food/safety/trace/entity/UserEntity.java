@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-11 16:19:23 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-11 17:02:39 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="UserEntity"
 )
-public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
+public class UserEntity extends org.food.safety.trace.dto.UserEntityView implements java.io.Serializable {
 
 
      /**

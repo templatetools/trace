@@ -93,8 +93,10 @@ const modal = ({
                   })}
                 </Radio.Group>)
       }
-      default:
-        return <Input />
+      default:{
+        return val?<Input type={val}/>:<Input/>
+      }
+      
     }
   }
 

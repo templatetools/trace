@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-11 16:19:23 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-11 17:02:39 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -30,6 +30,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       * 标题
      */
      private String title;
+     /**
+      * 是否显示到列表
+     */
+     private boolean listable;
      /**
       * 是否支持搜索
      */
@@ -66,9 +70,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String itemValue) {
+    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String itemValue) {
        this.entityName = entityName;
        this.title = title;
+       this.listable = listable;
        this.searchable = searchable;
        this.updateable = updateable;
        this.insertable = insertable;
@@ -118,6 +123,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     
     public void setTitle(String title) {
         this.title = title;
+    }
+    /**       
+     *      * 是否显示到列表
+     */
+
+    
+    @Column(name="listable")
+    public boolean isListable() {
+        return this.listable;
+    }
+    
+    public void setListable(boolean listable) {
+        this.listable = listable;
     }
     /**       
      *      * 是否支持搜索
@@ -234,6 +252,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("entityName").append("='").append(getEntityName()).append("' ");			
       buffer.append("title").append("='").append(getTitle()).append("' ");			
+      buffer.append("listable").append("='").append(isListable()).append("' ");			
       buffer.append("searchable").append("='").append(isSearchable()).append("' ");			
       buffer.append("updateable").append("='").append(isUpdateable()).append("' ");			
       buffer.append("insertable").append("='").append(isInsertable()).append("' ");			

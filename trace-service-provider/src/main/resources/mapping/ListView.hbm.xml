@@ -21,6 +21,10 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">标题</meta>
         </property>
+        <property name="listable" type="boolean">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">是否显示到列表</meta>
+        </property>
         <property name="searchable" type="boolean">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">是否支持搜索</meta>
