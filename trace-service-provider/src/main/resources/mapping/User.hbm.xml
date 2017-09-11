@@ -14,6 +14,17 @@
             <meta attribute="field-description">id</meta>
             <generator class="uuid.hex"/>
         </id>
+
+        <property name="roles" type="string" length="512" >
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">multiple</meta>
+            <meta attribute="ref-type">Role</meta>
+            <meta attribute="field-description">角色</meta>
+        </property>
+
         <property name="name" type="string" length="8">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -22,6 +33,17 @@
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">用户名</meta>
         </property>
+
+        <property name="password" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="item-value">password</meta>
+            <meta attribute="field-description">密码</meta>
+        </property>
+
         <property name="nickName" type="string" length="16">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>

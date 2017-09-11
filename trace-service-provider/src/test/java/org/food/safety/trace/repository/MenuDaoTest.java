@@ -42,7 +42,7 @@ public class MenuDaoTest {
 
         menu = new Menu();
         menu.setName("角色管理");
-        menu.setIcon("role");
+        menu.setIcon("laptop");
         menu.setRoute("/rest/Role");
         menu.setMpid(setting.getId());
 

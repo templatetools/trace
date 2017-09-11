@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-11 15:25:21 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-11 16:19:23 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -26,9 +26,17 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
      */
      private String id;
      /**
+      * 角色
+     */
+     private String roles;
+     /**
       * 用户名
      */
      private String name;
+     /**
+      * 密码
+     */
+     private String password;
      /**
       * 昵称
      */
@@ -61,8 +69,10 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
     public UserEntity() {
     }
 
-    public UserEntity(String name, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
+    public UserEntity(String roles, String name, String password, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
+       this.roles = roles;
        this.name = name;
+       this.password = password;
        this.nickName = nickName;
        this.age = age;
        this.isMale = isMale;
@@ -87,6 +97,19 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
         this.id = id;
     }
     /**       
+     *      * 角色
+     */
+
+    
+    @Column(name="roles", length=512)
+    public String getRoles() {
+        return this.roles;
+    }
+    
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+    /**       
      *      * 用户名
      */
 
@@ -98,6 +121,19 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
     
     public void setName(String name) {
         this.name = name;
+    }
+    /**       
+     *      * 密码
+     */
+
+    
+    @Column(name="password", length=8)
+    public String getPassword() {
+        return this.password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
     }
     /**       
      *      * 昵称
@@ -199,7 +235,9 @@ public class UserEntity  implements org.food.safety.trace.dto.Viewable,java.io.S
 	  StringBuffer buffer = new StringBuffer();
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+      buffer.append("roles").append("='").append(getRoles()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("password").append("='").append(getPassword()).append("' ");			
       buffer.append("nickName").append("='").append(getNickName()).append("' ");			
       buffer.append("age").append("='").append(getAge()).append("' ");			
       buffer.append("isMale").append("='").append(isIsMale()).append("' ");			
