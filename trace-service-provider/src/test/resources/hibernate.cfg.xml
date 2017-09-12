@@ -20,5 +20,6 @@
         <mapping resource="mapping/Reference.hbm.xml"/>
         <mapping resource="mapping/Menu.hbm.xml"/>
         <mapping resource="mapping/Role.hbm.xml"/>
+        <mapping resource="mapping/Organization.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

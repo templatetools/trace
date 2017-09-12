@@ -6,7 +6,6 @@ import lombok.ToString;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tom on 2017/8/28.
@@ -14,10 +13,10 @@ import java.util.Map;
 @Setter
 @ToString
 @MappedSuperclass
-public class RoleView extends OrganizationView implements SelectViewable {
-    public List<SelectItemView> menusList;
+public class OrganizationView implements Viewable {
+    public SelectItemView organizationSelectItem;
     @Transient
-    public List<SelectItemView> getMenusList() {
-        return menusList;
+    public SelectItemView getOrganizationSelectItem() {
+        return organizationSelectItem;
     }
 }

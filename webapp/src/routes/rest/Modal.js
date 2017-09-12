@@ -56,7 +56,7 @@ const modal = ({
         return <InputNumber />  
       }
       case 'Select':{
-        console.log('select value:', item.menusList)
+        console.log('select value:', selectData)
         
         if ('multiple' === val){
           return <Select
@@ -70,7 +70,7 @@ const modal = ({
             onFocus={(val)=>{onSearch('', refType)}}
             style={{ width: '100%' }}
           >
-            {selectData.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
+            {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
           </Select>
         }else{
           return <Select
@@ -81,7 +81,7 @@ const modal = ({
             onFocus={(val)=>{onSearch('', refType)}}
             filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
-            {selectData.map(d => <Select.Option key={d.key} value={d.key}>{d.label}</Select.Option>)}
+            {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
           </Select>
         }
       }

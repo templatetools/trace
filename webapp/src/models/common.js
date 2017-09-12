@@ -45,7 +45,7 @@ const pageColumnModel = modelExtend(model, {
   state: {
     list: [],
     columns:[],
-    selectData:[],
+    selectData:{},
     pagination: {
       showSizeChanger: true,
       showQuickJumper: true,

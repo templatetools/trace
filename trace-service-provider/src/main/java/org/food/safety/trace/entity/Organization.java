@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 角色信息
+ * 组织信息
  */
 @Entity
-@Table(name="Role"
+@Table(name="Organization"
 )
-public class Role extends org.food.safety.trace.dto.RoleView implements java.io.Serializable {
+public class Organization  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
 
 
      /**
@@ -26,29 +26,19 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
      */
      private String id;
      /**
-      * 组织
-     */
-     private String organization;
-     /**
       * 名称
      */
      private String name;
-     /**
-      * 菜单
-     */
-     private String menus;
      /**
       * 创建时间
      */
      private Date createTime;
 
-    public Role() {
+    public Organization() {
     }
 
-    public Role(String organization, String name, String menus, Date createTime) {
-       this.organization = organization;
+    public Organization(String name, Date createTime) {
        this.name = name;
-       this.menus = menus;
        this.createTime = createTime;
     }
    
@@ -67,19 +57,6 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
         this.id = id;
     }
     /**       
-     *      * 组织
-     */
-
-    
-    @Column(name="organization", length=128)
-    public String getOrganization() {
-        return this.organization;
-    }
-    
-    public void setOrganization(String organization) {
-        this.organization = organization;
-    }
-    /**       
      *      * 名称
      */
 
@@ -91,19 +68,6 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
     
     public void setName(String name) {
         this.name = name;
-    }
-    /**       
-     *      * 菜单
-     */
-
-    
-    @Column(name="menus", length=512)
-    public String getMenus() {
-        return this.menus;
-    }
-    
-    public void setMenus(String menus) {
-        this.menus = menus;
     }
     /**       
      *      * 创建时间
@@ -127,9 +91,7 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
 	  StringBuffer buffer = new StringBuffer();
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
-      buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("menus").append("='").append(getMenus()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();
