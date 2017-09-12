@@ -47,7 +47,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
      * 视图信息
      */
     private static final String LISTVIEW_ENTITY = "ListView";
+    private static final String LISTVIEW_SELECT_TYPE_MULTIPLE = "multiple";
     private static final String SEARCH_TEXT = "searchText";
+
 
     @Autowired
     private EntityManager entityManager;
@@ -123,34 +125,45 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
     @Override
     public void createAfter(@NotNull String name, @NotNull Object entity) {
-        if (entity instanceof RoleView){
-            List selectItemViews = ((RoleView) entity).getMenusList();
-            String id = null;
+        if (entity instanceof SelectViewable){
+            List<ListView> columns = viewList(name);
+            for (ListView c: columns){
+                if (LISTVIEW_SELECT_TYPE_MULTIPLE.equalsIgnoreCase(c.getItemValue())) {
 
-            try {
-                id = PropertyUtils.getProperty(entity, "id") + "";
-            }catch (Exception e) {
-                log.warn("sourceId not found",e);
+                    String id = null;
+                    List selectItemViews = null;
+
+                    try {
+                        selectItemViews = (List)PropertyUtils.getProperty(entity, c.getName()+"List");
+
+                        id = PropertyUtils.getProperty(entity, "id") + "";
+                    }catch (Exception e) {
+                        log.warn("sourceId not found",e);
+                    }
+
+                    if (null ==  id || null == selectItemViews){
+                        return;
+                    }
+
+                    referenceDao.deleteBySourceId(id);
+
+                    for (int i = 0; i < selectItemViews.size();i++){
+                        Map<String, String> map = (Map<String, String>)selectItemViews.get(i);
+
+                        Reference reference = new Reference();
+
+                        reference.setTargetId(map.get("key"));
+                        reference.setTargetName(c.getRefType());
+                        reference.setSourceName(name);
+                        reference.setSourceId(id);
+
+                        referenceDao.save(reference);
+                    }
+
+                }
             }
 
-            if (null ==  id){
-                return;
-            }
 
-            referenceDao.deleteBySourceId(id);
-
-            for (int i = 0; i < selectItemViews.size();i++){
-                Map<String, String> map = (Map<String, String>)selectItemViews.get(i);
-
-                Reference reference = new Reference();
-
-                reference.setTargetId(map.get("key"));
-                reference.setTargetName("Menu");
-                reference.setSourceName(name);
-                reference.setSourceId(id);
-
-                referenceDao.save(reference);
-            }
         }
     }
 
@@ -234,7 +247,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
                 for (Object d : data) {
                     try {
-                        if ("multiple".equalsIgnoreCase(view.getItemValue())) {
+                        if (LISTVIEW_SELECT_TYPE_MULTIPLE.equalsIgnoreCase(view.getItemValue())) {
                             List<Reference> references = referenceDao.findBySourceId(PropertyUtils.getProperty(d, "id") + "");
 
                             List<SelectItemView> selectItemViews = new ArrayList<>();
