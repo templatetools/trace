@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @MappedSuperclass
-public class UserEntityView implements SelectViewable {
+public class UserEntityView extends OrganizationView implements SelectViewable {
     public List<SelectItemView> rolesList;
     @Transient
     public List<SelectItemView> getRolesList() {

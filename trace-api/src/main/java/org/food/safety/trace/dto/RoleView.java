@@ -14,7 +14,7 @@ import java.util.Map;
 @Setter
 @ToString
 @MappedSuperclass
-public class RoleView extends OrganizationView implements SelectViewable {
+public class RoleView implements SelectViewable {
     public List<SelectItemView> menusList;
     @Transient
     public List<SelectItemView> getMenusList() {

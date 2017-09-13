@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-12 11:04:54 by Hibernate Tools 5.2.5.Final
+// Generated 2017-9-13 9:08:43 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -25,6 +25,10 @@ public class UserEntity extends org.food.safety.trace.dto.UserEntityView impleme
       * id
      */
      private String id;
+     /**
+      * 组织
+     */
+     private String organization;
      /**
       * 角色
      */
@@ -69,7 +73,8 @@ public class UserEntity extends org.food.safety.trace.dto.UserEntityView impleme
     public UserEntity() {
     }
 
-    public UserEntity(String roles, String name, String password, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
+    public UserEntity(String organization, String roles, String name, String password, String nickName, int age, boolean isMale, String phone, String email, String address, Date createTime) {
+       this.organization = organization;
        this.roles = roles;
        this.name = name;
        this.password = password;
@@ -95,6 +100,19 @@ public class UserEntity extends org.food.safety.trace.dto.UserEntityView impleme
     
     public void setId(String id) {
         this.id = id;
+    }
+    /**       
+     *      * 组织
+     */
+
+    
+    @Column(name="organization", length=128)
+    public String getOrganization() {
+        return this.organization;
+    }
+    
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
     /**       
      *      * 角色
@@ -235,6 +253,7 @@ public class UserEntity extends org.food.safety.trace.dto.UserEntityView impleme
 	  StringBuffer buffer = new StringBuffer();
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+      buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("roles").append("='").append(getRoles()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("password").append("='").append(getPassword()).append("' ");			

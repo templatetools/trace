@@ -64,6 +64,14 @@ public class MenuDaoTest {
 
         menuDao.save(menu);
 
+        menu = new Menu();
+        menu.setName("组织管理");
+        menu.setIcon("team");
+        menu.setRoute("/rest/Organization");
+        menu.setMpid(setting.getId());
+
+        menuDao.save(menu);
+
         log.debug("menu:{}", menu);
     }
 }
