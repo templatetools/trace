@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 @Setter
 @ToString
 @MappedSuperclass
-public class MenuView implements Viewable {
+public class MenuView implements SelectViewable {
     public SelectItemView mpidSelectItem;
     @Transient
     public SelectItemView getMpidSelectItem() {

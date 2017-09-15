@@ -48,6 +48,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
      */
     private static final String LISTVIEW_ENTITY = "ListView";
     private static final String LISTVIEW_SELECT_TYPE_MULTIPLE = "multiple";
+    private static final String LISTVIEW_SELECT_TYPE_COMBOBOX = "combobox";
     private static final String SEARCH_TEXT = "searchText";
 
 
@@ -120,7 +121,22 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     public void createBefore(String name, final Object entity) {
-
+        if (entity instanceof SelectViewable) {
+            List<ListView> columns = viewList(name);
+            for (ListView c : columns) {
+                if (LISTVIEW_SELECT_TYPE_COMBOBOX.equalsIgnoreCase(c.getItemValue())) {
+                    try {
+                        SelectItemView selectItemView = (SelectItemView) PropertyUtils.getProperty(entity, c.getName()+"SelectItem");
+                        
+                        if (null  != selectItemView){
+                            PropertyUtils.setProperty(entity, c.getName(), selectItemView.getKey());
+                        }
+                    }catch (Exception e) {
+                        log.warn("not found",e);
+                    }
+                }
+            }
+        }
     }
 
     @Override

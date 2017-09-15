@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @MappedSuperclass
-public class OrganizationView implements Viewable {
+public class OrganizationView implements SelectViewable {
     public SelectItemView organizationSelectItem;
     @Transient
     public SelectItemView getOrganizationSelectItem() {

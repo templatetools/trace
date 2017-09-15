@@ -37,23 +37,7 @@ const Routers = function ({ history, app }) {
               cb(null, require('routes/rest/'))
             }, 'rest')
           },
-        }, {
-          path: 'user',
-          getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              registerModel(app, require('models/user'))
-              cb(null, require('routes/user/'))
-            }, 'user')
-          },
-        }, {
-          path: 'user/:id',
-          getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              registerModel(app, require('models/user/detail'))
-              cb(null, require('routes/user/detail/'))
-            }, 'user-detail')
-          },
-        }, {
+        },{
           path: 'login',
           getComponent (nextState, cb) {
             require.ensure([], (require) => {
