@@ -5,7 +5,7 @@ import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.shiro.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.food.safety.trace.dto.*;
 import org.food.safety.trace.entity.ListView;
 import org.food.safety.trace.entity.Reference;
@@ -209,7 +209,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
         try {
             Dao dao = getDAO(name);
             if (org.apache.commons.lang3.StringUtils.indexOf(ids, ",") > -1){
-                for (String id:StringUtils.split(ids, ',')){
+                for (String id: StringUtils.split(ids, ',')){
                     dao.delete(id);
                 }
             }else{
@@ -283,13 +283,16 @@ public class CURDServiceImpl implements CURDService,SearchService {
                             PropertyUtils.setProperty(d, view.getName() + "List", selectItemViews);
                             PropertyUtils.setProperty(d, view.getName(), org.apache.commons.lang3.StringUtils.join(titles, ","));
                         }else{
-                            SelectItemView selectItemView = new SelectItemView();
-                            selectItemView.setKey(PropertyUtils.getProperty(d, view.getName()) + "");
+                            String key = PropertyUtils.getProperty(d, view.getName()) + "";
+                            if (org.apache.commons.lang3.StringUtils.isEmpty(key)) {
+                                SelectItemView selectItemView = new SelectItemView();
+                                selectItemView.setKey(key);
 
-                            Object target = this.detail(view.getRefType(), selectItemView.getKey());
-
-                            selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
-                            PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);
+                                Object target = this.detail(view.getRefType(), key);
+                                log.debug("{} find ref type:{}", key, target);
+                                selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);
+                            }
                         }
                     } catch (Exception e) {
                         log.debug("set list:{}", view.getName(), e);
