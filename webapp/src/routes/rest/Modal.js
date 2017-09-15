@@ -61,7 +61,6 @@ const modal = ({
         if ('multiple' === val){
           return <Select
             mode='multiple'
-            multiple='false'
             labelInValue
             placeholder="选择"
             notFoundContent={null}
@@ -75,7 +74,7 @@ const modal = ({
         }else{
           return <Select
             showSearch
-            style={{ width: 200 }}
+            labelInValue
             placeholder="选择"
             optionFilterProp="children"
             onFocus={(val)=>{onSearch('', refType)}}
@@ -112,13 +111,23 @@ const modal = ({
       {
         modalOpts.columns.map((col, index)=>{
           console.log('column and item:', col, item);
-          let key = (col.itemType === 'Select' && col.itemValue === 'multiple')?col.dataIndex + "List" : col.key;
+          let key = col.key;
+          let initValue = item[key];
+          if (col.itemType === 'Select'){
+            if (col.itemValue === 'multiple'){
+              key += "List"
+            }
+            if (col.itemValue === 'combobox'){
+              key += "SelectItem"
+            }
+            initValue = item[key]?item[key]:{key:'', label:''}; 
+          }
           if (!col.insertable){
             return;
           }
           return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
             {getFieldDecorator(key, {
-              initialValue: item[key],
+              initialValue: initValue,
               rules: [
                 col.rules,
               ],
