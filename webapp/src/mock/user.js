@@ -34,7 +34,7 @@ const EnumRoleType = {
 
 const userPermission = {
   DEFAULT: {
-    visit: ['ff8080815e5136b3015e5136cfd40013', 'ff8080815e5136b3015e5136cfd40014', 'ff8080815e5136b3015e5136cfd40015', '7', '5', '51', '52', '53'],
+    visit: ['ff8080815e5136b3015e5136cfd40013', 'ff8080815e5136b3015e5136cfd40014', 'ff8080815e5136b3015e5136cfd40015', '3', '5', '51', '52', '53'],
     role: EnumRoleType.DEFAULT,
   },
   ADMIN: {

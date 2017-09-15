@@ -38,7 +38,7 @@ module.exports = (webpackConfig, env) => {
     new HtmlWebpackPlugin({
       hash: true,
       mobile: true,
-      title: 'antd-admin',
+      title: '项目名称',
       inject: false,
       appMountId: 'root',
       template: `!!ejs-loader!${HtmlWebpackTemplate}`,

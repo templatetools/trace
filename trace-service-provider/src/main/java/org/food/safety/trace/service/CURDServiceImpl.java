@@ -127,7 +127,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                 if (LISTVIEW_SELECT_TYPE_COMBOBOX.equalsIgnoreCase(c.getItemValue())) {
                     try {
                         SelectItemView selectItemView = (SelectItemView) PropertyUtils.getProperty(entity, c.getName()+"SelectItem");
-                        
+
                         if (null  != selectItemView){
                             PropertyUtils.setProperty(entity, c.getName(), selectItemView.getKey());
                         }
