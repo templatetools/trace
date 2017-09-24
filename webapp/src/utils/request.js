@@ -42,6 +42,7 @@ const fetch = (options) => {
         name: `jsonp_${new Date().getTime()}`,
         timeout: 4000,
       }, (error, result) => {
+
         if (error) {
           reject(error)
         }
@@ -85,6 +86,7 @@ const fetch = (options) => {
 }
 
 export default function request (options) {
+  console.log('request ', options);
   if (options.url && options.url.indexOf('//') > -1) {
     const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
     if (window.location.origin !== origin) {
@@ -99,6 +101,7 @@ export default function request (options) {
   }
 
   return fetch(options).then((response) => {
+    console.log('fetch response', response)
     const { statusText, status } = response
     let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data
     if (data instanceof Array) {
@@ -120,11 +123,17 @@ export default function request (options) {
     if (response && response instanceof Object) {
       const { data, statusText } = response
       statusCode = response.status
-      msg = data.message || statusText
+      msg = data.errorMessage || statusText
     } else {
       statusCode = 600
       msg = error.message || 'Network Error'
     }
+    if (msg){
+      response.statusText = msg;
+    }
+
+    console.log('fetch error response', msg)
+
     return { success: false, statusCode, message: msg }
   })
 }

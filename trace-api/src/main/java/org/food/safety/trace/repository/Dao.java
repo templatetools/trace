@@ -2,6 +2,7 @@ package org.food.safety.trace.repository;
 
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.SearchFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -30,4 +31,21 @@ public interface Dao<T, ID extends Serializable> extends JpaRepository<T, ID>, J
      * @return
      */
     Page page(PageSearch pageSearch);
+
+    static <DTO> DTO findOneByKeyAndValue(Dao dao, String key, Object value) {
+        DTO result = null;
+
+        SearchFilter searchFilter = new SearchFilter(key, SearchFilter.Operator.EQ, value);
+
+        ListFilter listFilter = new ListFilter();
+        listFilter.addFilters(searchFilter);
+
+        List list = dao.findAllByFilter(listFilter);
+
+        if (null != list && list.size()>0){
+            result = (DTO)list.get(0);
+        }
+
+        return result;
+    }
 }

@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
@@ -66,6 +65,6 @@ public class RestExceptionMapper implements ExceptionMapper<RuntimeException> {
             restResult.setErrorMessage(message);
             LOGGER.error(message, ex);
         }
-        return Response.status(Response.Status.OK).entity(restResult).type(ContentType.APPLICATION_JSON_UTF_8).build();
+        return Response.status(restResult.getErrorCode()).entity(restResult).type(ContentType.APPLICATION_JSON_UTF_8).build();
     }
 }

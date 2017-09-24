@@ -3,6 +3,7 @@ package org.food.safety.trace.service;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.shiro.authc.AuthenticationException;
 import org.food.safety.trace.entity.UserEntity;
 import org.food.safety.trace.repository.Dao;
 import org.springframework.stereotype.Service;
@@ -23,14 +24,22 @@ public class UserServiceImpl extends CURDServiceImpl {
      * @param data
      * @return
      */
-    public boolean login(Map data){
+    public String login(Map data){
         log.debug("login:{}", data);
 
-        Dao<UserEntity, String> dao = getDAO("UserEntity");
+        Dao dao = getDAO("UserEntity");
 
+        UserEntity userEntity = Dao.findOneByKeyAndValue(dao, "name", data.get("username"));
 
+        if (null == userEntity){
+            throw new AuthenticationException("用户不存在!");
+        }
 
-        return true;
+        if (!userEntity.getPassword().equals(data.get("password"))){
+            throw new AuthenticationException("密码错误!");
+        }
+
+        return userEntity.getId();
     }
 
     /**
@@ -52,6 +61,6 @@ public class UserServiceImpl extends CURDServiceImpl {
         result.put("username", "admin");
         result.put("id", "id");
 
-        return result;
+        return null;
     }
 }

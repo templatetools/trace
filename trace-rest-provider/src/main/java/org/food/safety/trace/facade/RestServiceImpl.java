@@ -63,8 +63,17 @@ public class RestServiceImpl implements RestService {
 
         try {
             result = MethodUtils.invokeMethod(this.getCurdService(), method, data);
-        } catch (Exception e) {
-            throw new RuntimeException("execute method "+ method + " error!", e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e.getMessage(),e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e.getMessage(),e);
+        } catch (InvocationTargetException e) {
+            if (e.getTargetException() instanceof RuntimeException){
+                RuntimeException re = (RuntimeException) e.getTargetException();
+                throw re;
+            }else {
+                throw new RuntimeException(e.getTargetException().getMessage(), e.getTargetException());
+            }
         }
 
         return RestResult.OK(result);
