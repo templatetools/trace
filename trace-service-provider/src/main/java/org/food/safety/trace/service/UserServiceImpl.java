@@ -3,14 +3,11 @@ package org.food.safety.trace.service;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
-import org.food.safety.trace.dto.Viewable;
+import org.food.safety.trace.entity.UserEntity;
+import org.food.safety.trace.repository.Dao;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
-
-import static org.food.safety.trace.facade.RestService.CONTEXT_RESPONSE;
 
 /**
  * User: tom
@@ -20,6 +17,7 @@ import static org.food.safety.trace.facade.RestService.CONTEXT_RESPONSE;
 @Getter
 @Slf4j
 public class UserServiceImpl extends CURDServiceImpl {
+
     /**
      *
      * @param data
@@ -27,6 +25,10 @@ public class UserServiceImpl extends CURDServiceImpl {
      */
     public boolean login(Map data){
         log.debug("login:{}", data);
+
+        Dao<UserEntity, String> dao = getDAO("UserEntity");
+
+
 
         return true;
     }

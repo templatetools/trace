@@ -283,7 +283,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                             PropertyUtils.setProperty(d, view.getName(), org.apache.commons.lang3.StringUtils.join(titles, ","));
                         }else{
                             String key = PropertyUtils.getProperty(d, view.getName()) + "";
-                            if (org.apache.commons.lang3.StringUtils.isEmpty(key)) {
+                            if (!StringUtils.isEmpty(key)) {
                                 SelectItemView selectItemView = new SelectItemView();
                                 selectItemView.setKey(key);
 
