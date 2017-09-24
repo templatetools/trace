@@ -3,7 +3,11 @@ package org.food.safety.trace.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.servlet.http.Cookie;
+import javax.ws.rs.core.NewCookie;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DTO to customize the returned message

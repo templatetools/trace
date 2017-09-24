@@ -90,7 +90,7 @@ const NOTFOUND = {
 
 module.exports = {
 
-  [`POST ${apiPrefix}/user/login`] (req, res) {
+  [`POST ${apiPrefix}/account/login`] (req, res) {
     const { username, password } = req.body
     const user = adminUsers.filter(item => item.username === username)
 

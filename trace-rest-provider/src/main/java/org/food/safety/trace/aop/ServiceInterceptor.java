@@ -13,6 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletResponse;
+
 import static org.food.safety.trace.util.StringUitls.captureName;
 
 /**

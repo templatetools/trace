@@ -51,7 +51,6 @@ public class CURDServiceImpl implements CURDService,SearchService {
     private static final String LISTVIEW_SELECT_TYPE_COMBOBOX = "combobox";
     private static final String SEARCH_TEXT = "searchText";
 
-
     @Autowired
     private EntityManager entityManager;
     @Autowired

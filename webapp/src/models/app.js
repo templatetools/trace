@@ -50,7 +50,9 @@ export default {
     * query ({
       payload,
     }, { call, put }) {
-      const { success, user } = yield call(query, payload)
+      const { success, data } = yield call(query, payload)
+      console.log('success', success, data);
+      let user = data;
       if (success && user) {
         const { data } = yield call(menusService.query)
         let list = data;
@@ -69,6 +71,9 @@ export default {
             return cases.every(_ => _)
           })
         }
+
+        console.log('permissions', permissions);
+
         yield put({
           type: 'updateState',
           payload: {

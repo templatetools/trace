@@ -7,6 +7,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.core.NewCookie;
 import java.io.IOException;
 import java.time.Instant;
 
@@ -27,6 +28,7 @@ public class TimerFilter implements ContainerRequestFilter, ContainerResponseFil
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
         Object timer = requestContext.getProperty("timer");
+
         if (timer != null) {
             Long beginTimer = Long.parseLong(timer.toString());
             Long endTimer = Instant.now().toEpochMilli();

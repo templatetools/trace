@@ -9,7 +9,9 @@ import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.service.CURDService;
 import org.springframework.data.domain.Page;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +19,9 @@ import java.util.Map;
  * Created by X on 2017/4/17.
  */
 public interface RestService {
-    String HEADER_AUTHORIZATION_KEY = "authorization";
+    public static final String HEADER_AUTHORIZATION_KEY = "authorization";
+    public static final String CONTEXT_RESPONSE = "response";
+
     void setService(CURDService curdService);
 
     @POST

@@ -16,10 +16,13 @@ import org.food.safety.trace.service.CURDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -55,6 +58,7 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public RestResult<Object> method(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, String method, Map data) {
+        log.debug("exec {} :{}", method, data);
         Object result = null;
 
         try {
