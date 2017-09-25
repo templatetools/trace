@@ -6,6 +6,7 @@ import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { YQL, CORS } from './config'
+import { auth } from 'utils'
 
 const fetch = (options) => {
   let {
@@ -56,7 +57,8 @@ const fetch = (options) => {
 
   // 添加请求拦截器
   axios.interceptors.request.use(function (config) {
-    config.headers['authorization'] = 'AUTH_TOKEN'
+    // console.log('token', auth.token(''));
+    config.headers['authorization'] = 'token';//auth.token()
     config.headers['Content-Type'] = 'application/json;charset=UTF-8'
 
     // 在发送请求之前做些什么
@@ -128,7 +130,7 @@ export default function request (options) {
       statusCode = 600
       msg = error.message || 'Network Error'
     }
-    if (msg){
+    if (msg && response.statusText){
       response.statusText = msg;
     }
 

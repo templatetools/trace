@@ -21,6 +21,7 @@ import java.util.Map;
 public interface RestService {
     public static final String HEADER_AUTHORIZATION_KEY = "authorization";
     public static final String CONTEXT_RESPONSE = "response";
+    public static final String TOKEN = "token";
 
     void setService(CURDService curdService);
 

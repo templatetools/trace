@@ -62,6 +62,7 @@ public class RestServiceImpl implements RestService {
         Object result = null;
 
         try {
+            data.put(TOKEN, token);
             result = MethodUtils.invokeMethod(this.getCurdService(), method, data);
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e.getMessage(),e);

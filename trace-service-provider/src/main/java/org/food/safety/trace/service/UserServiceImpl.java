@@ -2,13 +2,17 @@ package org.food.safety.trace.service;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.food.safety.trace.entity.UserEntity;
 import org.food.safety.trace.repository.Dao;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+
+import static org.food.safety.trace.facade.RestService.TOKEN;
 
 /**
  * User: tom
@@ -60,6 +64,10 @@ public class UserServiceImpl extends CURDServiceImpl {
         result.put("permissions", permissions);
         result.put("username", "admin");
         result.put("id", "id");
+
+        if (StringUtils.isNotEmpty(MapUtils.getString(data, TOKEN))){
+            return result;
+        }
 
         return null;
     }

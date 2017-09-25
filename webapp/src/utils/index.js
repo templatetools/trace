@@ -4,6 +4,7 @@ import lodash from 'lodash'
 import config from './config'
 import request from './request'
 import render from './render'
+import token from './auth'
 import { color } from './theme'
 
 // 连字符转驼峰
@@ -108,5 +109,6 @@ module.exports = {
   queryURL,
   queryArray,
   arrayToTree,
-  render
+  render,
+  token
 }
