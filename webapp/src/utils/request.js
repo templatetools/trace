@@ -6,7 +6,7 @@ import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { YQL, CORS } from './config'
-import { auth } from 'utils'
+import auth from './auth'
 
 const fetch = (options) => {
   let {
@@ -17,7 +17,7 @@ const fetch = (options) => {
   } = options
 
   const cloneData = lodash.cloneDeep(data)
-
+  
   try {
     let domin = ''
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
@@ -57,8 +57,7 @@ const fetch = (options) => {
 
   // 添加请求拦截器
   axios.interceptors.request.use(function (config) {
-    // console.log('token', auth.token(''));
-    config.headers['authorization'] = 'token';//auth.token()
+    config.headers['authorization'] = auth.token();
     config.headers['Content-Type'] = 'application/json;charset=UTF-8'
 
     // 在发送请求之前做些什么

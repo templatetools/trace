@@ -7,6 +7,7 @@ import config from 'config'
 import { EnumRoleType } from 'enums'
 import { query, logout } from 'services/app'
 import * as menusService from 'services/menus'
+import { auth } from 'utils'
 
 const { prefix } = config
 
@@ -96,6 +97,7 @@ export default {
     }, { call, put }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
+        auth.logout();
         yield put({ type: 'query' })
       } else {
         throw (data)

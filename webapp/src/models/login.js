@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router'
-import { queryURL,token } from 'utils'
+import { queryURL,auth } from 'utils'
 import { login } from 'services/login'
 
 export default {
@@ -16,7 +16,7 @@ export default {
       const data = yield call(login, payload)
       yield put({ type: 'hideLoginLoading' })
       if (data.success) {
-        token(data.data);
+        auth.token(data.data);
 
         const from = queryURL('from')
         yield put({ type: 'app/query' })
