@@ -125,13 +125,19 @@ const modal = ({
           if (!col.insertable){
             return;
           }
-          return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
-            {getFieldDecorator(key, {
-              initialValue: initValue,
+
+          let itemOption = {
               rules: [
                 col.rules,
               ],
-            })(getItem(col.itemType,col.refType, col.itemValue))}
+          }
+
+          if (item.hasOwnProperty('id')){
+              itemOption['initialValue'] = initValue;
+          }
+
+          return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
+            {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType, col.itemValue))}
           </FormItem>)
         })
       }

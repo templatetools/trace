@@ -1,5 +1,6 @@
 package org.food.safety.trace.service;
 
+import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
@@ -43,7 +44,7 @@ public class UserServiceImpl extends CURDServiceImpl {
             throw new AuthenticationException("密码错误!");
         }
 
-        return userEntity.getId();
+        return StringUtils.join(ImmutableList.of(userEntity.getOrganization(),userEntity.getId()),"/");
     }
 
     /**
