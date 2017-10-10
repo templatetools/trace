@@ -2,6 +2,7 @@ package org.food.safety.trace.service;
 
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
+import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.dto.Viewable;
 import org.food.safety.trace.repository.Dao;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public interface CURDService {
      * @param listFilter 过滤条件
      * @return
      */
-    List list(@NotNull String name, @NotNull ListFilter listFilter);
+    List list(Token token, @NotNull String name, @NotNull ListFilter listFilter);
 
     /**
      * 存储对象
@@ -38,21 +39,21 @@ public interface CURDService {
      * @param entity 实体数据
      * @return
      */
-    Viewable createOrUpdte(@NotNull String name, @NotNull String entity);
+    Viewable createOrUpdte(Token token, @NotNull String name, @NotNull String entity);
 
     /**
      * 创建对象之前
      * @param name 实体名称
      * @param entity 实体数据
      */
-    void createBefore(@NotNull String name,@NotNull final Object entity);
+    void createBefore(Token token, @NotNull String name,@NotNull final Object entity);
 
     /**
      * 创建对象之后
      * @param name 实体名称
      * @param entity 实体数据
      */
-    void createAfter(@NotNull String name,@NotNull final Object entity);
+    void createAfter(Token token, @NotNull String name,@NotNull final Object entity);
 
     /**
      * 分页查询
@@ -60,7 +61,7 @@ public interface CURDService {
      * @param pageSearch 查询条件
      * @return
      */
-    Page page(@NotNull String name, @NotNull PageSearch pageSearch);
+    Page page(Token token, @NotNull String name, @NotNull PageSearch pageSearch);
 
     /**
      * 详情
@@ -68,7 +69,7 @@ public interface CURDService {
      * @param id id
      * @return
      */
-    Viewable detail(@NotNull String name, @NotNull Serializable id);
+    Viewable detail(Token token, @NotNull String name, @NotNull Serializable id);
 
     /**
      * 删除
@@ -76,7 +77,7 @@ public interface CURDService {
      * @param id
      * @return
      */
-    Boolean delete(String name, String id);
+    Boolean delete(Token token, String name, String id);
 
     /**
      * 对象 列表视图信息

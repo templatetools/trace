@@ -1,7 +1,8 @@
 package org.food.safety.trace.entity;
-// Generated 2017-9-13 9:08:43 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-10 16:04:42 by Hibernate Tools 5.2.5.Final
 
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.food.safety.trace.dto.OrganizationView;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -18,13 +21,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="Organization"
 )
-public class Organization  implements org.food.safety.trace.dto.Viewable,java.io.Serializable {
+public class Organization extends OrganizationView implements Serializable {
 
 
      /**
       * id
      */
      private String id;
+     /**
+      * 组织
+     */
+     private String organization;
      /**
       * 名称
      */
@@ -37,7 +44,8 @@ public class Organization  implements org.food.safety.trace.dto.Viewable,java.io
     public Organization() {
     }
 
-    public Organization(String name, Date createTime) {
+    public Organization(String organization, String name, Date createTime) {
+       this.organization = organization;
        this.name = name;
        this.createTime = createTime;
     }
@@ -55,6 +63,19 @@ public class Organization  implements org.food.safety.trace.dto.Viewable,java.io
     
     public void setId(String id) {
         this.id = id;
+    }
+    /**       
+     *      * 组织
+     */
+
+    
+    @Column(name="organization", insertable=false, updatable=true, length=128)
+    public String getOrganization() {
+        return this.organization;
+    }
+    
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
     /**       
      *      * 名称
@@ -91,6 +112,7 @@ public class Organization  implements org.food.safety.trace.dto.Viewable,java.io
 	  StringBuffer buffer = new StringBuffer();
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+      buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("]");
       

@@ -11,6 +11,8 @@ public interface ReferenceDao extends PagingAndSortingRepository<Reference, Stri
 
     List<Reference> findBySourceId(String id);
 
+    List<Reference> findByTargetNameAndSourceId(String targetName, String id);
+
     @Query("delete from Reference where sourceId=?1")
     @Modifying
     void deleteBySourceId(String id);

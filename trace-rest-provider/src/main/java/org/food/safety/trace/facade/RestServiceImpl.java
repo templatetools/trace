@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.MethodUtils;
-import org.food.safety.trace.dto.ListFilter;
-import org.food.safety.trace.dto.PageSearch;
-import org.food.safety.trace.dto.RestResult;
-import org.food.safety.trace.dto.Viewable;
+import org.food.safety.trace.dto.*;
 import org.food.safety.trace.service.CURDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,7 +48,7 @@ public class RestServiceImpl implements RestService {
     @Override
     public RestResult<List> list(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, ListFilter listFilter) {
         log.debug("listFilter:{}", listFilter);
-        List list = curdService.list(name, listFilter);
+        List list = curdService.list(new Token(token),name, listFilter);
         log.debug("list result:{}", list);
         return RestResult.OK(list);
     }
@@ -91,7 +88,7 @@ public class RestServiceImpl implements RestService {
     @Override
     public RestResult<Page<Viewable>> page(@HeaderParam(HEADER_AUTHORIZATION_KEY) String token, String version, String name, PageSearch pageSearch) {
         log.debug("pageSearch:{}", pageSearch);
-        Page page = curdService.page(name, pageSearch);
+        Page page = curdService.page(new Token(token),name, pageSearch);
         log.debug("pageSearch result:{}", page);
         return RestResult.OK(page);
     }
@@ -101,7 +98,7 @@ public class RestServiceImpl implements RestService {
         log.debug("detail:{}", id);
         Object result = null;
 
-        result = curdService.detail(name, id);
+        result = curdService.detail(new Token(token),name, id);
 
         log.debug("detail result:{}", result);
         return RestResult.OK(result);
@@ -112,7 +109,7 @@ public class RestServiceImpl implements RestService {
         log.debug("delete:{}", id);
         Object result = null;
 
-        result = curdService.delete(name, id);
+        result = curdService.delete(new Token(token),name, id);
 
         log.debug("delete result:{}", result);
         return RestResult.OK(result);
@@ -123,7 +120,7 @@ public class RestServiceImpl implements RestService {
         log.debug("createOrUpdate:{}", data);
         Object result = null;
 
-        result = curdService.createOrUpdte(name, data);
+        result = curdService.createOrUpdte(new Token(token),name, data);
 
         log.debug("createOrUpdate result:{}", result);
         return RestResult.OK(result);

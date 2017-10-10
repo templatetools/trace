@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.json.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
 import org.food.safety.trace.TestSmartApplication;
+import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.repository.MenuDaoTest;
 import org.food.safety.trace.service.CURDService;
 import org.hibernate.boot.Metadata;
@@ -94,7 +95,7 @@ public class InitEntity {
 
 
                 try {
-                    log.debug("class:{}", curdService.createOrUpdte(LIST_VIEW_ENTITY_NAME, JSON.json(entity)));
+                    log.debug("class:{}", curdService.createOrUpdte(new Token("default/admin"), LIST_VIEW_ENTITY_NAME, JSON.json(entity)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

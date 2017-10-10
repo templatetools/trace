@@ -15,6 +15,8 @@ import java.util.Map;
 @ToString
 @MappedSuperclass
 public class RoleView implements SelectViewable {
+    public static final String TARGET_NAME="Role";
+
     public List<SelectItemView> menusList;
     @Transient
     public List<SelectItemView> getMenusList() {

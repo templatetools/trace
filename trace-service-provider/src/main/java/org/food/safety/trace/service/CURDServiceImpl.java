@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.json.ParseException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.food.safety.trace.dto.*;
@@ -86,40 +87,40 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     @Override
-    public List list(String name,@NotNull ListFilter listFilter) {
+    public List list(Token token, String name,@NotNull ListFilter listFilter) {
         DaoBase daoBase = (DaoBase) getDAO(name);
 
-        searchBefore(name, listFilter);
+        searchBefore(token, name, listFilter);
 
         List data = daoBase.findAllByFilter(listFilter);
 
-        queryAfter(name, data);
+        queryAfter(token, name, data);
 
         return data;
     }
 
     @Override
     @Transactional
-    public Viewable createOrUpdte(String name, String entityJson) {
+    public Viewable createOrUpdte(Token token, String name, String entityJson) {
         Dao dao = getDAO(name);
         EntityType entityType = findEntiytyTypeByName(name);
 
         Object entity = null;
         try {
             entity = JSON.parse(entityJson, entityType.getBindableJavaType());
-            createBefore(name, entity);
+            createBefore(token, name, entity);
         } catch (ParseException e) {
             log.warn("模型数据转换错误:{} to {}", entityJson, entityType.getBindableJavaType());
         }
 
         dao.save(entity);
 
-        createAfter(name, entity);
+        createAfter(token, name, entity);
 
         return (Viewable) entity;
     }
 
-    public void createBefore(String name, final Object entity) {
+    public void createBefore(Token token, String name, final Object entity) {
         if (entity instanceof SelectViewable) {
             List<ListView> columns = viewList(name);
             for (ListView c : columns) {
@@ -139,7 +140,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     @Override
-    public void createAfter(@NotNull String name, @NotNull Object entity) {
+    public void createAfter(Token token, @NotNull String name, @NotNull Object entity) {
         if (entity instanceof SelectViewable){
             List<ListView> columns = viewList(name);
             for (ListView c: columns){
@@ -183,27 +184,27 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     @Override
-    public Page page(String name, PageSearch pageSearch) {
+    public Page page(Token token, String name, PageSearch pageSearch) {
         Dao dao = getDAO(name);
 
-        searchBefore(name, pageSearch);
+        searchBefore(token, name, pageSearch);
 
         Page page = dao.page(pageSearch);
 
-        queryAfter(name, page.getContent());
+        queryAfter(token, name, page.getContent());
 
         return page;
     }
 
     @Override
-    public Viewable detail(@NotNull String name, @NotNull Serializable id) {
+    public Viewable detail(Token token, @NotNull String name, @NotNull Serializable id) {
         Dao dao = getDAO(name);
         return (Viewable) dao.findOne(id);
     }
 
     @Override
     @Transactional
-    public Boolean delete(String name, String ids) {
+    public Boolean delete(Token token, String name, String ids) {
 
         try {
             Dao dao = getDAO(name);
@@ -228,7 +229,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     @Override
-    public ListFilter searchBefore(@NotNull String name, @NotNull ListFilter filters) {
+    public ListFilter searchBefore(Token token, @NotNull String name, @NotNull ListFilter filters) {
         if (null != filters.getFilters()){
             String searchText = null;
             for (SearchFilter searchFilter: filters.getFilters()){
@@ -249,11 +250,22 @@ public class CURDServiceImpl implements CURDService,SearchService {
             }
         }
 
+        try {
+            EntityType entityType = findEntiytyTypeByName(name);
+
+            if (!Token.ADMIN.equalsIgnoreCase(token.getUserId()) && null != entityType.getAttribute("organization")) {
+                SearchFilter organizationSearchFilter = new SearchFilter("organization", SearchFilter.Operator.EQ, token.getOrganizationId());
+                filters.addAndFilters(organizationSearchFilter);
+            }
+        }catch (Exception e){
+
+        }
+
         return filters;
     }
 
     @Override
-    public void queryAfter(String name, @NotNull List data) {
+    public void queryAfter(Token token, String name, @NotNull List data) {
         ReferenceDao referenceDao = getReferenceDao();
 
         List<ListView> columns = viewList(name);
@@ -272,7 +284,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 SelectItemView selectItemView = new SelectItemView();
                                 selectItemView.setKey(reference.getTargetId());
 
-                                Object target = this.detail(reference.getTargetName(), reference.getTargetId());
+                                Object target = this.detail(token, reference.getTargetName(), reference.getTargetId());
 
                                 selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
                                 selectItemViews.add(selectItemView);
@@ -288,7 +300,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 SelectItemView selectItemView = new SelectItemView();
                                 selectItemView.setKey(refId);
 
-                                Object target = this.detail(view.getRefType(), refId);
+                                Object target = this.detail(token, view.getRefType(), refId);
                                 log.debug("{} find ref type:{}", key, target);
                                 selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
                                 PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);

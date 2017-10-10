@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity">
     <class name="Organization">
-        <meta attribute="implements">org.food.safety.trace.dto.Viewable</meta>
+        <meta attribute="implements">org.food.safety.trace.dto.OrganizationView</meta>
 
         <meta attribute="class-description">组织信息</meta>
 
@@ -14,6 +14,17 @@
             <meta attribute="field-description">id</meta>
             <generator class="uuid.hex"/>
         </id>
+
+
+        <property name="organization" type="string" length="128" insert="false" update="true">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Organization</meta>
+            <meta attribute="field-description">组织</meta>
+        </property>
 
         <property name="name" type="string" length="16">
             <meta attribute="use-in-tostring">true</meta>

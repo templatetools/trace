@@ -38,6 +38,7 @@ public class TestCURDServiceImpl{
     static final String NAME = "UserEntity";
     @Autowired
     CURDService curdService;
+    Token token = new Token("1/1");
 
     @Autowired
     private EntityManager entityManager;
@@ -61,17 +62,17 @@ public class TestCURDServiceImpl{
 
     @Test
     public void delete(){
-        boolean result = curdService.delete(NAME, "ff8080815e26bfc2015e26bfccfb0000");
+        boolean result = curdService.delete(token, NAME, "ff8080815e26bfc2015e26bfccfb0000");
         log.debug("delete:{}", result);
     }
     @Test
     public void detail(){
-        Viewable result = curdService.detail(NAME, "ff8080815e22f191015e22f198aa0000");
+        Viewable result = curdService.detail(token, NAME, "ff8080815e22f191015e22f198aa0000");
         log.debug("detail:{}", result);
     }
     @Test
     public void list(){
-        List list = curdService.list(NAME, new ListFilter());
+        List list = curdService.list(token, NAME, new ListFilter());
         log.debug("list:{}", list);
     }
     @Test
@@ -94,11 +95,11 @@ public class TestCURDServiceImpl{
         pageSearch.setFilters(filters);
         pageSearch.setAndFilters(filters);
 
-        Page result = curdService.page(NAME, pageSearch);
+        Page result = curdService.page(token, NAME, pageSearch);
         log.debug("page:{}", result);
 
 
-        result = curdService.page(NAME, new PageSearch());
+        result = curdService.page(token, NAME, new PageSearch());
         log.debug("page search is emplty:{}", result);
     }
 
@@ -109,7 +110,7 @@ public class TestCURDServiceImpl{
 
         Map<String, String> entity = ImmutableMap.of("name", "jia","loginName","j","password", "123");
 
-        log.debug("class:{}", curdService.createOrUpdte(entityName, JSON.json(entity)));
+        log.debug("class:{}", curdService.createOrUpdte(token, entityName, JSON.json(entity)));
     }
 
     @Test

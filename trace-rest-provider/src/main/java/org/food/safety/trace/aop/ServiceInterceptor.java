@@ -1,10 +1,12 @@
 package org.food.safety.trace.aop;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.util.ThreadContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.facade.RestService;
 import org.food.safety.trace.service.CURDService;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -14,6 +16,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Map;
 
 import static org.food.safety.trace.util.StringUitls.captureName;
 

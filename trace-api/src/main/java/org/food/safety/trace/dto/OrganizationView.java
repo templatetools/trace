@@ -14,6 +14,8 @@ import java.util.List;
 @ToString
 @MappedSuperclass
 public class OrganizationView implements SelectViewable {
+    public static final String FIELD_NAME="organization";
+
     public SelectItemView organizationSelectItem;
     @Transient
     public SelectItemView getOrganizationSelectItem() {

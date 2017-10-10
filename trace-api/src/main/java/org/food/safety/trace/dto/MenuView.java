@@ -13,6 +13,8 @@ import javax.persistence.Transient;
 @ToString
 @MappedSuperclass
 public class MenuView implements SelectViewable {
+    public static final String TARGET_NAME="Menu";
+
     public SelectItemView mpidSelectItem;
     @Transient
     public SelectItemView getMpidSelectItem() {

@@ -19,4 +19,6 @@ public class UserEntityView extends OrganizationView implements SelectViewable {
     public List<SelectItemView> getRolesList() {
         return rolesList;
     }
+
+    public static final String TARGET_NAME = "UserEntity";
 }
