@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity">
     <class name="Organization">
-        <meta attribute="implements">org.food.safety.trace.dto.OrganizationView</meta>
+        <meta attribute="extends">org.food.safety.trace.dto.OrganizationView</meta>
 
         <meta attribute="class-description">组织信息</meta>
 

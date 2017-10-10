@@ -1,8 +1,7 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-10 16:04:42 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-10 17:15:53 by Hibernate Tools 5.2.5.Final
 
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.food.safety.trace.dto.OrganizationView;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -21,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="Organization"
 )
-public class Organization extends OrganizationView implements Serializable {
+public class Organization extends org.food.safety.trace.dto.OrganizationView implements java.io.Serializable {
 
 
      /**
@@ -69,7 +66,7 @@ public class Organization extends OrganizationView implements Serializable {
      */
 
     
-    @Column(name="organization", insertable=false, updatable=true, length=128)
+    @Column(name="organization", insertable=false, length=128)
     public String getOrganization() {
         return this.organization;
     }

@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-10 16:04:42 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-10 17:15:53 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -26,6 +26,10 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
      */
      private String id;
      /**
+      * 组织
+     */
+     private String organization;
+     /**
       * 名称
      */
      private String name;
@@ -41,7 +45,8 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
     public Role() {
     }
 
-    public Role(String name, String menus, Date createTime) {
+    public Role(String organization, String name, String menus, Date createTime) {
+       this.organization = organization;
        this.name = name;
        this.menus = menus;
        this.createTime = createTime;
@@ -60,6 +65,19 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
     
     public void setId(String id) {
         this.id = id;
+    }
+    /**       
+     *      * 组织
+     */
+
+    
+    @Column(name="organization", length=128)
+    public String getOrganization() {
+        return this.organization;
+    }
+    
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
     /**       
      *      * 名称
@@ -109,6 +127,7 @@ public class Role extends org.food.safety.trace.dto.RoleView implements java.io.
 	  StringBuffer buffer = new StringBuffer();
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+      buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("menus").append("='").append(getMenus()).append("' ");			
       buffer.append("]");

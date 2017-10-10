@@ -14,7 +14,7 @@ import java.util.Map;
 @Setter
 @ToString
 @MappedSuperclass
-public class RoleView implements SelectViewable {
+public class RoleView extends OrganizationView {
     public static final String TARGET_NAME="Role";
 
     public List<SelectItemView> menusList;
