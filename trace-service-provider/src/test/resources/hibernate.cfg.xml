@@ -23,5 +23,6 @@
         <mapping resource="mapping/Organization.hbm.xml"/>
 
         <mapping resource="mapping/business/PetRace.hbm.xml"/>
+        <mapping resource="mapping/business/PetRaceSmall.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

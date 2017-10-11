@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity.business">
+    <class name="PetRaceSmall" table="t_pet_small_race">
+        <meta attribute="extends">org.food.safety.trace.dto.PetRaceSmallView</meta>
+
+        <meta attribute="class-description">宠物品种</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="organization" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Organization</meta>
+            <meta attribute="field-description">组织</meta>
+        </property>
+
+        <property name="type" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">品种</meta>
+        </property>
+
+        <property name="petRaceId" column="pet_race_id" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">PetRace</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">种类</meta>
+        </property>
+
+        <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">创建时间</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="create_date" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+
+        <property name="createUserId" column="create_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">创建人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="updateDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">更新时间</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="update_date" default="CURRENT_TIMESTAMP" >
+                <comment>更新时间</comment>
+            </column>
+        </property>
+
+        <property name="updateUserId" column="update_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">更新人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="status" column="status" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">状态</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+    </class>
+</hibernate-mapping>

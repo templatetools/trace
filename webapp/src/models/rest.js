@@ -68,9 +68,9 @@ export default modelExtend(pageColumnModel, {
             list: data.data.content,
             columns:listColumns,
             pagination: {
-              current: Number(payload.pageNumber) || 1,
-              pageSize: Number(payload.pageSize) || 10,
-              total: data.data.totalPages,
+              current: data.data.number+1,
+              pageSize: data.data.size,
+              total: data.data.totalElements,
             },
           },
         })

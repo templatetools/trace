@@ -28,6 +28,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ public class InitEntity {
 
     @Test
     @Rollback(false)
+    @Transactional
     public void init(){
         Configuration configuration = new Configuration().configure();
 
@@ -77,6 +79,8 @@ public class InitEntity {
 
         //init view list
         Metadata metadata = MetadataHelper.getMetadata(configuration);
+
+        curdService.getDAO(LIST_VIEW_ENTITY_NAME).deleteAllInBatch();
 
         for (PersistentClass persistentClass : metadata.getEntityBindings()) {
             Iterator propertyIterator = persistentClass.getPropertyIterator();

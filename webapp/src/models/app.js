@@ -64,7 +64,7 @@ export default {
           menu = list.filter((item) => {
             return item.organization === 'default'
           });
-          permissions.visit = list.map(item => item.id)
+          permissions.visit = menu.map(item => item.id)
         } else {
           menu = list.filter((item) => {
             const cases = [

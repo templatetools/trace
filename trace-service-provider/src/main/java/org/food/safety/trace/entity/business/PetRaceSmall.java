@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物种类
+ * 宠物品种
  */
 @Entity
-@Table(name="t_pet_race"
+@Table(name="t_pet_small_race"
 )
-public class PetRace extends org.food.safety.trace.dto.OrganizationView implements java.io.Serializable {
+public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView implements java.io.Serializable {
 
 
      /**
@@ -30,9 +30,13 @@ public class PetRace extends org.food.safety.trace.dto.OrganizationView implemen
      */
      private String organization;
      /**
-      * 名称
+      * 品种
      */
-     private String name;
+     private String type;
+     /**
+      * 种类
+     */
+     private String petRaceId;
      /**
       * 创建时间
      */
@@ -54,12 +58,13 @@ public class PetRace extends org.food.safety.trace.dto.OrganizationView implemen
      */
      private String status;
 
-    public PetRace() {
+    public PetRaceSmall() {
     }
 
-    public PetRace(String organization, String name, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public PetRaceSmall(String organization, String type, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.name = name;
+       this.type = type;
+       this.petRaceId = petRaceId;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -95,17 +100,30 @@ public class PetRace extends org.food.safety.trace.dto.OrganizationView implemen
         this.organization = organization;
     }
     /**       
-     *      * 名称
+     *      * 品种
      */
 
     
-    @Column(name="name", length=8)
-    public String getName() {
-        return this.name;
+    @Column(name="type", length=8)
+    public String getType() {
+        return this.type;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
+    }
+    /**       
+     *      * 种类
+     */
+
+    
+    @Column(name="pet_race_id", length=128)
+    public String getPetRaceId() {
+        return this.petRaceId;
+    }
+    
+    public void setPetRaceId(String petRaceId) {
+        this.petRaceId = petRaceId;
     }
     /**       
      *      * 创建时间
@@ -182,7 +200,8 @@ public class PetRace extends org.food.safety.trace.dto.OrganizationView implemen
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("type").append("='").append(getType()).append("' ");			
+      buffer.append("petRaceId").append("='").append(getPetRaceId()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
