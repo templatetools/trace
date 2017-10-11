@@ -3,6 +3,9 @@ package init;
 import com.alibaba.dubbo.common.json.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.food.safety.trace.TestSmartApplication;
 import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.repository.MenuDaoTest;
@@ -104,12 +107,17 @@ public class InitEntity {
     }
 
     private String getRules(Property property) {
-        Map<String, String> rules = new HashMap<String, String>();
+        String[] booleanKeys = new String[]{"required"};
+        Map<String, Object> rules = new HashMap<String, Object>();
         try {
             for (Object metaAttribute:property.getMetaAttributes().entrySet()){
                 Map.Entry<String, MetaAttribute> map = (Map.Entry<String, MetaAttribute>) metaAttribute;
                 if (map.getKey().startsWith("rules")){
-                    rules.put(map.getKey().replaceAll("rules-", ""), MetaAttributeHelper.getMetaAsString(map.getValue()));
+                    String name = map.getKey().replaceAll("rules-", "");
+
+                    Object value = ArrayUtils.contains(booleanKeys,name)?MetaAttributeHelper.getMetaAsBool(map.getValue(), false):MetaAttributeHelper.getMetaAsString(map.getValue());
+
+                    rules.put(name, value);
                 }
             }
             return JSON.json(rules);

@@ -61,6 +61,9 @@ export default {
         const { permissions } = user
         let menu = list
         if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
+          menu = list.filter((item) => {
+            return item.organization === 'default'
+          });
           permissions.visit = list.map(item => item.id)
         } else {
           menu = list.filter((item) => {

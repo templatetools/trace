@@ -129,7 +129,7 @@ export default modelExtend(pageColumnModel, {
         const selectData = yield select(({ rest }) => rest.selectData)
         let source = [];
         data.data.map((item,index)=>{
-          source.push({key:item.id, label:item['name']});
+          source.push({key:item.id, label:'[' + item.organizationSelectItem.label +']'+ item['name']});
         });
         selectData[payload.modalName]=source;
         yield put({ type: 'updateState', payload: { selectData: selectData}})

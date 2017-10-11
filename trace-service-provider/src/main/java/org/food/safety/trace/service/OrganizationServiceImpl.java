@@ -23,7 +23,9 @@ public class OrganizationServiceImpl extends CURDServiceImpl {
     public void createAfter(Token token, @NotNull String name, @NotNull Object entity) {
         super.createAfter(token, name, entity);
         try {
-            BeanUtils.setProperty(entity, OrganizationView.FIELD_NAME, BeanUtils.getProperty(entity, "id")+"");
+            if (null == BeanUtils.getProperty(entity, OrganizationView.FIELD_NAME)) {
+                BeanUtils.setProperty(entity, OrganizationView.FIELD_NAME, BeanUtils.getProperty(entity, "id") + "");
+            }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

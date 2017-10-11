@@ -2,6 +2,7 @@ package org.food.safety.trace.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.food.safety.trace.TestSmartApplication;
+import org.food.safety.trace.dto.OrganizationView;
 import org.food.safety.trace.entity.Menu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,7 @@ public class MenuDaoTest {
         Menu menu = new Menu();
         menu.setName("首页");
         menu.setIcon("laptop");
+        menu.setOrganization(OrganizationView.DEFAULT);
         menu.setRoute("/dashboard");
 
         Menu root = menuDao.save(menu);
@@ -38,12 +40,14 @@ public class MenuDaoTest {
         Menu setting = new Menu();
         setting.setName("设置");
         setting.setIcon("setting");
+        setting.setOrganization(OrganizationView.DEFAULT);
         setting = menuDao.save(setting);
 
         menu = new Menu();
         menu.setName("角色管理");
         menu.setIcon("laptop");
         menu.setRoute("/rest/Role");
+        menu.setOrganization(OrganizationView.DEFAULT);
         menu.setMpid(setting.getId());
 
         menuDao.save(menu);
@@ -52,6 +56,7 @@ public class MenuDaoTest {
         menu.setName("用户管理");
         menu.setIcon("user");
         menu.setRoute("/rest/UserEntity");
+        menu.setOrganization(OrganizationView.DEFAULT);
         menu.setMpid(setting.getId());
 
         menuDao.save(menu);
@@ -60,6 +65,7 @@ public class MenuDaoTest {
         menu.setName("菜单管理");
         menu.setIcon("menu-fold");
         menu.setRoute("/rest/Menu");
+        menu.setOrganization(OrganizationView.DEFAULT);
         menu.setMpid(setting.getId());
 
         menuDao.save(menu);
@@ -68,6 +74,7 @@ public class MenuDaoTest {
         menu.setName("组织管理");
         menu.setIcon("team");
         menu.setRoute("/rest/Organization");
+        menu.setOrganization(OrganizationView.DEFAULT);
         menu.setMpid(setting.getId());
 
         menuDao.save(menu);

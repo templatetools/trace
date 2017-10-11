@@ -14,6 +14,15 @@
             <meta attribute="field-description">id</meta>
             <generator class="uuid.hex"/>
         </id>
+        <property name="organization" type="string" length="128" >
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Organization</meta>
+            <meta attribute="field-description">组织</meta>
+        </property>
         <property name="name" type="string" length="16">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>

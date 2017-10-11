@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 @Setter
 @ToString
 @MappedSuperclass
-public class MenuView implements SelectViewable {
+public class MenuView extends OrganizationView {
     public static final String TARGET_NAME="Menu";
 
     public SelectItemView mpidSelectItem;
