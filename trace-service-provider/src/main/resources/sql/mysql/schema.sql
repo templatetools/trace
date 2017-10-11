@@ -3,7 +3,7 @@
 -- Table structure for t_user
 -- ----------------------------
 
-RoleMenu
+-- mysqldump -utest -p123456 --databases trace > tract.sql
 CREATE TABLE `RoleMenu` (
   `id` VARCHAR(128) NOT NULL,
   `role_id` VARCHAR(128) NOT NULL,
