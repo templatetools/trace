@@ -1,0 +1,2 @@
+INSERT INTO trace.Role (id, organization, name, menus, createTime) VALUES ('ff8080815f055144015f0557b58e0001', 'default', 'admin', null, '2017-10-10 16:12:35');
+INSERT INTO trace.Role (id, organization, name, menus, createTime) VALUES ('ff8080815f0a1cda015f0a26af980004', 'ff8080815f0a1cda015f0a23d41e0002', 'enterprise-admin', null, '2017-10-11 14:37:08');

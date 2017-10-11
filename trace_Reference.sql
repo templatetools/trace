@@ -1,0 +1,7 @@
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f055144015f05580af40006', 'Role', 'ff8080815f055144015f0557b58e0001', 'UserEntity', 'admin');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2a1ac4000a', 'Menu', 'ff8080815f0a1cda015f0a24e4470003', 'Role', 'ff8080815f0a1cda015f0a26af980004');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2a1ac4000b', 'Menu', 'ff8080815f0a1cda015f0a2097480001', 'Role', 'ff8080815f0a1cda015f0a26af980004');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2a1ac5000c', 'Menu', 'ff8080815f0a1cda015f0a292a280008', 'Role', 'ff8080815f0a1cda015f0a26af980004');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2a1ac5000d', 'Menu', 'ff8080815f0a1cda015f0a29cce50009', 'Role', 'ff8080815f0a1cda015f0a26af980004');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2a1ac6000e', 'Menu', 'ff8080815f0a1cda015f0a2882200007', 'Role', 'ff8080815f0a1cda015f0a26af980004');
+INSERT INTO trace.Reference (id, targetName, targetId, sourceName, sourceId) VALUES ('ff8080815f0a1cda015f0a2aba860010', 'Role', 'ff8080815f0a1cda015f0a26af980004', 'UserEntity', 'ff8080815f0a1cda015f0a2aba7e000f');
