@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="t_pet_race"
 )
-public class PetRace extends org.food.safety.trace.dto.OrganizationView implements java.io.Serializable {
+public class PetRace extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**

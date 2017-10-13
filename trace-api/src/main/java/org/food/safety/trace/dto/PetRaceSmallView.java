@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 @Setter
 @ToString
 @MappedSuperclass
-public class PetRaceSmallView extends OrganizationView {
+public class PetRaceSmallView extends BusinessView {
     public static final String TARGET_NAME="PetRaceSmall";
 
     public SelectItemView petRaceIdSelectItem;

@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.food.safety.trace.entity.business">
     <class name="PetRace" table="t_pet_race">
-        <meta attribute="extends">org.food.safety.trace.dto.OrganizationView</meta>
+        <meta attribute="extends">org.food.safety.trace.dto.BusinessView</meta>
 
         <meta attribute="class-description">宠物种类</meta>
 
