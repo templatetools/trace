@@ -57,36 +57,46 @@ const modal = ({
       }
       case 'Select':{
         console.log('select value:', selectData)
-        
-        if ('multiple' === val){
+        if ('static' === refType){
+          let v = JSON.parse(val);
           return <Select
-            mode='multiple'
-            labelInValue
-            placeholder="选择"
-            notFoundContent={null}
-            filterOption={false}
-            onSearch={(val)=>{onSearch(val, refType)}}
-            onFocus={(val)=>{onSearch('', refType)}}
-            style={{ width: '100%' }}
-          >
-            {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
-          </Select>
+              showSearch
+              labelInValue
+              placeholder="选择"
+            >
+              {v.map(d => <Select.Option key={d.key}>{d.label}</Select.Option>)}
+            </Select>
         }else{
-          return <Select
-            showSearch
-            labelInValue
-            placeholder="选择"
-            optionFilterProp="children"
-            onFocus={(val)=>{onSearch('', refType)}}
-            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          >
-            {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
-          </Select>
+          if ('multiple' === val){
+            return <Select
+              mode='multiple'
+              labelInValue
+              placeholder="选择"
+              notFoundContent={null}
+              filterOption={false}
+              onSearch={(val)=>{onSearch(val, refType)}}
+              onFocus={(val)=>{onSearch('', refType)}}
+              style={{ width: '100%' }}
+            >
+              {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
+            </Select>
+          }else{
+            return <Select
+              showSearch
+              labelInValue
+              placeholder="选择"
+              optionFilterProp="children"
+              onFocus={(val)=>{onSearch('', refType)}}
+              filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
+              {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
+            </Select>
+          }
         }
       }
       case 'Radio':{
         let v = JSON.parse(val);
-        return (<Radio.Group>
+        return (<Radio.Group >
                   {v.map((item,index)=>{
                     return <Radio value={item.val} key={index} >{item.text}</Radio>  
                   })}
@@ -115,9 +125,12 @@ const modal = ({
           let initValue = item[key];
           if (col.itemType === 'Select'){
             if (col.itemValue === 'multiple'){
-              key += "List"
+                key += "List"
             }
             if (col.itemValue === 'combobox'){
+              key += "SelectItem"
+            }
+            if (col.refType === 'static'){
               key += "SelectItem"
             }
             initValue = item[key]?item[key]:{key:'', label:''}; 
@@ -131,6 +144,8 @@ const modal = ({
                 col.rules,
               ],
           }
+
+          console.log('key and value', key, initValue);
 
           if (item.hasOwnProperty('id')){
               itemOption['initialValue'] = initValue;

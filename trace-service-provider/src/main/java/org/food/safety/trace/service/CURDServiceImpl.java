@@ -50,6 +50,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
     private static final String LISTVIEW_ENTITY = "ListView";
     private static final String LISTVIEW_SELECT_TYPE_MULTIPLE = "multiple";
     private static final String LISTVIEW_SELECT_TYPE_COMBOBOX = "combobox";
+    private static final String LISTVIEW_SELECT_TYPE_STATIC = "static";
     private static final String SEARCH_TEXT = "searchText";
 
     @Autowired
@@ -124,7 +125,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
         if (entity instanceof SelectViewable) {
             List<ListView> columns = viewList(name);
             for (ListView c : columns) {
-                if (LISTVIEW_SELECT_TYPE_COMBOBOX.equalsIgnoreCase(c.getItemValue())) {
+                if (LISTVIEW_SELECT_TYPE_COMBOBOX.equalsIgnoreCase(c.getItemValue()) || LISTVIEW_SELECT_TYPE_STATIC.equalsIgnoreCase(c.getRefType())) {
                     try {
                         SelectItemView selectItemView = (SelectItemView) PropertyUtils.getProperty(entity, c.getName()+"SelectItem");
 
@@ -296,13 +297,23 @@ public class CURDServiceImpl implements CURDService,SearchService {
                         }else{
                             Object key = PropertyUtils.getProperty(d, view.getName());
                             if (null != key && StringUtils.isNotEmpty(key+"")) {
-                                String refId = key+"";
+                                String refId = key + "";
                                 SelectItemView selectItemView = new SelectItemView();
                                 selectItemView.setKey(refId);
 
-                                Object target = this.detail(token, view.getRefType(), refId);
-                                log.debug("{} find ref type:{}", key, target);
-                                selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                if (LISTVIEW_SELECT_TYPE_STATIC.equalsIgnoreCase(view.getRefType())){
+                                    List<Object> selects = JSON.parse(view.getItemValue(), List.class);
+                                    for (Object t: selects){
+                                        if (key.equals(PropertyUtils.getProperty(t, "key")+"")){
+                                            selectItemView.setLabel(PropertyUtils.getProperty(t, "label")+"");
+                                        }
+                                    }
+                                }else {
+                                    Object target = this.detail(token, view.getRefType(), refId);
+                                    log.debug("{} find ref type:{}", key, target);
+                                    selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                }
+
                                 PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);
                             }
                         }

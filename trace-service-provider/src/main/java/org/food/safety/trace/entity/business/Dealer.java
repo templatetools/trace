@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物品种
+ * 经销商与生产商
  */
 @Entity
-@Table(name="t_pet_small_race"
+@Table(name="t_dealer"
 )
-public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView implements java.io.Serializable {
+public class Dealer extends org.food.safety.trace.dto.DealerView implements java.io.Serializable {
 
 
      /**
@@ -30,13 +30,33 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String organization;
      /**
-      * 品种
+      * 编号
      */
-     private String type;
+     private String code;
      /**
-      * 种类
+      * 名称
      */
-     private String petRaceId;
+     private String name;
+     /**
+      * 联系人
+     */
+     private String contractMan;
+     /**
+      * 手机
+     */
+     private String mobilePhone;
+     /**
+      * 电话
+     */
+     private String telPhone;
+     /**
+      * 备注
+     */
+     private String remark;
+     /**
+      * 类型
+     */
+     private String companyType;
      /**
       * 创建时间
      */
@@ -58,13 +78,18 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String status;
 
-    public PetRaceSmall() {
+    public Dealer() {
     }
 
-    public PetRaceSmall(String organization, String type, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public Dealer(String organization, String code, String name, String contractMan, String mobilePhone, String telPhone, String remark, String companyType, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.type = type;
-       this.petRaceId = petRaceId;
+       this.code = code;
+       this.name = name;
+       this.contractMan = contractMan;
+       this.mobilePhone = mobilePhone;
+       this.telPhone = telPhone;
+       this.remark = remark;
+       this.companyType = companyType;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -100,30 +125,95 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
         this.organization = organization;
     }
     /**       
-     *      * 品种
+     *      * 编号
      */
 
     
-    @Column(name="type", length=8)
-    public String getType() {
-        return this.type;
+    @Column(name="code", insertable=false, updatable=false, length=8)
+    public String getCode() {
+        return this.code;
     }
     
-    public void setType(String type) {
-        this.type = type;
+    public void setCode(String code) {
+        this.code = code;
     }
     /**       
-     *      * 种类
+     *      * 名称
      */
 
     
-    @Column(name="pet_race_id", length=128)
-    public String getPetRaceId() {
-        return this.petRaceId;
+    @Column(name="name", length=8)
+    public String getName() {
+        return this.name;
     }
     
-    public void setPetRaceId(String petRaceId) {
-        this.petRaceId = petRaceId;
+    public void setName(String name) {
+        this.name = name;
+    }
+    /**       
+     *      * 联系人
+     */
+
+    
+    @Column(name="contract_man", length=8)
+    public String getContractMan() {
+        return this.contractMan;
+    }
+    
+    public void setContractMan(String contractMan) {
+        this.contractMan = contractMan;
+    }
+    /**       
+     *      * 手机
+     */
+
+    
+    @Column(name="mobile_phone", length=11)
+    public String getMobilePhone() {
+        return this.mobilePhone;
+    }
+    
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+    /**       
+     *      * 电话
+     */
+
+    
+    @Column(name="tel_phone", length=11)
+    public String getTelPhone() {
+        return this.telPhone;
+    }
+    
+    public void setTelPhone(String telPhone) {
+        this.telPhone = telPhone;
+    }
+    /**       
+     *      * 备注
+     */
+
+    
+    @Column(name="remark")
+    public String getRemark() {
+        return this.remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    /**       
+     *      * 类型
+     */
+
+    
+    @Column(name="company_type", length=1)
+    public String getCompanyType() {
+        return this.companyType;
+    }
+    
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
     }
     /**       
      *      * 创建时间
@@ -200,8 +290,13 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("type").append("='").append(getType()).append("' ");			
-      buffer.append("petRaceId").append("='").append(getPetRaceId()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
+      buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("contractMan").append("='").append(getContractMan()).append("' ");			
+      buffer.append("mobilePhone").append("='").append(getMobilePhone()).append("' ");			
+      buffer.append("telPhone").append("='").append(getTelPhone()).append("' ");			
+      buffer.append("remark").append("='").append(getRemark()).append("' ");			
+      buffer.append("companyType").append("='").append(getCompanyType()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
