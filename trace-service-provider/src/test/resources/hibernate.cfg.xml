@@ -25,5 +25,6 @@
         <mapping resource="mapping/business/PetRace.hbm.xml"/>
         <mapping resource="mapping/business/PetRaceSmall.hbm.xml"/>
         <mapping resource="mapping/business/Dealer.hbm.xml"/>
+        <mapping resource="mapping/business/Warehouse.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

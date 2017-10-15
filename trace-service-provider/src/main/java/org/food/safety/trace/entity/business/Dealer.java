@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-15 17:41:21 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-15 18:06:20 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -234,7 +234,7 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
 
     
-    @Column(name="tel_phone", length=11)
+    @Column(name="tel_phone", length=64)
     public String getTelPhone() {
         return this.telPhone;
     }

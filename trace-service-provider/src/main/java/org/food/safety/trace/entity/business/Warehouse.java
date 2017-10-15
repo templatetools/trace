@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物种类
+ * 仓库信息
  */
 @Entity
-@Table(name="t_pet_race"
+@Table(name="t_warehouse"
 )
-public class PetRace extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
+public class Warehouse extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,9 +30,25 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
      */
      private String organization;
      /**
+      * 编号
+     */
+     private String code;
+     /**
       * 名称
      */
      private String name;
+     /**
+      * 药库
+     */
+     private boolean drugStore;
+     /**
+      * 销售
+     */
+     private boolean sellStore;
+     /**
+      * 备注
+     */
+     private String remark;
      /**
       * 创建时间
      */
@@ -54,12 +70,16 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
      */
      private String status;
 
-    public PetRace() {
+    public Warehouse() {
     }
 
-    public PetRace(String organization, String name, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public Warehouse(String organization, String code, String name, boolean drugStore, boolean sellStore, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
+       this.code = code;
        this.name = name;
+       this.drugStore = drugStore;
+       this.sellStore = sellStore;
+       this.remark = remark;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -95,17 +115,69 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
         this.organization = organization;
     }
     /**       
+     *      * 编号
+     */
+
+    
+    @Column(name="code", insertable=false, updatable=false, length=128)
+    public String getCode() {
+        return this.code;
+    }
+    
+    public void setCode(String code) {
+        this.code = code;
+    }
+    /**       
      *      * 名称
      */
 
     
-    @Column(name="name", length=8)
+    @Column(name="name", length=128)
     public String getName() {
         return this.name;
     }
     
     public void setName(String name) {
         this.name = name;
+    }
+    /**       
+     *      * 药库
+     */
+
+    
+    @Column(name="drug_store")
+    public boolean isDrugStore() {
+        return this.drugStore;
+    }
+    
+    public void setDrugStore(boolean drugStore) {
+        this.drugStore = drugStore;
+    }
+    /**       
+     *      * 销售
+     */
+
+    
+    @Column(name="sell_store")
+    public boolean isSellStore() {
+        return this.sellStore;
+    }
+    
+    public void setSellStore(boolean sellStore) {
+        this.sellStore = sellStore;
+    }
+    /**       
+     *      * 备注
+     */
+
+    
+    @Column(name="remark")
+    public String getRemark() {
+        return this.remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     /**       
      *      * 创建时间
@@ -182,7 +254,11 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("drugStore").append("='").append(isDrugStore()).append("' ");			
+      buffer.append("sellStore").append("='").append(isSellStore()).append("' ");			
+      buffer.append("remark").append("='").append(getRemark()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
