@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-15 16:02:10 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-15 17:20:01 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -34,6 +34,10 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
      private String code;
      /**
+      * 类型
+     */
+     private String companyType;
+     /**
       * 名称
      */
      private String name;
@@ -53,10 +57,6 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
       * 备注
      */
      private String remark;
-     /**
-      * 类型
-     */
-     private String companyType;
      /**
       * 创建时间
      */
@@ -81,15 +81,15 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
     public Dealer() {
     }
 
-    public Dealer(String organization, String code, String name, String contractMan, String mobilePhone, String telPhone, String remark, String companyType, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public Dealer(String organization, String code, String companyType, String name, String contractMan, String mobilePhone, String telPhone, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.code = code;
+       this.companyType = companyType;
        this.name = name;
        this.contractMan = contractMan;
        this.mobilePhone = mobilePhone;
        this.telPhone = telPhone;
        this.remark = remark;
-       this.companyType = companyType;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -136,6 +136,19 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
     
     public void setCode(String code) {
         this.code = code;
+    }
+    /**       
+     *      * 类型
+     */
+
+    
+    @Column(name="company_type", length=1)
+    public String getCompanyType() {
+        return this.companyType;
+    }
+    
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
     }
     /**       
      *      * 名称
@@ -201,19 +214,6 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
     
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-    /**       
-     *      * 类型
-     */
-
-    
-    @Column(name="company_type", length=1)
-    public String getCompanyType() {
-        return this.companyType;
-    }
-    
-    public void setCompanyType(String companyType) {
-        this.companyType = companyType;
     }
     /**       
      *      * 创建时间
@@ -291,12 +291,12 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("code").append("='").append(getCode()).append("' ");			
+      buffer.append("companyType").append("='").append(getCompanyType()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("contractMan").append("='").append(getContractMan()).append("' ");			
       buffer.append("mobilePhone").append("='").append(getMobilePhone()).append("' ");			
       buffer.append("telPhone").append("='").append(getTelPhone()).append("' ");			
       buffer.append("remark").append("='").append(getRemark()).append("' ");			
-      buffer.append("companyType").append("='").append(getCompanyType()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

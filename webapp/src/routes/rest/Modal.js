@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, InputNumber, Radio, Modal, Cascader,Select } from 'antd'
+const { TextArea } = Input;
 import city from '../../utils/city'
 import UserRemoteSelect from '../../components/UserRemoteSelect'
 
@@ -54,6 +55,9 @@ const modal = ({
     switch(item){
       case 'InputNumber':{
         return <InputNumber />  
+      }
+      case 'TextArea':{
+        return <TextArea/>
       }
       case 'Select':{
         console.log('select value:', selectData)

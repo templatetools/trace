@@ -34,6 +34,15 @@
             <meta attribute="field-generated">dealer</meta>
         </property>
 
+        <property name="companyType" column="company_type" type="string" length="1">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="ref-type">static</meta>
+            <meta attribute="item-value">[{"label":"代理商", "key":1},{"label":"生产商", "key":2},{"label":"代理和生产", "key":3}]</meta>
+            <meta attribute="field-description">类型</meta>
+        </property>
+
         <property name="name" type="string" length="8">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -57,6 +66,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="rules-pattern">/^1[34578]\d{9}$/</meta>
+            <meta attribute="rules-message">无效手机号码!</meta>
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">手机</meta>
         </property>
@@ -76,15 +86,6 @@
             <meta attribute="rules-required">false</meta>
             <meta attribute="item-type">TextArea</meta>
             <meta attribute="field-description">备注</meta>
-        </property>
-
-        <property name="companyType" column="company_type" type="string" length="1">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="item-type">Select</meta>
-            <meta attribute="ref-type">static</meta>
-            <meta attribute="item-value">[{"label":"代理商", "key":1},{"label":"生产商", "key":2},{"label":"代理和生产", "key":3}]</meta>
-            <meta attribute="field-description">类型</meta>
         </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
