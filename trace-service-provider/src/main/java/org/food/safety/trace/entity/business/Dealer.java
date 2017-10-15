@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-15 17:20:01 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-15 17:41:21 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -58,6 +58,38 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
      private String remark;
      /**
+      * 邮件
+     */
+     private String email;
+     /**
+      * 地址
+     */
+     private String dealerAddress;
+     /**
+      * 传真
+     */
+     private String fax;
+     /**
+      * 网址
+     */
+     private String website;
+     /**
+      * 税号
+     */
+     private String taxNo;
+     /**
+      * 开户行
+     */
+     private String bankName;
+     /**
+      * 账号名称
+     */
+     private String dealerBankName;
+     /**
+      * 账号
+     */
+     private String accountNo;
+     /**
       * 创建时间
      */
      private Date createDate;
@@ -81,7 +113,7 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
     public Dealer() {
     }
 
-    public Dealer(String organization, String code, String companyType, String name, String contractMan, String mobilePhone, String telPhone, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public Dealer(String organization, String code, String companyType, String name, String contractMan, String mobilePhone, String telPhone, String remark, String email, String dealerAddress, String fax, String website, String taxNo, String bankName, String dealerBankName, String accountNo, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.code = code;
        this.companyType = companyType;
@@ -90,6 +122,14 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
        this.mobilePhone = mobilePhone;
        this.telPhone = telPhone;
        this.remark = remark;
+       this.email = email;
+       this.dealerAddress = dealerAddress;
+       this.fax = fax;
+       this.website = website;
+       this.taxNo = taxNo;
+       this.bankName = bankName;
+       this.dealerBankName = dealerBankName;
+       this.accountNo = accountNo;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -129,7 +169,7 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
 
     
-    @Column(name="code", insertable=false, updatable=false, length=8)
+    @Column(name="code", insertable=false, updatable=false, length=128)
     public String getCode() {
         return this.code;
     }
@@ -155,7 +195,7 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
 
     
-    @Column(name="name", length=8)
+    @Column(name="name", length=128)
     public String getName() {
         return this.name;
     }
@@ -214,6 +254,110 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
     
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+    /**       
+     *      * 邮件
+     */
+
+    
+    @Column(name="email", insertable=false, updatable=false, length=128)
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    /**       
+     *      * 地址
+     */
+
+    
+    @Column(name="dealer_address", insertable=false, updatable=false, length=128)
+    public String getDealerAddress() {
+        return this.dealerAddress;
+    }
+    
+    public void setDealerAddress(String dealerAddress) {
+        this.dealerAddress = dealerAddress;
+    }
+    /**       
+     *      * 传真
+     */
+
+    
+    @Column(name="fax", insertable=false, updatable=false, length=128)
+    public String getFax() {
+        return this.fax;
+    }
+    
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+    /**       
+     *      * 网址
+     */
+
+    
+    @Column(name="website", insertable=false, updatable=false, length=128)
+    public String getWebsite() {
+        return this.website;
+    }
+    
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+    /**       
+     *      * 税号
+     */
+
+    
+    @Column(name="tax_no", insertable=false, updatable=false, length=128)
+    public String getTaxNo() {
+        return this.taxNo;
+    }
+    
+    public void setTaxNo(String taxNo) {
+        this.taxNo = taxNo;
+    }
+    /**       
+     *      * 开户行
+     */
+
+    
+    @Column(name="bank_name", insertable=false, updatable=false, length=128)
+    public String getBankName() {
+        return this.bankName;
+    }
+    
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+    /**       
+     *      * 账号名称
+     */
+
+    
+    @Column(name="dealer_bank_name", insertable=false, updatable=false, length=128)
+    public String getDealerBankName() {
+        return this.dealerBankName;
+    }
+    
+    public void setDealerBankName(String dealerBankName) {
+        this.dealerBankName = dealerBankName;
+    }
+    /**       
+     *      * 账号
+     */
+
+    
+    @Column(name="account_no", insertable=false, updatable=false, length=128)
+    public String getAccountNo() {
+        return this.accountNo;
+    }
+    
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
     /**       
      *      * 创建时间
@@ -297,6 +441,14 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
       buffer.append("mobilePhone").append("='").append(getMobilePhone()).append("' ");			
       buffer.append("telPhone").append("='").append(getTelPhone()).append("' ");			
       buffer.append("remark").append("='").append(getRemark()).append("' ");			
+      buffer.append("email").append("='").append(getEmail()).append("' ");			
+      buffer.append("dealerAddress").append("='").append(getDealerAddress()).append("' ");			
+      buffer.append("fax").append("='").append(getFax()).append("' ");			
+      buffer.append("website").append("='").append(getWebsite()).append("' ");			
+      buffer.append("taxNo").append("='").append(getTaxNo()).append("' ");			
+      buffer.append("bankName").append("='").append(getBankName()).append("' ");			
+      buffer.append("dealerBankName").append("='").append(getDealerBankName()).append("' ");			
+      buffer.append("accountNo").append("='").append(getAccountNo()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

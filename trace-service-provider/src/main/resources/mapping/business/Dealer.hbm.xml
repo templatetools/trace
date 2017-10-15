@@ -25,7 +25,7 @@
             <meta attribute="field-description">组织</meta>
         </property>
 
-        <property name="code" type="string" length="8" insert="false" update="false">
+        <property name="code" type="string" length="128" insert="false" update="false">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
@@ -43,7 +43,7 @@
             <meta attribute="field-description">类型</meta>
         </property>
 
-        <property name="name" type="string" length="8">
+        <property name="name" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
@@ -70,7 +70,7 @@
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">手机</meta>
         </property>
-        <property name="telPhone" column="tel_phone" type="string" length="11">
+        <property name="telPhone" column="tel_phone" type="string" length="64">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
@@ -86,6 +86,47 @@
             <meta attribute="rules-required">false</meta>
             <meta attribute="item-type">TextArea</meta>
             <meta attribute="field-description">备注</meta>
+        </property>
+
+        <property name="email" column="email" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">邮件</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="dealerAddress" column="dealer_address" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">地址</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="fax" column="fax" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">传真</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="website" column="website" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">网址</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="taxNo" column="tax_no" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">税号</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="bankName" column="bank_name" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">开户行</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="dealerBankName" column="dealer_bank_name" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">账号名称</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="accountNo" column="account_no" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">账号</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
         </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
