@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物种类
+ * 业务字典类别
  */
 @Entity
-@Table(name="t_pet_race"
+@Table(name="t_user_dict"
 )
-public class PetRace extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
+public class UserDict extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -33,6 +33,18 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
       * 名称
      */
      private String name;
+     /**
+      * 可编辑
+     */
+     private String canEdit;
+     /**
+      * 可显示
+     */
+     private String canView;
+     /**
+      * 排序
+     */
+     private int sort;
      /**
       * 创建时间
      */
@@ -54,12 +66,15 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
      */
      private String status;
 
-    public PetRace() {
+    public UserDict() {
     }
 
-    public PetRace(String organization, String name, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public UserDict(String organization, String name, String canEdit, String canView, int sort, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.name = name;
+       this.canEdit = canEdit;
+       this.canView = canView;
+       this.sort = sort;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -99,13 +114,52 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
      */
 
     
-    @Column(name="name", length=8)
+    @Column(name="dict_name", length=8)
     public String getName() {
         return this.name;
     }
     
     public void setName(String name) {
         this.name = name;
+    }
+    /**       
+     *      * 可编辑
+     */
+
+    
+    @Column(name="can_edit", insertable=false, updatable=false, length=5)
+    public String getCanEdit() {
+        return this.canEdit;
+    }
+    
+    public void setCanEdit(String canEdit) {
+        this.canEdit = canEdit;
+    }
+    /**       
+     *      * 可显示
+     */
+
+    
+    @Column(name="can_view", insertable=false, updatable=false, length=5)
+    public String getCanView() {
+        return this.canView;
+    }
+    
+    public void setCanView(String canView) {
+        this.canView = canView;
+    }
+    /**       
+     *      * 排序
+     */
+
+    
+    @Column(name="sort", insertable=false, updatable=false)
+    public int getSort() {
+        return this.sort;
+    }
+    
+    public void setSort(int sort) {
+        this.sort = sort;
     }
     /**       
      *      * 创建时间
@@ -183,6 +237,9 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("canEdit").append("='").append(getCanEdit()).append("' ");			
+      buffer.append("canView").append("='").append(getCanView()).append("' ");			
+      buffer.append("sort").append("='").append(getSort()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
