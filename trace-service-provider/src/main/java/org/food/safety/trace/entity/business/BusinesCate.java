@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物品种
+ * 业务类别
  */
 @Entity
-@Table(name="t_pet_small_race"
+@Table(name="t_busines_cate"
 )
-public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView implements java.io.Serializable {
+public class BusinesCate extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,13 +30,9 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String organization;
      /**
-      * 品种
+      * 名称
      */
-     private String type;
-     /**
-      * 种类
-     */
-     private String petRaceId;
+     private String name;
      /**
       * 创建时间
      */
@@ -58,13 +54,12 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String status;
 
-    public PetRaceSmall() {
+    public BusinesCate() {
     }
 
-    public PetRaceSmall(String organization, String type, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public BusinesCate(String organization, String name, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.type = type;
-       this.petRaceId = petRaceId;
+       this.name = name;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -100,30 +95,17 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
         this.organization = organization;
     }
     /**       
-     *      * 品种
+     *      * 名称
      */
 
     
-    @Column(name="type", length=8)
-    public String getType() {
-        return this.type;
+    @Column(name="cate_name", length=8)
+    public String getName() {
+        return this.name;
     }
     
-    public void setType(String type) {
-        this.type = type;
-    }
-    /**       
-     *      * 种类
-     */
-
-    
-    @Column(name="pet_race_id", length=128)
-    public String getPetRaceId() {
-        return this.petRaceId;
-    }
-    
-    public void setPetRaceId(String petRaceId) {
-        this.petRaceId = petRaceId;
+    public void setName(String name) {
+        this.name = name;
     }
     /**       
      *      * 创建时间
@@ -200,8 +182,7 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("type").append("='").append(getType()).append("' ");			
-      buffer.append("petRaceId").append("='").append(getPetRaceId()).append("' ");			
+      buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

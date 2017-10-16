@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 宠物品种
+ * 商品类别
  */
 @Entity
-@Table(name="t_pet_small_race"
+@Table(name="t_item_cate"
 )
-public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView implements java.io.Serializable {
+public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements java.io.Serializable {
 
 
      /**
@@ -30,13 +30,25 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String organization;
      /**
-      * 品种
+      * 编号
      */
-     private String type;
+     private String cateNo;
      /**
-      * 种类
+      * 上级类别
      */
-     private String petRaceId;
+     private String parentId;
+     /**
+      * 名称
+     */
+     private String name;
+     /**
+      * 业务类别
+     */
+     private String busiTypeId;
+     /**
+      * 零售预期毛利
+     */
+     private Double singleProfit;
      /**
       * 创建时间
      */
@@ -58,13 +70,16 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
      private String status;
 
-    public PetRaceSmall() {
+    public ItemCate() {
     }
 
-    public PetRaceSmall(String organization, String type, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemCate(String organization, String cateNo, String parentId, String name, String busiTypeId, Double singleProfit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.type = type;
-       this.petRaceId = petRaceId;
+       this.cateNo = cateNo;
+       this.parentId = parentId;
+       this.name = name;
+       this.busiTypeId = busiTypeId;
+       this.singleProfit = singleProfit;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -100,30 +115,69 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
         this.organization = organization;
     }
     /**       
-     *      * 品种
+     *      * 编号
      */
 
     
-    @Column(name="type", length=8)
-    public String getType() {
-        return this.type;
+    @Column(name="cate_no", insertable=false, updatable=false, length=128)
+    public String getCateNo() {
+        return this.cateNo;
     }
     
-    public void setType(String type) {
-        this.type = type;
+    public void setCateNo(String cateNo) {
+        this.cateNo = cateNo;
     }
     /**       
-     *      * 种类
+     *      * 上级类别
      */
 
     
-    @Column(name="pet_race_id", length=128)
-    public String getPetRaceId() {
-        return this.petRaceId;
+    @Column(name="parent_id", insertable=false, updatable=false, length=128)
+    public String getParentId() {
+        return this.parentId;
     }
     
-    public void setPetRaceId(String petRaceId) {
-        this.petRaceId = petRaceId;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+    /**       
+     *      * 名称
+     */
+
+    
+    @Column(name="cate_name", length=8)
+    public String getName() {
+        return this.name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    /**       
+     *      * 业务类别
+     */
+
+    
+    @Column(name="busi_type_id", length=128)
+    public String getBusiTypeId() {
+        return this.busiTypeId;
+    }
+    
+    public void setBusiTypeId(String busiTypeId) {
+        this.busiTypeId = busiTypeId;
+    }
+    /**       
+     *      * 零售预期毛利
+     */
+
+    
+    @Column(name="single_profit", insertable=false, updatable=false, length=128)
+    public Double getSingleProfit() {
+        return this.singleProfit;
+    }
+    
+    public void setSingleProfit(Double singleProfit) {
+        this.singleProfit = singleProfit;
     }
     /**       
      *      * 创建时间
@@ -200,8 +254,11 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("type").append("='").append(getType()).append("' ");			
-      buffer.append("petRaceId").append("='").append(getPetRaceId()).append("' ");			
+      buffer.append("cateNo").append("='").append(getCateNo()).append("' ");			
+      buffer.append("parentId").append("='").append(getParentId()).append("' ");			
+      buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("busiTypeId").append("='").append(getBusiTypeId()).append("' ");			
+      buffer.append("singleProfit").append("='").append(getSingleProfit()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

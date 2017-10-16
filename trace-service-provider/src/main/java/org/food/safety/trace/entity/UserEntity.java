@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-15 18:06:20 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-16 14:56:13 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
