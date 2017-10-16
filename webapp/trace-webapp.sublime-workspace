@@ -27,6 +27,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/models/rest.js",
+			"settings":
+			{
+				"buffer_size": 5062,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/routes/rest/Modal.js",
+			"settings":
+			{
+				"buffer_size": 4669,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/tom/Desktop/周会环节.md",
+			"settings":
+			{
+				"buffer_size": 127,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "1、JointBMC 资产分类需求明确及开发（白群伟、钟凡、柳阳）"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -112,6 +139,11 @@
 	},
 	"expanded_folders":
 	[
+		"/work/001_code/github/java/trace/webapp",
+		"/work/001_code/github/java/trace/webapp/src",
+		"/work/001_code/github/java/trace/webapp/src/routes",
+		"/work/001_code/github/java/trace/webapp/src/routes/dashboard",
+		"/work/001_code/github/java/trace/webapp/src/routes/rest"
 	],
 	"file_history":
 	[
@@ -426,8 +458,99 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/models/rest.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5062,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1103.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/routes/rest/Modal.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4669,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1250,
+								1250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 621.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/tom/Desktop/周会环节.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								127
+							]
+						],
+						"settings":
+						{
+							"auto_name": "1、JointBMC 资产分类需求明确及开发（白群伟、钟凡、柳阳）",
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -484,12 +607,12 @@
 		"selected_items":
 		[
 			[
-				"app",
-				"src/models/app.js"
-			],
-			[
 				"rest",
 				"src/models/rest.js"
+			],
+			[
+				"app",
+				"src/models/app.js"
 			],
 			[
 				"mo",
