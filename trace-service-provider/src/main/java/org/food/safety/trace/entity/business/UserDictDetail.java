@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 商品类别
+ * 业务字典
  */
 @Entity
-@Table(name="t_item_cate"
+@Table(name="t_user_dict_detail"
 )
-public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements java.io.Serializable {
+public class UserDictDetail extends org.food.safety.trace.dto.UserDictDetailView implements java.io.Serializable {
 
 
      /**
@@ -30,25 +30,29 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
      */
      private String organization;
      /**
+      * 字典类别
+     */
+     private String dictTypeId;
+     /**
       * 编号
      */
-     private String cateNo;
-     /**
-      * 上级类别
-     */
-     private String parentId;
+     private String code;
      /**
       * 名称
      */
      private String name;
      /**
-      * 业务类别
+      * 名称(英文)
      */
-     private String busiTypeId;
+     private String nameEn;
      /**
-      * 零售预期毛利
+      * 备注
      */
-     private Double singleProfit;
+     private String comments;
+     /**
+      * 排序
+     */
+     private Integer sort;
      /**
       * 创建时间
      */
@@ -70,16 +74,17 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
      */
      private String status;
 
-    public ItemCate() {
+    public UserDictDetail() {
     }
 
-    public ItemCate(String organization, String cateNo, String parentId, String name, String busiTypeId, Double singleProfit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public UserDictDetail(String organization, String dictTypeId, String code, String name, String nameEn, String comments, Integer sort, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.cateNo = cateNo;
-       this.parentId = parentId;
+       this.dictTypeId = dictTypeId;
+       this.code = code;
        this.name = name;
-       this.busiTypeId = busiTypeId;
-       this.singleProfit = singleProfit;
+       this.nameEn = nameEn;
+       this.comments = comments;
+       this.sort = sort;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -115,37 +120,37 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
         this.organization = organization;
     }
     /**       
+     *      * 字典类别
+     */
+
+    
+    @Column(name="dict_type_id", length=128)
+    public String getDictTypeId() {
+        return this.dictTypeId;
+    }
+    
+    public void setDictTypeId(String dictTypeId) {
+        this.dictTypeId = dictTypeId;
+    }
+    /**       
      *      * 编号
      */
 
     
-    @Column(name="cate_no", insertable=false, updatable=false, length=128)
-    public String getCateNo() {
-        return this.cateNo;
+    @Column(name="dict_detail_code", insertable=false, updatable=false, length=128)
+    public String getCode() {
+        return this.code;
     }
     
-    public void setCateNo(String cateNo) {
-        this.cateNo = cateNo;
-    }
-    /**       
-     *      * 上级类别
-     */
-
-    
-    @Column(name="parent_id", insertable=false, updatable=false, length=128)
-    public String getParentId() {
-        return this.parentId;
-    }
-    
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setCode(String code) {
+        this.code = code;
     }
     /**       
      *      * 名称
      */
 
     
-    @Column(name="cate_name", length=8)
+    @Column(name="value_name_cn", length=32)
     public String getName() {
         return this.name;
     }
@@ -154,30 +159,43 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
         this.name = name;
     }
     /**       
-     *      * 业务类别
+     *      * 名称(英文)
      */
 
     
-    @Column(name="busi_type_id", length=128)
-    public String getBusiTypeId() {
-        return this.busiTypeId;
+    @Column(name="value_name_en", length=32)
+    public String getNameEn() {
+        return this.nameEn;
     }
     
-    public void setBusiTypeId(String busiTypeId) {
-        this.busiTypeId = busiTypeId;
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
     }
     /**       
-     *      * 零售预期毛利
+     *      * 备注
      */
 
     
-    @Column(name="single_profit", insertable=false, updatable=false, length=128)
-    public Double getSingleProfit() {
-        return this.singleProfit;
+    @Column(name="comments", length=32)
+    public String getComments() {
+        return this.comments;
     }
     
-    public void setSingleProfit(Double singleProfit) {
-        this.singleProfit = singleProfit;
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+    /**       
+     *      * 排序
+     */
+
+    
+    @Column(name="sort", insertable=false, updatable=false)
+    public Integer getSort() {
+        return this.sort;
+    }
+    
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
     /**       
      *      * 创建时间
@@ -254,11 +272,12 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("cateNo").append("='").append(getCateNo()).append("' ");			
-      buffer.append("parentId").append("='").append(getParentId()).append("' ");			
+      buffer.append("dictTypeId").append("='").append(getDictTypeId()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("busiTypeId").append("='").append(getBusiTypeId()).append("' ");			
-      buffer.append("singleProfit").append("='").append(getSingleProfit()).append("' ");			
+      buffer.append("nameEn").append("='").append(getNameEn()).append("' ");			
+      buffer.append("comments").append("='").append(getComments()).append("' ");			
+      buffer.append("sort").append("='").append(getSort()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

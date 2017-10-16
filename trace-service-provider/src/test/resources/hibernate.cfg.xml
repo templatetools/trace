@@ -29,5 +29,6 @@
         <mapping resource="mapping/business/BusinesCate.hbm.xml"/>
         <mapping resource="mapping/business/ItemCate.hbm.xml"/>
         <mapping resource="mapping/business/UserDict.hbm.xml"/>
+        <mapping resource="mapping/business/UserDictDetail.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
