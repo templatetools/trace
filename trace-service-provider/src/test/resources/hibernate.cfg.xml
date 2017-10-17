@@ -33,6 +33,7 @@
         <mapping resource="mapping/business/DictType.hbm.xml"/>
         <mapping resource="mapping/business/DictTypeDetail.hbm.xml"/>
         <mapping resource="mapping/business/GestLevel.hbm.xml"/>
+        <mapping resource="mapping/business/Enterprise.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 经销商与生产商
+ * 医院信息
  */
 @Entity
-@Table(name="t_dealer"
+@Table(name="t_enterprise"
 )
-public class Dealer extends org.food.safety.trace.dto.DealerView implements java.io.Serializable {
+public class Enterprise extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,25 +30,25 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
      private String organization;
      /**
-      * 编号
-     */
-     private String code;
-     /**
-      * 类型
-     */
-     private String companyType;
-     /**
       * 名称
      */
      private String name;
      /**
-      * 联系人
+      * 简称
      */
-     private String contractMan;
+     private String shortName;
      /**
-      * 手机
+      * 编号
      */
-     private String mobilePhone;
+     private String code;
+     /**
+      * 负责人
+     */
+     private String responseMan;
+     /**
+      * 地址
+     */
+     private String address;
      /**
       * 电话
      */
@@ -58,37 +58,25 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
      private String remark;
      /**
-      * 邮件
-     */
-     private String email;
-     /**
-      * 地址
-     */
-     private String dealerAddress;
-     /**
       * 传真
      */
      private String fax;
      /**
-      * 网址
+      * 邮箱号
      */
-     private String website;
+     private String emailNo;
      /**
-      * 税号
+      * 邮件
      */
-     private String taxNo;
+     private String email;
      /**
-      * 开户行
+      * 邮编
      */
-     private String bankName;
+     private String areaCode;
      /**
-      * 账号名称
+      * 组织编码
      */
-     private String dealerBankName;
-     /**
-      * 账号
-     */
-     private String accountNo;
+     private String serialNumber;
      /**
       * 创建时间
      */
@@ -110,26 +98,23 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
      */
      private String status;
 
-    public Dealer() {
+    public Enterprise() {
     }
 
-    public Dealer(String organization, String code, String companyType, String name, String contractMan, String mobilePhone, String telPhone, String remark, String email, String dealerAddress, String fax, String website, String taxNo, String bankName, String dealerBankName, String accountNo, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public Enterprise(String organization, String name, String shortName, String code, String responseMan, String address, String telPhone, String remark, String fax, String emailNo, String email, String areaCode, String serialNumber, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.code = code;
-       this.companyType = companyType;
        this.name = name;
-       this.contractMan = contractMan;
-       this.mobilePhone = mobilePhone;
+       this.shortName = shortName;
+       this.code = code;
+       this.responseMan = responseMan;
+       this.address = address;
        this.telPhone = telPhone;
        this.remark = remark;
-       this.email = email;
-       this.dealerAddress = dealerAddress;
        this.fax = fax;
-       this.website = website;
-       this.taxNo = taxNo;
-       this.bankName = bankName;
-       this.dealerBankName = dealerBankName;
-       this.accountNo = accountNo;
+       this.emailNo = emailNo;
+       this.email = email;
+       this.areaCode = areaCode;
+       this.serialNumber = serialNumber;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -165,37 +150,11 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
         this.organization = organization;
     }
     /**       
-     *      * 编号
-     */
-
-    
-    @Column(name="code", insertable=false, updatable=false, length=128)
-    public String getCode() {
-        return this.code;
-    }
-    
-    public void setCode(String code) {
-        this.code = code;
-    }
-    /**       
-     *      * 类型
-     */
-
-    
-    @Column(name="company_type", length=1)
-    public String getCompanyType() {
-        return this.companyType;
-    }
-    
-    public void setCompanyType(String companyType) {
-        this.companyType = companyType;
-    }
-    /**       
      *      * 名称
      */
 
     
-    @Column(name="name", length=128)
+    @Column(name="full_name", length=32)
     public String getName() {
         return this.name;
     }
@@ -204,37 +163,63 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
         this.name = name;
     }
     /**       
-     *      * 联系人
+     *      * 简称
      */
 
     
-    @Column(name="contract_man", length=8)
-    public String getContractMan() {
-        return this.contractMan;
+    @Column(name="short_name", length=32)
+    public String getShortName() {
+        return this.shortName;
     }
     
-    public void setContractMan(String contractMan) {
-        this.contractMan = contractMan;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
     /**       
-     *      * 手机
+     *      * 编号
      */
 
     
-    @Column(name="mobile_phone", length=11)
-    public String getMobilePhone() {
-        return this.mobilePhone;
+    @Column(name="ent_no", insertable=false, updatable=false, length=128)
+    public String getCode() {
+        return this.code;
     }
     
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
+    public void setCode(String code) {
+        this.code = code;
+    }
+    /**       
+     *      * 负责人
+     */
+
+    
+    @Column(name="response_man", length=32)
+    public String getResponseMan() {
+        return this.responseMan;
+    }
+    
+    public void setResponseMan(String responseMan) {
+        this.responseMan = responseMan;
+    }
+    /**       
+     *      * 地址
+     */
+
+    
+    @Column(name="address", length=32)
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
     }
     /**       
      *      * 电话
      */
 
     
-    @Column(name="tel_phone", length=64)
+    @Column(name="tel_phone", length=32)
     public String getTelPhone() {
         return this.telPhone;
     }
@@ -256,37 +241,11 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
         this.remark = remark;
     }
     /**       
-     *      * 邮件
-     */
-
-    
-    @Column(name="email", insertable=false, updatable=false, length=128)
-    public String getEmail() {
-        return this.email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    /**       
-     *      * 地址
-     */
-
-    
-    @Column(name="dealer_address", insertable=false, updatable=false, length=128)
-    public String getDealerAddress() {
-        return this.dealerAddress;
-    }
-    
-    public void setDealerAddress(String dealerAddress) {
-        this.dealerAddress = dealerAddress;
-    }
-    /**       
      *      * 传真
      */
 
     
-    @Column(name="fax", insertable=false, updatable=false, length=128)
+    @Column(name="fax", insertable=false, updatable=false, length=32)
     public String getFax() {
         return this.fax;
     }
@@ -295,69 +254,56 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
         this.fax = fax;
     }
     /**       
-     *      * 网址
+     *      * 邮箱号
      */
 
     
-    @Column(name="website", insertable=false, updatable=false, length=128)
-    public String getWebsite() {
-        return this.website;
+    @Column(name="email_no", insertable=false, updatable=false, length=32)
+    public String getEmailNo() {
+        return this.emailNo;
     }
     
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setEmailNo(String emailNo) {
+        this.emailNo = emailNo;
     }
     /**       
-     *      * 税号
+     *      * 邮件
      */
 
     
-    @Column(name="tax_no", insertable=false, updatable=false, length=128)
-    public String getTaxNo() {
-        return this.taxNo;
+    @Column(name="e_mail", insertable=false, updatable=false, length=32)
+    public String getEmail() {
+        return this.email;
     }
     
-    public void setTaxNo(String taxNo) {
-        this.taxNo = taxNo;
+    public void setEmail(String email) {
+        this.email = email;
     }
     /**       
-     *      * 开户行
+     *      * 邮编
      */
 
     
-    @Column(name="bank_name", insertable=false, updatable=false, length=128)
-    public String getBankName() {
-        return this.bankName;
+    @Column(name="area_code", insertable=false, updatable=false, length=32)
+    public String getAreaCode() {
+        return this.areaCode;
     }
     
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
     /**       
-     *      * 账号名称
+     *      * 组织编码
      */
 
     
-    @Column(name="dealer_bank_name", insertable=false, updatable=false, length=128)
-    public String getDealerBankName() {
-        return this.dealerBankName;
+    @Column(name="serial_number", insertable=false, updatable=false, length=32)
+    public String getSerialNumber() {
+        return this.serialNumber;
     }
     
-    public void setDealerBankName(String dealerBankName) {
-        this.dealerBankName = dealerBankName;
-    }
-    /**       
-     *      * 账号
-     */
-
-    
-    @Column(name="account_no", insertable=false, updatable=false, length=128)
-    public String getAccountNo() {
-        return this.accountNo;
-    }
-    
-    public void setAccountNo(String accountNo) {
-        this.accountNo = accountNo;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
     /**       
      *      * 创建时间
@@ -434,21 +380,18 @@ public class Dealer extends org.food.safety.trace.dto.DealerView implements java
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("code").append("='").append(getCode()).append("' ");			
-      buffer.append("companyType").append("='").append(getCompanyType()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("contractMan").append("='").append(getContractMan()).append("' ");			
-      buffer.append("mobilePhone").append("='").append(getMobilePhone()).append("' ");			
+      buffer.append("shortName").append("='").append(getShortName()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
+      buffer.append("responseMan").append("='").append(getResponseMan()).append("' ");			
+      buffer.append("address").append("='").append(getAddress()).append("' ");			
       buffer.append("telPhone").append("='").append(getTelPhone()).append("' ");			
       buffer.append("remark").append("='").append(getRemark()).append("' ");			
-      buffer.append("email").append("='").append(getEmail()).append("' ");			
-      buffer.append("dealerAddress").append("='").append(getDealerAddress()).append("' ");			
       buffer.append("fax").append("='").append(getFax()).append("' ");			
-      buffer.append("website").append("='").append(getWebsite()).append("' ");			
-      buffer.append("taxNo").append("='").append(getTaxNo()).append("' ");			
-      buffer.append("bankName").append("='").append(getBankName()).append("' ");			
-      buffer.append("dealerBankName").append("='").append(getDealerBankName()).append("' ");			
-      buffer.append("accountNo").append("='").append(getAccountNo()).append("' ");			
+      buffer.append("emailNo").append("='").append(getEmailNo()).append("' ");			
+      buffer.append("email").append("='").append(getEmail()).append("' ");			
+      buffer.append("areaCode").append("='").append(getAreaCode()).append("' ");			
+      buffer.append("serialNumber").append("='").append(getSerialNumber()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
