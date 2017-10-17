@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-17 15:54:29 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-17 16:35:19 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -32,7 +32,7 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
      /**
       * 编号
      */
-     private String cateNo;
+     private String code;
      /**
       * 上级类别
      */
@@ -73,9 +73,9 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
     public ItemCate() {
     }
 
-    public ItemCate(String organization, String cateNo, String parentId, String name, String busiTypeId, Double singleProfit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemCate(String organization, String code, String parentId, String name, String busiTypeId, Double singleProfit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.cateNo = cateNo;
+       this.code = code;
        this.parentId = parentId;
        this.name = name;
        this.busiTypeId = busiTypeId;
@@ -120,12 +120,12 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
 
     
     @Column(name="cate_no", insertable=false, updatable=false, length=128)
-    public String getCateNo() {
-        return this.cateNo;
+    public String getCode() {
+        return this.code;
     }
     
-    public void setCateNo(String cateNo) {
-        this.cateNo = cateNo;
+    public void setCode(String code) {
+        this.code = code;
     }
     /**       
      *      * 上级类别
@@ -254,7 +254,7 @@ public class ItemCate extends org.food.safety.trace.dto.ItemCateView implements 
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("cateNo").append("='").append(getCateNo()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("parentId").append("='").append(getParentId()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("busiTypeId").append("='").append(getBusiTypeId()).append("' ");			

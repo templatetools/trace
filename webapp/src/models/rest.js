@@ -49,6 +49,7 @@ export default modelExtend(pageColumnModel, {
             key:item.name, rules: rules, 
             itemType: item.itemType,
             refType:item.refType,
+            refField:item.refField,
             itemValue: item.itemValue,
             insertable:item.insertable,
             listable:item.listable}
@@ -124,12 +125,13 @@ export default modelExtend(pageColumnModel, {
     * reference ({payload},{select,call, put}){
       console.log('reference:', payload);
       const data = yield call(reference, {modalName:payload.modalName,data:payload.data})
+      const refField = null === payload.refField?'id':payload.refField;
       console.log('reference data:', data);
       if (data.success) {
         const selectData = yield select(({ rest }) => rest.selectData)
         let source = [];
         data.data.map((item,index)=>{
-          source.push({key:item.id, label:'[' + item.organizationSelectItem.label +']'+ item['name']});
+          source.push({key:item[refField], label:'[' + item.organizationSelectItem.label +']'+ item['name']});
         });
         selectData[payload.modalName]=source;
         yield put({ type: 'updateState', payload: { selectData: selectData}})

@@ -107,11 +107,12 @@ public class CURDServiceImpl implements CURDService,SearchService {
         EntityType entityType = findEntiytyTypeByName(name);
 
         Object entity = null;
+        Class clazz = entityType.getBindableJavaType();
         try {
-            entity = JSON.parse(entityJson, entityType.getBindableJavaType());
+            entity = JSON.parse(entityJson, clazz);
             createBefore(token, name, entity);
         } catch (ParseException e) {
-            log.warn("模型数据转换错误:{} to {}", entityJson, entityType.getBindableJavaType());
+            log.warn("模型数据转换错误:{} to {}", entityJson, clazz);
         }
 
         dao.save(entity);
@@ -310,6 +311,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                     }
                                 }else {
                                     Object target = this.detail(token, view.getRefType(), refId);
+                                    if (StringUtils.isNotEmpty(view.getRefField())){
+                                        target = Dao.findOneByKeyAndValue(this.getDAO(view.getRefType()), view.getRefField(), refId);
+                                    }
                                     log.debug("{} find ref type:{}", key, target);
                                     selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
                                 }

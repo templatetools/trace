@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-17 15:54:29 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-17 16:35:19 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -63,6 +63,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String refType;
      /**
+      * 引用数据字段
+     */
+     private String refField;
+     /**
       * 备选数据
      */
      private String itemValue;
@@ -70,7 +74,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String itemValue) {
+    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String refField, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.listable = listable;
@@ -81,6 +85,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
        this.rules = rules;
        this.itemType = itemType;
        this.refType = refType;
+       this.refField = refField;
        this.itemValue = itemValue;
     }
    
@@ -229,6 +234,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.refType = refType;
     }
     /**       
+     *      * 引用数据字段
+     */
+
+    
+    @Column(name="refField", length=32)
+    public String getRefField() {
+        return this.refField;
+    }
+    
+    public void setRefField(String refField) {
+        this.refField = refField;
+    }
+    /**       
      *      * 备选数据
      */
 
@@ -260,6 +278,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("rules").append("='").append(getRules()).append("' ");			
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
       buffer.append("refType").append("='").append(getRefType()).append("' ");			
+      buffer.append("refField").append("='").append(getRefField()).append("' ");			
       buffer.append("itemValue").append("='").append(getItemValue()).append("' ");			
       buffer.append("]");
       

@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="org.food.safety.trace.entity.business">
-    <class name="ItemCate" table="t_item_cate">
-        <meta attribute="extends">org.food.safety.trace.dto.ItemCateView</meta>
+    <class name="ItemType" table="t_item_type">
+        <meta attribute="extends">org.food.safety.trace.dto.ItemTypeView</meta>
 
-        <meta attribute="class-description">商品类别</meta>
+        <meta attribute="class-description">商品服务</meta>
 
         <id name="id"
             length="128" type="string">
@@ -25,22 +25,16 @@
             <meta attribute="field-description">组织</meta>
         </property>
 
-        <property name="code" column="cate_no" type="string" length="128" insert="false" update="false">
+        <property name="code" column="item_code" type="string" length="32" insert="false" update="false">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">ItemCate</meta>
+            <meta attribute="field-generated">UserDictDetail</meta>
         </property>
 
-        <property name="parentId" column="parent_id" type="string" insert="false" update="false" length="128">
-            <meta attribute="field-description">上级类别</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-        </property>
-
-        <property name="name" column="cate_name" type="string" length="8">
+        <property name="name" column="item_name" type="string" length="8">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
@@ -49,20 +43,15 @@
             <meta attribute="field-description">名称</meta>
         </property>
 
-        <property name="busiTypeId" column="busi_type_id" type="string" length="128">
+        <property name="cateNo" column="cate_no" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">false</meta>
-            <meta attribute="ref-type">BusinesCate</meta>
+            <meta attribute="ref-type">ItemCate</meta>
+            <meta attribute="ref-field">code</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-description">业务类别</meta>
-        </property>
-
-        <property name="singleProfit" column="single_profit" type="java.lang.Double"  insert="false" update="false" length="128">
-            <meta attribute="field-description">零售预期毛利</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
+            <meta attribute="field-description">类型</meta>
         </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">

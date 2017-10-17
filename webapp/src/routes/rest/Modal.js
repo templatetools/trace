@@ -46,12 +46,12 @@ const modal = ({
     // onSelectFilterChange(value);
     console.log('handleChange');
   }
-  const onSearch = (value, typeName) => {
-    console.log('val', value, typeName);
-    onSelectFilterChange(value,typeName);
+  const onSearch = (value, typeName,refField) => {
+    console.log('val', value, typeName,refField);
+    onSelectFilterChange(value,typeName,refField);
   }
 
-  const getItem = (item, refType, val) => {
+  const getItem = (item, refType, refField, val) => {
     switch(item){
       case 'InputNumber':{
         return <InputNumber />  
@@ -78,8 +78,8 @@ const modal = ({
               placeholder="选择"
               notFoundContent={null}
               filterOption={false}
-              onSearch={(val)=>{onSearch(val, refType)}}
-              onFocus={(val)=>{onSearch('', refType)}}
+              onSearch={(val)=>{onSearch(val, refType,refField)}}
+              onFocus={(val)=>{onSearch('', refType,refField)}}
               style={{ width: '100%' }}
             >
               {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
@@ -90,7 +90,7 @@ const modal = ({
               labelInValue
               placeholder="选择"
               optionFilterProp="children"
-              onFocus={(val)=>{onSearch('', refType)}}
+              onFocus={(val)=>{onSearch('', refType,refField)}}
               filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
               {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
@@ -156,7 +156,7 @@ const modal = ({
           }
 
           return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
-            {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType, col.itemValue))}
+            {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField, col.itemValue))}
           </FormItem>)
         })
       }
