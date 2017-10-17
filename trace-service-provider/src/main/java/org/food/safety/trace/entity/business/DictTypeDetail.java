@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 仓库信息
+ * 系统字典
  */
 @Entity
-@Table(name="t_warehouse"
+@Table(name="t_dict_type_detail"
 )
-public class Warehouse extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
+public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView implements java.io.Serializable {
 
 
      /**
@@ -30,6 +30,10 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
      */
      private String organization;
      /**
+      * 字典类别
+     */
+     private String dictTypeId;
+     /**
       * 编号
      */
      private String code;
@@ -38,17 +42,13 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
      */
      private String name;
      /**
-      * 药库
+      * 名称(英文)
      */
-     private boolean drugStore;
-     /**
-      * 销售
-     */
-     private boolean sellStore;
+     private String nameEn;
      /**
       * 备注
      */
-     private String remark;
+     private String comments;
      /**
       * 创建时间
      */
@@ -70,16 +70,16 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
      */
      private String status;
 
-    public Warehouse() {
+    public DictTypeDetail() {
     }
 
-    public Warehouse(String organization, String code, String name, boolean drugStore, boolean sellStore, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public DictTypeDetail(String organization, String dictTypeId, String code, String name, String nameEn, String comments, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
+       this.dictTypeId = dictTypeId;
        this.code = code;
        this.name = name;
-       this.drugStore = drugStore;
-       this.sellStore = sellStore;
-       this.remark = remark;
+       this.nameEn = nameEn;
+       this.comments = comments;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -115,11 +115,24 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
         this.organization = organization;
     }
     /**       
+     *      * 字典类别
+     */
+
+    
+    @Column(name="dict_type_id", length=128)
+    public String getDictTypeId() {
+        return this.dictTypeId;
+    }
+    
+    public void setDictTypeId(String dictTypeId) {
+        this.dictTypeId = dictTypeId;
+    }
+    /**       
      *      * 编号
      */
 
     
-    @Column(name="code", insertable=false, updatable=false, length=128)
+    @Column(name="dict_detail_code", insertable=false, updatable=false, length=128)
     public String getCode() {
         return this.code;
     }
@@ -132,7 +145,7 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
      */
 
     
-    @Column(name="name", length=128)
+    @Column(name="value_name_cn", length=32)
     public String getName() {
         return this.name;
     }
@@ -141,43 +154,30 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
         this.name = name;
     }
     /**       
-     *      * 药库
+     *      * 名称(英文)
      */
 
     
-    @Column(name="drug_store")
-    public boolean isDrugStore() {
-        return this.drugStore;
+    @Column(name="value_name_en", length=32)
+    public String getNameEn() {
+        return this.nameEn;
     }
     
-    public void setDrugStore(boolean drugStore) {
-        this.drugStore = drugStore;
-    }
-    /**       
-     *      * 销售
-     */
-
-    
-    @Column(name="sell_store")
-    public boolean isSellStore() {
-        return this.sellStore;
-    }
-    
-    public void setSellStore(boolean sellStore) {
-        this.sellStore = sellStore;
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
     }
     /**       
      *      * 备注
      */
 
     
-    @Column(name="remark")
-    public String getRemark() {
-        return this.remark;
+    @Column(name="comments", length=32)
+    public String getComments() {
+        return this.comments;
     }
     
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
     /**       
      *      * 创建时间
@@ -254,11 +254,11 @@ public class Warehouse extends org.food.safety.trace.dto.BusinessView implements
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
+      buffer.append("dictTypeId").append("='").append(getDictTypeId()).append("' ");			
       buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("drugStore").append("='").append(isDrugStore()).append("' ");			
-      buffer.append("sellStore").append("='").append(isSellStore()).append("' ");			
-      buffer.append("remark").append("='").append(getRemark()).append("' ");			
+      buffer.append("nameEn").append("='").append(getNameEn()).append("' ");			
+      buffer.append("comments").append("='").append(getComments()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
