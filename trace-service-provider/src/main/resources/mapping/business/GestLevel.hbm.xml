@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity.business">
+    <class name="GestLevel" table="t_gest_level">
+        <meta attribute="extends">org.food.safety.trace.dto.BusinessView</meta>
+
+        <meta attribute="class-description">会员级别</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="organization" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Organization</meta>
+            <meta attribute="field-description">组织</meta>
+        </property>
+
+        <property name="code" column="level_code" type="string" length="128" insert="false" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="field-description">编号</meta>
+            <meta attribute="field-generated">UserDictDetail</meta>
+        </property>
+
+        <property name="name" column="level_name" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">名称</meta>
+        </property>
+
+
+        <property name="isCredit" column="is_credit" type="string" length="5" insert="false" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">boolean</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":true},{"text":"否", "val":false}]</meta>
+            <meta attribute="field-description">可积分</meta>
+        </property>
+        <property name="isDiscount" column="is_discount" type="string" length="5" insert="false" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">boolean</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":true},{"text":"否", "val":false}]</meta>
+            <meta attribute="field-description">可折扣</meta>
+        </property>
+
+
+        <property name="discountRate" column="discount_rate" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Number</meta>
+            <meta attribute="field-description">折扣</meta>
+        </property>
+        <property name="remark" column="remark" type="string" length="96">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">备注</meta>
+        </property>
+
+        <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">创建时间</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="create_date" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+
+        <property name="createUserId" column="create_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">创建人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="updateDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">更新时间</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="update_date" default="CURRENT_TIMESTAMP" >
+                <comment>更新时间</comment>
+            </column>
+        </property>
+
+        <property name="updateUserId" column="update_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">更新人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="status" column="status" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">状态</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+    </class>
+</hibernate-mapping>

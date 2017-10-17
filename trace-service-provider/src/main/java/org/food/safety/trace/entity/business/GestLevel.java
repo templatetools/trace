@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 业务类别
+ * 会员级别
  */
 @Entity
-@Table(name="t_busines_cate"
+@Table(name="t_gest_level"
 )
-public class BusinesCate extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
+public class GestLevel extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,9 +30,29 @@ public class BusinesCate extends org.food.safety.trace.dto.BusinessView implemen
      */
      private String organization;
      /**
+      * 编号
+     */
+     private String code;
+     /**
       * 名称
      */
      private String name;
+     /**
+      * 可积分
+     */
+     private String isCredit;
+     /**
+      * 可折扣
+     */
+     private String isDiscount;
+     /**
+      * 折扣
+     */
+     private String discountRate;
+     /**
+      * 备注
+     */
+     private String remark;
      /**
       * 创建时间
      */
@@ -54,12 +74,17 @@ public class BusinesCate extends org.food.safety.trace.dto.BusinessView implemen
      */
      private String status;
 
-    public BusinesCate() {
+    public GestLevel() {
     }
 
-    public BusinesCate(String organization, String name, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public GestLevel(String organization, String code, String name, String isCredit, String isDiscount, String discountRate, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
+       this.code = code;
        this.name = name;
+       this.isCredit = isCredit;
+       this.isDiscount = isDiscount;
+       this.discountRate = discountRate;
+       this.remark = remark;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -95,17 +120,82 @@ public class BusinesCate extends org.food.safety.trace.dto.BusinessView implemen
         this.organization = organization;
     }
     /**       
+     *      * 编号
+     */
+
+    
+    @Column(name="level_code", insertable=false, updatable=false, length=128)
+    public String getCode() {
+        return this.code;
+    }
+    
+    public void setCode(String code) {
+        this.code = code;
+    }
+    /**       
      *      * 名称
      */
 
     
-    @Column(name="cate_name", length=8)
+    @Column(name="level_name", length=32)
     public String getName() {
         return this.name;
     }
     
     public void setName(String name) {
         this.name = name;
+    }
+    /**       
+     *      * 可积分
+     */
+
+    
+    @Column(name="is_credit", insertable=false, updatable=false, length=5)
+    public String getIsCredit() {
+        return this.isCredit;
+    }
+    
+    public void setIsCredit(String isCredit) {
+        this.isCredit = isCredit;
+    }
+    /**       
+     *      * 可折扣
+     */
+
+    
+    @Column(name="is_discount", insertable=false, updatable=false, length=5)
+    public String getIsDiscount() {
+        return this.isDiscount;
+    }
+    
+    public void setIsDiscount(String isDiscount) {
+        this.isDiscount = isDiscount;
+    }
+    /**       
+     *      * 折扣
+     */
+
+    
+    @Column(name="discount_rate", length=32)
+    public String getDiscountRate() {
+        return this.discountRate;
+    }
+    
+    public void setDiscountRate(String discountRate) {
+        this.discountRate = discountRate;
+    }
+    /**       
+     *      * 备注
+     */
+
+    
+    @Column(name="remark", length=96)
+    public String getRemark() {
+        return this.remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     /**       
      *      * 创建时间
@@ -182,7 +272,12 @@ public class BusinesCate extends org.food.safety.trace.dto.BusinessView implemen
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("isCredit").append("='").append(getIsCredit()).append("' ");			
+      buffer.append("isDiscount").append("='").append(getIsDiscount()).append("' ");			
+      buffer.append("discountRate").append("='").append(getDiscountRate()).append("' ");			
+      buffer.append("remark").append("='").append(getRemark()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
