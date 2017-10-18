@@ -58,6 +58,7 @@ public class InitEntity {
     public static final String FIELD_ITEM_TYPE= "item-type";
     public static final String FIELD_REF_TYPE= "ref-type";
     public static final String FIELD_REF_FIELD= "ref-field";
+    public static final String FIELD_REF_FILTER= "ref-filter";
 
     @Autowired
     CURDService curdService;
@@ -98,6 +99,7 @@ public class InitEntity {
                 entity.put("itemValue", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_VALUE), "{}"));
                 entity.put("refType", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_REF_TYPE), ""));
                 entity.put("refField", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_REF_FIELD), ""));
+                entity.put("refFilter", MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_REF_FILTER), ""));
                 entity.put("name", property.getName());
                 entity.put("fieldType", property.getType().getName());
                 entity.put("rules", getRules(property));

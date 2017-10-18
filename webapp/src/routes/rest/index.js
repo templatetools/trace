@@ -31,11 +31,11 @@ const Rest = ({ location, dispatch, rest, loading }) => {
         payload: {modalName:modalName, data:data},
       })
     },
-    onSelectFilterChange(val, typeName, refField){
-      console.log('onSelectFilterChange', val, typeName, refField);
+    onSelectFilterChange(val, typeName, refField,refFilter){
+      console.log('onSelectFilterChange', val, typeName, refField,refFilter);
       dispatch({
         type: `rest/reference`,
-        payload: {modalName:typeName, data:val, refField:refField}
+        payload: {modalName:typeName, data:val, refField:refField,refFilter:refFilter}
       })
     },
     onCancel () {

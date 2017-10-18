@@ -54,6 +54,17 @@
             <meta attribute="field-description">类型</meta>
         </property>
 
+        <property name="packageUnit" column="package_unit" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">UserDictDetail</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"物品单位"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">进货单位</meta>
+        </property>
+
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">创建时间</meta>
             <meta attribute="item-type">DatePicker</meta>

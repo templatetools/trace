@@ -15,6 +15,7 @@ import java.io.Serializable;
  * User: tom
  * Date: 2017/4/19
  * Time: 14:33
+ * {fieldName:'dictTypeId',operator:'EQ',type:'ref',value:{type:'UserDict',fieldName:'name',operator:'EQ',value:'物品单位'}}
  * To change this template use File | Settings | File Templates.
  */
 @XmlRootElement
@@ -23,6 +24,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 public class SearchFilter implements Serializable {
+    public static final String FILTER_TYPE_REF = "REF";
     @ApiModelProperty("属性名称")
     public String fieldName;
 
@@ -32,6 +34,8 @@ public class SearchFilter implements Serializable {
     @ApiModelProperty("搜索条件 EQ, LIKE, GT, LT, GTE, LTE")
     public SearchFilter.Operator operator;
 
+    private String type;
+
     public SearchFilter() {
     }
 
@@ -39,6 +43,13 @@ public class SearchFilter implements Serializable {
         this.fieldName = fieldName;
         this.value = value;
         this.operator = operator;
+    }
+
+
+    public SearchFilter(String fieldName, String operator, Object value) {
+        this.fieldName = fieldName;
+        this.value = value;
+        this.operator = SearchFilter.Operator.valueOf(operator);
     }
 
     public void setOperator(String operator) {

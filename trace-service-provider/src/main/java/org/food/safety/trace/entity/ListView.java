@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-17 16:35:19 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-17 18:20:21 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -67,6 +67,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String refField;
      /**
+      * 引用数据字段
+     */
+     private String refFilter;
+     /**
       * 备选数据
      */
      private String itemValue;
@@ -74,7 +78,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String refField, String itemValue) {
+    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String refField, String refFilter, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.listable = listable;
@@ -86,6 +90,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
        this.itemType = itemType;
        this.refType = refType;
        this.refField = refField;
+       this.refFilter = refFilter;
        this.itemValue = itemValue;
     }
    
@@ -247,6 +252,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.refField = refField;
     }
     /**       
+     *      * 引用数据字段
+     */
+
+    
+    @Column(name="refFilter", length=256)
+    public String getRefFilter() {
+        return this.refFilter;
+    }
+    
+    public void setRefFilter(String refFilter) {
+        this.refFilter = refFilter;
+    }
+    /**       
      *      * 备选数据
      */
 
@@ -279,6 +297,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
       buffer.append("refType").append("='").append(getRefType()).append("' ");			
       buffer.append("refField").append("='").append(getRefField()).append("' ");			
+      buffer.append("refFilter").append("='").append(getRefFilter()).append("' ");			
       buffer.append("itemValue").append("='").append(getItemValue()).append("' ");			
       buffer.append("]");
       

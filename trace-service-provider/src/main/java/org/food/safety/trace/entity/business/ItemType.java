@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-17 16:35:19 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-17 18:20:21 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -38,9 +38,13 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private String name;
      /**
-      * 字典类别
+      * 类型
      */
      private String cateNo;
+     /**
+      * 进货单位
+     */
+     private String packageUnit;
      /**
       * 创建时间
      */
@@ -65,11 +69,12 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     public ItemType() {
     }
 
-    public ItemType(String organization, String code, String name, String cateNo, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemType(String organization, String code, String name, String cateNo, String packageUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.code = code;
        this.name = name;
        this.cateNo = cateNo;
+       this.packageUnit = packageUnit;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -131,7 +136,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.name = name;
     }
     /**       
-     *      * 字典类别
+     *      * 类型
      */
 
     
@@ -142,6 +147,19 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     
     public void setCateNo(String cateNo) {
         this.cateNo = cateNo;
+    }
+    /**       
+     *      * 进货单位
+     */
+
+    
+    @Column(name="package_unit", length=128)
+    public String getPackageUnit() {
+        return this.packageUnit;
+    }
+    
+    public void setPackageUnit(String packageUnit) {
+        this.packageUnit = packageUnit;
     }
     /**       
      *      * 创建时间
@@ -221,6 +239,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
       buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("cateNo").append("='").append(getCateNo()).append("' ");			
+      buffer.append("packageUnit").append("='").append(getPackageUnit()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

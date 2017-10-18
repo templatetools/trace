@@ -50,6 +50,7 @@ export default modelExtend(pageColumnModel, {
             itemType: item.itemType,
             refType:item.refType,
             refField:item.refField,
+            refFilter:item.refFilter,
             itemValue: item.itemValue,
             insertable:item.insertable,
             listable:item.listable}
@@ -124,7 +125,13 @@ export default modelExtend(pageColumnModel, {
 
     * reference ({payload},{select,call, put}){
       console.log('reference:', payload);
-      const data = yield call(reference, {modalName:payload.modalName,data:payload.data})
+      const refFilterStr = payload.refFilter;
+      let refFilter;
+      if (null != refFilterStr){
+        refFilter = JSON.parse(refFilterStr);
+      }
+
+      const data = yield call(reference, {modalName:payload.modalName,data:payload.data,filter:refFilter})
       const refField = null === payload.refField?'id':payload.refField;
       console.log('reference data:', data);
       if (data.success) {

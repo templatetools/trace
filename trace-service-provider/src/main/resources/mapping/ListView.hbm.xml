@@ -57,6 +57,11 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">引用数据字段</meta>
         </property>
+        <property name="refFilter" type="string" length="256">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">引用数据字段</meta>
+        </property>
+
         <property name="itemValue" type="string" length="512">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">备选数据</meta>

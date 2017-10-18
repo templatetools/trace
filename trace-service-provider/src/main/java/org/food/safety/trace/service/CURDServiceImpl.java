@@ -18,6 +18,7 @@ import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,7 @@ import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +42,13 @@ import java.util.Map;
 @Primary
 public class CURDServiceImpl implements CURDService,SearchService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_ORGANIZATION="organization";
+    public static final String FIELD_DISPLAY="name";
+    public static final String FIELD_SELECT_ITEM="SelectItem";
+    public static final String FIELD_SELECT_LIST="List";
+    public static final String FIELD_SELECT_OPTION_KEY="key";
+    public static final String FIELD_SELECT_OPTION_LABEL="label";
 
     /**
      * 视图信息
@@ -128,7 +134,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
             for (ListView c : columns) {
                 if (LISTVIEW_SELECT_TYPE_COMBOBOX.equalsIgnoreCase(c.getItemValue()) || LISTVIEW_SELECT_TYPE_STATIC.equalsIgnoreCase(c.getRefType())) {
                     try {
-                        SelectItemView selectItemView = (SelectItemView) PropertyUtils.getProperty(entity, c.getName()+"SelectItem");
+                        SelectItemView selectItemView = (SelectItemView) PropertyUtils.getProperty(entity, c.getName()+FIELD_SELECT_ITEM);
 
                         if (null  != selectItemView){
                             PropertyUtils.setProperty(entity, c.getName(), selectItemView.getKey());
@@ -152,9 +158,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
                     List selectItemViews = null;
 
                     try {
-                        selectItemViews = (List)PropertyUtils.getProperty(entity, c.getName()+"List");
+                        selectItemViews = (List)PropertyUtils.getProperty(entity, c.getName()+FIELD_SELECT_LIST);
 
-                        id = PropertyUtils.getProperty(entity, "id") + "";
+                        id = PropertyUtils.getProperty(entity, FIELD_ID) + "";
                     }catch (Exception e) {
                         log.warn("sourceId not found",e);
                     }
@@ -170,7 +176,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
                         Reference reference = new Reference();
 
-                        reference.setTargetId(map.get("key"));
+                        reference.setTargetId(map.get(FIELD_SELECT_OPTION_KEY));
                         reference.setTargetName(c.getRefType());
                         reference.setSourceName(name);
                         reference.setSourceId(id);
@@ -250,13 +256,26 @@ public class CURDServiceImpl implements CURDService,SearchService {
                     break;
                 }
             }
+            for (SearchFilter searchFilter: filters.getFilters()){
+                if (SearchFilter.FILTER_TYPE_REF.equalsIgnoreCase(searchFilter.getType())){
+                    try {
+                        SearchFilter refSearchFilter = new SearchFilter();
+                        BeanUtils.copyProperties(refSearchFilter, searchFilter.getValue());
+                        Dao dao = getDAO(refSearchFilter.getType());
+                        Object o = Dao.findOneByKeyAndValue(dao, refSearchFilter.getFieldName(), refSearchFilter.getValue());
+                        searchFilter.setValue(BeanUtils.getProperty(o, FIELD_ID));
+                    } catch (Exception e) {
+                        log.debug("filter parse error!", e);
+                    }
+                }
+            }
         }
 
         try {
             EntityType entityType = findEntiytyTypeByName(name);
 
-            if (!Token.ADMIN.equalsIgnoreCase(token.getUserId()) && null != entityType.getAttribute("organization")) {
-                SearchFilter organizationSearchFilter = new SearchFilter("organization", SearchFilter.Operator.EQ, token.getOrganizationId());
+            if (!Token.ADMIN.equalsIgnoreCase(token.getUserId()) && null != entityType.getAttribute(FIELD_ORGANIZATION)) {
+                SearchFilter organizationSearchFilter = new SearchFilter(FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
                 filters.addAndFilters(organizationSearchFilter);
             }
         }catch (Exception e){
@@ -277,7 +296,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                 for (Object d : data) {
                     try {
                         if (LISTVIEW_SELECT_TYPE_MULTIPLE.equalsIgnoreCase(view.getItemValue())) {
-                            List<Reference> references = referenceDao.findBySourceId(PropertyUtils.getProperty(d, "id") + "");
+                            List<Reference> references = referenceDao.findBySourceId(PropertyUtils.getProperty(d, FIELD_ID) + "");
 
                             List<SelectItemView> selectItemViews = new ArrayList<>();
                             List<String> titles = new ArrayList<>();
@@ -288,12 +307,12 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
                                 Object target = this.detail(token, reference.getTargetName(), reference.getTargetId());
 
-                                selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                selectItemView.setLabel(PropertyUtils.getProperty(target, FIELD_DISPLAY) + "");
                                 selectItemViews.add(selectItemView);
                                 titles.add(selectItemView.getLabel());
                             }
 
-                            PropertyUtils.setProperty(d, view.getName() + "List", selectItemViews);
+                            PropertyUtils.setProperty(d, view.getName() + FIELD_SELECT_LIST, selectItemViews);
                             PropertyUtils.setProperty(d, view.getName(), org.apache.commons.lang3.StringUtils.join(titles, ","));
                         }else{
                             Object key = PropertyUtils.getProperty(d, view.getName());
@@ -305,8 +324,8 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 if (LISTVIEW_SELECT_TYPE_STATIC.equalsIgnoreCase(view.getRefType())){
                                     List<Object> selects = JSON.parse(view.getItemValue(), List.class);
                                     for (Object t: selects){
-                                        if (key.equals(PropertyUtils.getProperty(t, "key")+"")){
-                                            selectItemView.setLabel(PropertyUtils.getProperty(t, "label")+"");
+                                        if (key.equals(PropertyUtils.getProperty(t, FIELD_SELECT_OPTION_KEY)+"")){
+                                            selectItemView.setLabel(PropertyUtils.getProperty(t, FIELD_SELECT_OPTION_LABEL)+"");
                                         }
                                     }
                                 }else {
@@ -315,10 +334,10 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                         target = Dao.findOneByKeyAndValue(this.getDAO(view.getRefType()), view.getRefField(), refId);
                                     }
                                     log.debug("{} find ref type:{}", key, target);
-                                    selectItemView.setLabel(PropertyUtils.getProperty(target, "name") + "");
+                                    selectItemView.setLabel(PropertyUtils.getProperty(target, FIELD_DISPLAY) + "");
                                 }
 
-                                PropertyUtils.setProperty(d, view.getName() + "SelectItem", selectItemView);
+                                PropertyUtils.setProperty(d, view.getName() + FIELD_SELECT_ITEM, selectItemView);
                             }
                         }
                     } catch (Exception e) {

@@ -69,7 +69,7 @@ export async function update (params) {
 }
 
 export async function reference (params) {
-  let filters = [{'fieldName':'searchText', 'operator':'LIKE', 'value':params.data}];
+  let filters = [{'fieldName':'searchText', 'operator':'LIKE', 'value':params.data},params.filter];
 
   return request({
     url: '/rest/api/v1/' + params.modalName + '/list',
