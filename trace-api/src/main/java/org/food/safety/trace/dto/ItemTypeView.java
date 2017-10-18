@@ -20,4 +20,10 @@ public class ItemTypeView extends BusinessView {
     public SelectItemView getCateNoSelectItem() {
         return cateNoSelectItem;
     }
+    public SelectItemView packageUnitSelectItem;
+    @Transient
+    public SelectItemView getPackageUnitSelectItem() {
+        return packageUnitSelectItem;
+    }
+
 }

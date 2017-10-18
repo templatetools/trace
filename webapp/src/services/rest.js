@@ -69,12 +69,19 @@ export async function update (params) {
 }
 
 export async function reference (params) {
-  let filters = [{'fieldName':'searchText', 'operator':'LIKE', 'value':params.data},params.filter];
+  let filters = [];
+  if (null != params.data){
+    filters.push({'fieldName':'searchText', 'operator':'LIKE', 'value':params.data})
+  }
+  let andFilter = [];
+  if (null != params.filter){
+    andFilter.push(params.filter)
+  }
 
   return request({
     url: '/rest/api/v1/' + params.modalName + '/list',
     method: 'post',
-    data: {filters:filters},
+    data: {filters:filters, andFilters:andFilter},
   })
 }
 

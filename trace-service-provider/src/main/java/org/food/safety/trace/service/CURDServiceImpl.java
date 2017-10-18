@@ -238,38 +238,8 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
     @Override
     public ListFilter searchBefore(Token token, @NotNull String name, @NotNull ListFilter filters) {
-        if (null != filters.getFilters()){
-            String searchText = null;
-            for (SearchFilter searchFilter: filters.getFilters()){
-                if (SEARCH_TEXT.equalsIgnoreCase(searchFilter.getFieldName())){
-                    searchText = searchFilter.getValue()+"";
-
-                    filters.getFilters().remove(searchFilter);
-
-                    List<ListView> columns = viewList(name);
-                    for (ListView view: columns){
-                        if (view.isSearchable()){
-                            SearchFilter sf = new SearchFilter(view.getName(), SearchFilter.Operator.LIKE, searchText + "%");
-                            filters.getFilters().add(sf);
-                        }
-                    }
-                    break;
-                }
-            }
-            for (SearchFilter searchFilter: filters.getFilters()){
-                if (SearchFilter.FILTER_TYPE_REF.equalsIgnoreCase(searchFilter.getType())){
-                    try {
-                        SearchFilter refSearchFilter = new SearchFilter();
-                        BeanUtils.copyProperties(refSearchFilter, searchFilter.getValue());
-                        Dao dao = getDAO(refSearchFilter.getType());
-                        Object o = Dao.findOneByKeyAndValue(dao, refSearchFilter.getFieldName(), refSearchFilter.getValue());
-                        searchFilter.setValue(BeanUtils.getProperty(o, FIELD_ID));
-                    } catch (Exception e) {
-                        log.debug("filter parse error!", e);
-                    }
-                }
-            }
-        }
+        parseFilter(name, filters.getFilters());
+        parseFilter(name, filters.getAndFilters());
 
         try {
             EntityType entityType = findEntiytyTypeByName(name);
@@ -283,6 +253,40 @@ public class CURDServiceImpl implements CURDService,SearchService {
         }
 
         return filters;
+    }
+    private void parseFilter(@NotNull String name, @NotNull final List<SearchFilter> searchFilters){
+        if (null != searchFilters){
+            String searchText = null;
+            for (SearchFilter searchFilter: searchFilters){
+                if (SEARCH_TEXT.equalsIgnoreCase(searchFilter.getFieldName())){
+                    searchText = searchFilter.getValue()+"";
+
+                    searchFilters.remove(searchFilter);
+
+                    List<ListView> columns = viewList(name);
+                    for (ListView view: columns){
+                        if (view.isSearchable()){
+                            SearchFilter sf = new SearchFilter(view.getName(), SearchFilter.Operator.LIKE, searchText + "%");
+                            searchFilters.add(sf);
+                        }
+                    }
+                    break;
+                }
+            }
+            for (SearchFilter searchFilter: searchFilters){
+                if (SearchFilter.FILTER_TYPE_REF.equalsIgnoreCase(searchFilter.getType())){
+                    try {
+                        SearchFilter refSearchFilter = new SearchFilter();
+                        BeanUtils.copyProperties(refSearchFilter, searchFilter.getValue());
+                        Dao dao = getDAO(refSearchFilter.getType());
+                        Object o = Dao.findOneByKeyAndValue(dao, refSearchFilter.getFieldName(), refSearchFilter.getValue());
+                        searchFilter.setValue(BeanUtils.getProperty(o, FIELD_ID));
+                    } catch (Exception e) {
+                        log.debug("filter parse error!", e);
+                    }
+                }
+            }
+        }
     }
 
     @Override
