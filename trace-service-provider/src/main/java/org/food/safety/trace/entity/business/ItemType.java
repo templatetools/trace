@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-19 10:03:42 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-19 11:03:09 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -46,13 +46,29 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private String barCode;
      /**
-      * 进货单位
+      * 销售单位
      */
      private String packageUnit;
      /**
       * 规格
      */
      private String itemStandard;
+     /**
+      * 默认进价
+     */
+     private Double inputPrice;
+     /**
+      * 基本进价
+     */
+     private Double sellPrice;
+     /**
+      * 是否打折
+     */
+     private String isVipDiscount;
+     /**
+      * 是否销售
+     */
+     private String isSell;
      /**
       * 处方单位
      */
@@ -81,7 +97,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     public ItemType() {
     }
 
-    public ItemType(String organization, String cateNo, String name, String code, String barCode, String packageUnit, String itemStandard, String recipeUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemType(String organization, String cateNo, String name, String code, String barCode, String packageUnit, String itemStandard, Double inputPrice, Double sellPrice, String isVipDiscount, String isSell, String recipeUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.cateNo = cateNo;
        this.name = name;
@@ -89,6 +105,10 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
        this.barCode = barCode;
        this.packageUnit = packageUnit;
        this.itemStandard = itemStandard;
+       this.inputPrice = inputPrice;
+       this.sellPrice = sellPrice;
+       this.isVipDiscount = isVipDiscount;
+       this.isSell = isSell;
        this.recipeUnit = recipeUnit;
        this.createDate = createDate;
        this.createUserId = createUserId;
@@ -177,7 +197,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.barCode = barCode;
     }
     /**       
-     *      * 进货单位
+     *      * 销售单位
      */
 
     
@@ -201,6 +221,58 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     
     public void setItemStandard(String itemStandard) {
         this.itemStandard = itemStandard;
+    }
+    /**       
+     *      * 默认进价
+     */
+
+    
+    @Column(name="input_price", length=48)
+    public Double getInputPrice() {
+        return this.inputPrice;
+    }
+    
+    public void setInputPrice(Double inputPrice) {
+        this.inputPrice = inputPrice;
+    }
+    /**       
+     *      * 基本进价
+     */
+
+    
+    @Column(name="sell_price", length=48)
+    public Double getSellPrice() {
+        return this.sellPrice;
+    }
+    
+    public void setSellPrice(Double sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+    /**       
+     *      * 是否打折
+     */
+
+    
+    @Column(name="is_vip_discount", length=8)
+    public String getIsVipDiscount() {
+        return this.isVipDiscount;
+    }
+    
+    public void setIsVipDiscount(String isVipDiscount) {
+        this.isVipDiscount = isVipDiscount;
+    }
+    /**       
+     *      * 是否销售
+     */
+
+    
+    @Column(name="is_sell", length=8)
+    public String getIsSell() {
+        return this.isSell;
+    }
+    
+    public void setIsSell(String isSell) {
+        this.isSell = isSell;
     }
     /**       
      *      * 处方单位
@@ -296,6 +368,10 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
       buffer.append("barCode").append("='").append(getBarCode()).append("' ");			
       buffer.append("packageUnit").append("='").append(getPackageUnit()).append("' ");			
       buffer.append("itemStandard").append("='").append(getItemStandard()).append("' ");			
+      buffer.append("inputPrice").append("='").append(getInputPrice()).append("' ");			
+      buffer.append("sellPrice").append("='").append(getSellPrice()).append("' ");			
+      buffer.append("isVipDiscount").append("='").append(getIsVipDiscount()).append("' ");			
+      buffer.append("isSell").append("='").append(getIsSell()).append("' ");			
       buffer.append("recipeUnit").append("='").append(getRecipeUnit()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			

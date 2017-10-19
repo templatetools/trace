@@ -72,17 +72,56 @@
             <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"物品单位"}}</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-description">进货单位</meta>
+            <meta attribute="field-description">销售单位</meta>
         </property>
 
         <property name="itemStandard" column="item_standard" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-required">false</meta>
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">规格</meta>
         </property>
+
+
+        <property name="inputPrice" column="input_price" type="java.lang.Double" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">默认进价</meta>
+        </property>
+        <property name="sellPrice" column="sell_price" type="java.lang.Double" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">基本进价</meta>
+        </property>
+
+        <property name="isVipDiscount" column="is_vip_discount" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">string</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":"是"},{"text":"否", "val":"否"}]</meta>
+            <meta attribute="field-description">是否打折</meta>
+        </property>
+
+        <property name="isSell" column="is_sell" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">string</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":"是"},{"text":"否", "val":"否"}]</meta>
+            <meta attribute="field-description">是否销售</meta>
+        </property>
+
 
         <property name="recipeUnit" column="recipe_unit" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
