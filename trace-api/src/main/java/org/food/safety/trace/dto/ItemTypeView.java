@@ -25,5 +25,12 @@ public class ItemTypeView extends BusinessView {
     public SelectItemView getPackageUnitSelectItem() {
         return packageUnitSelectItem;
     }
+    public SelectItemView recipeUnitSelectItem;
+    @Transient
+    public SelectItemView getRecipeUnitSelectItem() {
+        return recipeUnitSelectItem;
+    }
+
+
 
 }

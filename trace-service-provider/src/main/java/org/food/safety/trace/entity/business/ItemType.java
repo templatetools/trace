@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-17 18:20:21 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-19 10:03:42 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -30,21 +30,33 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private String organization;
      /**
-      * 编号
+      * 类型
      */
-     private String code;
+     private String cateNo;
      /**
       * 名称
      */
      private String name;
      /**
-      * 类型
+      * 编号
      */
-     private String cateNo;
+     private String code;
+     /**
+      * 条码
+     */
+     private String barCode;
      /**
       * 进货单位
      */
      private String packageUnit;
+     /**
+      * 规格
+     */
+     private String itemStandard;
+     /**
+      * 处方单位
+     */
+     private String recipeUnit;
      /**
       * 创建时间
      */
@@ -69,12 +81,15 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     public ItemType() {
     }
 
-    public ItemType(String organization, String code, String name, String cateNo, String packageUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemType(String organization, String cateNo, String name, String code, String barCode, String packageUnit, String itemStandard, String recipeUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.code = code;
-       this.name = name;
        this.cateNo = cateNo;
+       this.name = name;
+       this.code = code;
+       this.barCode = barCode;
        this.packageUnit = packageUnit;
+       this.itemStandard = itemStandard;
+       this.recipeUnit = recipeUnit;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -110,17 +125,17 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.organization = organization;
     }
     /**       
-     *      * 编号
+     *      * 类型
      */
 
     
-    @Column(name="item_code", insertable=false, updatable=false, length=32)
-    public String getCode() {
-        return this.code;
+    @Column(name="cate_no", length=128)
+    public String getCateNo() {
+        return this.cateNo;
     }
     
-    public void setCode(String code) {
-        this.code = code;
+    public void setCateNo(String cateNo) {
+        this.cateNo = cateNo;
     }
     /**       
      *      * 名称
@@ -136,17 +151,30 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.name = name;
     }
     /**       
-     *      * 类型
+     *      * 编号
      */
 
     
-    @Column(name="cate_no", length=128)
-    public String getCateNo() {
-        return this.cateNo;
+    @Column(name="item_code", insertable=false, updatable=false, length=32)
+    public String getCode() {
+        return this.code;
     }
     
-    public void setCateNo(String cateNo) {
-        this.cateNo = cateNo;
+    public void setCode(String code) {
+        this.code = code;
+    }
+    /**       
+     *      * 条码
+     */
+
+    
+    @Column(name="bar_code", length=48)
+    public String getBarCode() {
+        return this.barCode;
+    }
+    
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
     /**       
      *      * 进货单位
@@ -160,6 +188,32 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     
     public void setPackageUnit(String packageUnit) {
         this.packageUnit = packageUnit;
+    }
+    /**       
+     *      * 规格
+     */
+
+    
+    @Column(name="item_standard", length=48)
+    public String getItemStandard() {
+        return this.itemStandard;
+    }
+    
+    public void setItemStandard(String itemStandard) {
+        this.itemStandard = itemStandard;
+    }
+    /**       
+     *      * 处方单位
+     */
+
+    
+    @Column(name="recipe_unit", length=128)
+    public String getRecipeUnit() {
+        return this.recipeUnit;
+    }
+    
+    public void setRecipeUnit(String recipeUnit) {
+        this.recipeUnit = recipeUnit;
     }
     /**       
      *      * 创建时间
@@ -236,10 +290,13 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("code").append("='").append(getCode()).append("' ");			
-      buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("cateNo").append("='").append(getCateNo()).append("' ");			
+      buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
+      buffer.append("barCode").append("='").append(getBarCode()).append("' ");			
       buffer.append("packageUnit").append("='").append(getPackageUnit()).append("' ");			
+      buffer.append("itemStandard").append("='").append(getItemStandard()).append("' ");			
+      buffer.append("recipeUnit").append("='").append(getRecipeUnit()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

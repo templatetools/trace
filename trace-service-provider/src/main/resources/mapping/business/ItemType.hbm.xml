@@ -25,24 +25,6 @@
             <meta attribute="field-description">组织</meta>
         </property>
 
-        <property name="code" column="item_code" type="string" length="32" insert="false" update="false">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">UserDictDetail</meta>
-        </property>
-
-        <property name="name" column="item_name" type="string" length="8">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">true</meta>
-            <meta attribute="item-type">Input</meta>
-            <meta attribute="field-description">名称</meta>
-        </property>
-
         <property name="cateNo" column="cate_no" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -54,6 +36,34 @@
             <meta attribute="field-description">类型</meta>
         </property>
 
+
+        <property name="name" column="item_name" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">名称</meta>
+        </property>
+
+        <property name="code" column="item_code" type="string" length="32" insert="false" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="field-description">编号</meta>
+            <meta attribute="field-generated">UserDictDetail</meta>
+        </property>
+
+        <property name="barCode" column="bar_code" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">条码</meta>
+        </property>
+
         <property name="packageUnit" column="package_unit" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -63,6 +73,26 @@
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
             <meta attribute="field-description">进货单位</meta>
+        </property>
+
+        <property name="itemStandard" column="item_standard" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">规格</meta>
+        </property>
+
+        <property name="recipeUnit" column="recipe_unit" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">UserDictDetail</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"物品单位"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">处方单位</meta>
         </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
