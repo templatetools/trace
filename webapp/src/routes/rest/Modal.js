@@ -145,8 +145,8 @@ const modal = ({
 
           let itemOption = {
               rules: [
-                col.rules,
-              ],
+                col.rules
+              ]
           }
 
           console.log('key and value', key, initValue);
@@ -154,10 +154,13 @@ const modal = ({
           if (item.hasOwnProperty('id')){
               itemOption['initialValue'] = initValue;
           }
-
-          return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
-            {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue))}
-          </FormItem>)
+          if ('label' === col.itemType){
+            return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}><span className="ant-form-text">{initValue}</span></FormItem>)
+            }else{
+            return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
+              {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue))}
+            </FormItem>)
+          }
         })
       }
       </Form>

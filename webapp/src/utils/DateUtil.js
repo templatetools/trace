@@ -63,6 +63,11 @@ export default {
         time.setTime(m);
         return this.dateFormat(time, "yyyy-MM-dd hh:mm:ss");
     },
+    datetimeFormat(m, formatStr){
+        let time = new Date();
+        time.setTime(m);
+        return this.dateFormat(time, formatStr);
+    },
     /**
      * 日期格式化
      * @param date 日期对象

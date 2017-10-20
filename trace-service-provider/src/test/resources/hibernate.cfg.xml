@@ -35,6 +35,7 @@
         <mapping resource="mapping/business/GestLevel.hbm.xml"/>
         <mapping resource="mapping/business/Enterprise.hbm.xml"/>
         <mapping resource="mapping/business/ItemType.hbm.xml"/>
+        <mapping resource="mapping/business/Gest.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
