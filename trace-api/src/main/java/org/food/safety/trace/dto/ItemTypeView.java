@@ -30,6 +30,17 @@ public class ItemTypeView extends BusinessView {
     public SelectItemView getRecipeUnitSelectItem() {
         return recipeUnitSelectItem;
     }
+    public SelectItemView drugFormSelectItem;
+    @Transient
+    public SelectItemView getDrugFormSelectItem() {
+        return drugFormSelectItem;
+    }
+    public SelectItemView dealerCodeSelectItem;
+    @Transient
+    public SelectItemView getDealerCodeSelectItem() {
+        return dealerCodeSelectItem;
+    }
+
 
 
 

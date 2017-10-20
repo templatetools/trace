@@ -37,7 +37,7 @@
         </property>
 
 
-        <property name="name" column="item_name" type="string" length="8">
+        <property name="name" column="item_name" type="string" length="96">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
@@ -67,7 +67,7 @@
         <property name="packageUnit" column="package_unit" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-required">true</meta>
             <meta attribute="ref-type">UserDictDetail</meta>
             <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"物品单位"}}</meta>
             <meta attribute="item-type">Select</meta>
@@ -78,7 +78,7 @@
         <property name="itemStandard" column="item_standard" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
+            <meta attribute="use-in-search">false</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="item-type">Input</meta>
             <meta attribute="field-description">规格</meta>
@@ -88,7 +88,7 @@
         <property name="inputPrice" column="input_price" type="java.lang.Double" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
+            <meta attribute="use-in-search">false</meta>
             <meta attribute="rules-required">true</meta>
             <meta attribute="rules-type">number</meta>
             <meta attribute="item-type">InputNumber</meta>
@@ -97,7 +97,7 @@
         <property name="sellPrice" column="sell_price" type="java.lang.Double" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
+            <meta attribute="use-in-search">false</meta>
             <meta attribute="rules-required">true</meta>
             <meta attribute="rules-type">number</meta>
             <meta attribute="item-type">InputNumber</meta>
@@ -122,16 +122,153 @@
             <meta attribute="field-description">是否销售</meta>
         </property>
 
+        <property name="wareUpLimit" column="ware_up_limit" type="java.lang.Integer" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">库存上限</meta>
+        </property>
+
+        <property name="wareDownLimit" column="ware_down_limit" type="java.lang.Integer" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">库存下限</meta>
+        </property>
+
+        <property name="drugForm" column="drug_form" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">UserDictDetail</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"剂型"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">剂型</meta>
+        </property>
+
+        <property name="itemBulk" column="item_bulk" type="java.lang.Integer" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">零散比</meta>
+        </property>
 
         <property name="recipeUnit" column="recipe_unit" type="string" length="128">
             <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">true</meta>
             <meta attribute="ref-type">UserDictDetail</meta>
             <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"物品单位"}}</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
             <meta attribute="field-description">处方单位</meta>
+        </property>
+
+        <property name="recipePrice" column="recipe_price" type="java.lang.Double" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">处方价格</meta>
+        </property>
+
+        <property name="isCount" column="is_count" type="string" length="8">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">string</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":"是"},{"text":"否", "val":"否"}]</meta>
+            <meta attribute="field-description">是否记库</meta>
+        </property>
+
+        <property name="inputCode" column="input_code" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">拼音编码</meta>
+        </property>
+        <property name="location" column="location" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">货位信息</meta>
+        </property>
+        <property name="groupName" column="group_name" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">分组</meta>
+        </property>
+        <property name="isCanExchange" column="is_can_exchange" type="string" length="48" insert="false" update="false" >
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">string</meta>
+            <meta attribute="item-type">Radio</meta>
+            <meta attribute="item-value">[{"text":"是", "val":"是"},{"text":"否", "val":"否"}]</meta>
+            <meta attribute="field-description">是否可兑换</meta>
+        </property>
+
+        <property name="exchangeRewardPoint" column="exchange_reward_point" type="java.lang.Integer" length="11" insert="false" update="false" >
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">兑换积分</meta>
+        </property>
+
+        <property name="dealerCode" column="dealer_code" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Dealer</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="field-description">生产商</meta>
+        </property>
+
+        <property name="dealerName" column="dealer_name" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">生产商名称</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="useWay" column="use_way" type="text">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">TextArea</meta>
+            <meta attribute="field-description">用法</meta>
+        </property>
+
+        <property name="remark" column="remark" type="text">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">TextArea</meta>
+            <meta attribute="field-description">备注</meta>
         </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
@@ -160,6 +297,33 @@
 
         <property name="updateUserId" column="update_user_id" type="string" insert="false" update="false" length="128">
             <meta attribute="field-description">更新人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="itemStyle" column="item_style" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">商品服务种类</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="busiTypeId" column="busi_type_id" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">业务类型</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="vipSellPrice" column="vip_sell_price" type="java.lang.Double" insert="false" update="false">
+            <meta attribute="field-description">会员价</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="safeDay" column="safe_day" type="java.lang.Integer" length="11" insert="false" update="false">
+            <meta attribute="field-description">质保期</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="isScattered" column="is_scattered" type="java.lang.Double" insert="false" update="false">
+            <meta attribute="field-description">是否散装</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">false</meta>
         </property>

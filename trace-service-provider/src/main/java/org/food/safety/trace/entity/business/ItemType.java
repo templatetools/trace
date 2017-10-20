@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-19 11:03:09 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-20 10:40:39 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -70,9 +70,69 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private String isSell;
      /**
+      * 库存上限
+     */
+     private Integer wareUpLimit;
+     /**
+      * 库存下限
+     */
+     private Integer wareDownLimit;
+     /**
+      * 剂型
+     */
+     private String drugForm;
+     /**
+      * 零散比
+     */
+     private Integer itemBulk;
+     /**
       * 处方单位
      */
      private String recipeUnit;
+     /**
+      * 处方价格
+     */
+     private Double recipePrice;
+     /**
+      * 是否记库
+     */
+     private String isCount;
+     /**
+      * 拼音编码
+     */
+     private String inputCode;
+     /**
+      * 货位信息
+     */
+     private String location;
+     /**
+      * 分组
+     */
+     private String groupName;
+     /**
+      * 是否可兑换
+     */
+     private String isCanExchange;
+     /**
+      * 兑换积分
+     */
+     private Integer exchangeRewardPoint;
+     /**
+      * 生产商
+     */
+     private String dealerCode;
+     /**
+      * 生产商名称
+     */
+     private String dealerName;
+     /**
+      * 用法
+     */
+     private String useWay;
+     /**
+      * 备注
+     */
+     private String remark;
      /**
       * 创建时间
      */
@@ -90,6 +150,26 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private String updateUserId;
      /**
+      * 商品服务种类
+     */
+     private String itemStyle;
+     /**
+      * 业务类型
+     */
+     private String busiTypeId;
+     /**
+      * 会员价
+     */
+     private Double vipSellPrice;
+     /**
+      * 质保期
+     */
+     private Integer safeDay;
+     /**
+      * 是否散装
+     */
+     private Double isScattered;
+     /**
       * 状态
      */
      private String status;
@@ -97,7 +177,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     public ItemType() {
     }
 
-    public ItemType(String organization, String cateNo, String name, String code, String barCode, String packageUnit, String itemStandard, Double inputPrice, Double sellPrice, String isVipDiscount, String isSell, String recipeUnit, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public ItemType(String organization, String cateNo, String name, String code, String barCode, String packageUnit, String itemStandard, Double inputPrice, Double sellPrice, String isVipDiscount, String isSell, Integer wareUpLimit, Integer wareDownLimit, String drugForm, Integer itemBulk, String recipeUnit, Double recipePrice, String isCount, String inputCode, String location, String groupName, String isCanExchange, Integer exchangeRewardPoint, String dealerCode, String dealerName, String useWay, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String itemStyle, String busiTypeId, Double vipSellPrice, Integer safeDay, Double isScattered, String status) {
        this.organization = organization;
        this.cateNo = cateNo;
        this.name = name;
@@ -109,11 +189,31 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
        this.sellPrice = sellPrice;
        this.isVipDiscount = isVipDiscount;
        this.isSell = isSell;
+       this.wareUpLimit = wareUpLimit;
+       this.wareDownLimit = wareDownLimit;
+       this.drugForm = drugForm;
+       this.itemBulk = itemBulk;
        this.recipeUnit = recipeUnit;
+       this.recipePrice = recipePrice;
+       this.isCount = isCount;
+       this.inputCode = inputCode;
+       this.location = location;
+       this.groupName = groupName;
+       this.isCanExchange = isCanExchange;
+       this.exchangeRewardPoint = exchangeRewardPoint;
+       this.dealerCode = dealerCode;
+       this.dealerName = dealerName;
+       this.useWay = useWay;
+       this.remark = remark;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
        this.updateUserId = updateUserId;
+       this.itemStyle = itemStyle;
+       this.busiTypeId = busiTypeId;
+       this.vipSellPrice = vipSellPrice;
+       this.safeDay = safeDay;
+       this.isScattered = isScattered;
        this.status = status;
     }
    
@@ -162,7 +262,7 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
 
     
-    @Column(name="item_name", length=8)
+    @Column(name="item_name", length=96)
     public String getName() {
         return this.name;
     }
@@ -275,6 +375,58 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.isSell = isSell;
     }
     /**       
+     *      * 库存上限
+     */
+
+    
+    @Column(name="ware_up_limit", length=11)
+    public Integer getWareUpLimit() {
+        return this.wareUpLimit;
+    }
+    
+    public void setWareUpLimit(Integer wareUpLimit) {
+        this.wareUpLimit = wareUpLimit;
+    }
+    /**       
+     *      * 库存下限
+     */
+
+    
+    @Column(name="ware_down_limit", length=11)
+    public Integer getWareDownLimit() {
+        return this.wareDownLimit;
+    }
+    
+    public void setWareDownLimit(Integer wareDownLimit) {
+        this.wareDownLimit = wareDownLimit;
+    }
+    /**       
+     *      * 剂型
+     */
+
+    
+    @Column(name="drug_form", length=128)
+    public String getDrugForm() {
+        return this.drugForm;
+    }
+    
+    public void setDrugForm(String drugForm) {
+        this.drugForm = drugForm;
+    }
+    /**       
+     *      * 零散比
+     */
+
+    
+    @Column(name="item_bulk", length=11)
+    public Integer getItemBulk() {
+        return this.itemBulk;
+    }
+    
+    public void setItemBulk(Integer itemBulk) {
+        this.itemBulk = itemBulk;
+    }
+    /**       
      *      * 处方单位
      */
 
@@ -286,6 +438,149 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
     
     public void setRecipeUnit(String recipeUnit) {
         this.recipeUnit = recipeUnit;
+    }
+    /**       
+     *      * 处方价格
+     */
+
+    
+    @Column(name="recipe_price", length=48)
+    public Double getRecipePrice() {
+        return this.recipePrice;
+    }
+    
+    public void setRecipePrice(Double recipePrice) {
+        this.recipePrice = recipePrice;
+    }
+    /**       
+     *      * 是否记库
+     */
+
+    
+    @Column(name="is_count", length=8)
+    public String getIsCount() {
+        return this.isCount;
+    }
+    
+    public void setIsCount(String isCount) {
+        this.isCount = isCount;
+    }
+    /**       
+     *      * 拼音编码
+     */
+
+    
+    @Column(name="input_code", length=48)
+    public String getInputCode() {
+        return this.inputCode;
+    }
+    
+    public void setInputCode(String inputCode) {
+        this.inputCode = inputCode;
+    }
+    /**       
+     *      * 货位信息
+     */
+
+    
+    @Column(name="location", length=128)
+    public String getLocation() {
+        return this.location;
+    }
+    
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    /**       
+     *      * 分组
+     */
+
+    
+    @Column(name="group_name", length=48)
+    public String getGroupName() {
+        return this.groupName;
+    }
+    
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+    /**       
+     *      * 是否可兑换
+     */
+
+    
+    @Column(name="is_can_exchange", insertable=false, updatable=false, length=48)
+    public String getIsCanExchange() {
+        return this.isCanExchange;
+    }
+    
+    public void setIsCanExchange(String isCanExchange) {
+        this.isCanExchange = isCanExchange;
+    }
+    /**       
+     *      * 兑换积分
+     */
+
+    
+    @Column(name="exchange_reward_point", insertable=false, updatable=false, length=11)
+    public Integer getExchangeRewardPoint() {
+        return this.exchangeRewardPoint;
+    }
+    
+    public void setExchangeRewardPoint(Integer exchangeRewardPoint) {
+        this.exchangeRewardPoint = exchangeRewardPoint;
+    }
+    /**       
+     *      * 生产商
+     */
+
+    
+    @Column(name="dealer_code", length=128)
+    public String getDealerCode() {
+        return this.dealerCode;
+    }
+    
+    public void setDealerCode(String dealerCode) {
+        this.dealerCode = dealerCode;
+    }
+    /**       
+     *      * 生产商名称
+     */
+
+    
+    @Column(name="dealer_name", insertable=false, updatable=false, length=48)
+    public String getDealerName() {
+        return this.dealerName;
+    }
+    
+    public void setDealerName(String dealerName) {
+        this.dealerName = dealerName;
+    }
+    /**       
+     *      * 用法
+     */
+
+    
+    @Column(name="use_way")
+    public String getUseWay() {
+        return this.useWay;
+    }
+    
+    public void setUseWay(String useWay) {
+        this.useWay = useWay;
+    }
+    /**       
+     *      * 备注
+     */
+
+    
+    @Column(name="remark")
+    public String getRemark() {
+        return this.remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     /**       
      *      * 创建时间
@@ -340,6 +635,71 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.updateUserId = updateUserId;
     }
     /**       
+     *      * 商品服务种类
+     */
+
+    
+    @Column(name="item_style", insertable=false, updatable=false, length=48)
+    public String getItemStyle() {
+        return this.itemStyle;
+    }
+    
+    public void setItemStyle(String itemStyle) {
+        this.itemStyle = itemStyle;
+    }
+    /**       
+     *      * 业务类型
+     */
+
+    
+    @Column(name="busi_type_id", insertable=false, updatable=false, length=48)
+    public String getBusiTypeId() {
+        return this.busiTypeId;
+    }
+    
+    public void setBusiTypeId(String busiTypeId) {
+        this.busiTypeId = busiTypeId;
+    }
+    /**       
+     *      * 会员价
+     */
+
+    
+    @Column(name="vip_sell_price", insertable=false, updatable=false)
+    public Double getVipSellPrice() {
+        return this.vipSellPrice;
+    }
+    
+    public void setVipSellPrice(Double vipSellPrice) {
+        this.vipSellPrice = vipSellPrice;
+    }
+    /**       
+     *      * 质保期
+     */
+
+    
+    @Column(name="safe_day", insertable=false, updatable=false, length=11)
+    public Integer getSafeDay() {
+        return this.safeDay;
+    }
+    
+    public void setSafeDay(Integer safeDay) {
+        this.safeDay = safeDay;
+    }
+    /**       
+     *      * 是否散装
+     */
+
+    
+    @Column(name="is_scattered", insertable=false, updatable=false)
+    public Double getIsScattered() {
+        return this.isScattered;
+    }
+    
+    public void setIsScattered(Double isScattered) {
+        this.isScattered = isScattered;
+    }
+    /**       
      *      * 状态
      */
 
@@ -372,9 +732,29 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
       buffer.append("sellPrice").append("='").append(getSellPrice()).append("' ");			
       buffer.append("isVipDiscount").append("='").append(getIsVipDiscount()).append("' ");			
       buffer.append("isSell").append("='").append(getIsSell()).append("' ");			
+      buffer.append("wareUpLimit").append("='").append(getWareUpLimit()).append("' ");			
+      buffer.append("wareDownLimit").append("='").append(getWareDownLimit()).append("' ");			
+      buffer.append("drugForm").append("='").append(getDrugForm()).append("' ");			
+      buffer.append("itemBulk").append("='").append(getItemBulk()).append("' ");			
       buffer.append("recipeUnit").append("='").append(getRecipeUnit()).append("' ");			
+      buffer.append("recipePrice").append("='").append(getRecipePrice()).append("' ");			
+      buffer.append("isCount").append("='").append(getIsCount()).append("' ");			
+      buffer.append("inputCode").append("='").append(getInputCode()).append("' ");			
+      buffer.append("location").append("='").append(getLocation()).append("' ");			
+      buffer.append("groupName").append("='").append(getGroupName()).append("' ");			
+      buffer.append("isCanExchange").append("='").append(getIsCanExchange()).append("' ");			
+      buffer.append("exchangeRewardPoint").append("='").append(getExchangeRewardPoint()).append("' ");			
+      buffer.append("dealerCode").append("='").append(getDealerCode()).append("' ");			
+      buffer.append("dealerName").append("='").append(getDealerName()).append("' ");			
+      buffer.append("useWay").append("='").append(getUseWay()).append("' ");			
+      buffer.append("remark").append("='").append(getRemark()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
+      buffer.append("itemStyle").append("='").append(getItemStyle()).append("' ");			
+      buffer.append("busiTypeId").append("='").append(getBusiTypeId()).append("' ");			
+      buffer.append("vipSellPrice").append("='").append(getVipSellPrice()).append("' ");			
+      buffer.append("safeDay").append("='").append(getSafeDay()).append("' ");			
+      buffer.append("isScattered").append("='").append(getIsScattered()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
       buffer.append("]");
       
