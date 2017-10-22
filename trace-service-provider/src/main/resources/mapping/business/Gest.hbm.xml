@@ -31,7 +31,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">UserDictDetail</meta>
+            <meta attribute="field-generated">Gest</meta>
         </property>
 
         <property name="name" column="gest_name" type="string" length="96">
@@ -43,7 +43,7 @@
             <meta attribute="field-description">会员姓名</meta>
         </property>
 
-        <property name="gestSex" column="gest_sex" type="string" length="128">
+        <property name="gestSex" column="gest_sex" type="string" length="32">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>

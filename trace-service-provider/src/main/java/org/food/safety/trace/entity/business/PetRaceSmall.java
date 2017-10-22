@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-20 16:03:11 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-22 17:33:28 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -32,7 +32,7 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      /**
       * 品种
      */
-     private String type;
+     private String name;
      /**
       * 种类
      */
@@ -61,9 +61,9 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
     public PetRaceSmall() {
     }
 
-    public PetRaceSmall(String organization, String type, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public PetRaceSmall(String organization, String name, String petRaceId, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.type = type;
+       this.name = name;
        this.petRaceId = petRaceId;
        this.createDate = createDate;
        this.createUserId = createUserId;
@@ -104,13 +104,13 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
      */
 
     
-    @Column(name="type", length=8)
-    public String getType() {
-        return this.type;
+    @Column(name="type", length=64)
+    public String getName() {
+        return this.name;
     }
     
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
     /**       
      *      * 种类
@@ -200,7 +200,7 @@ public class PetRaceSmall extends org.food.safety.trace.dto.PetRaceSmallView imp
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("type").append("='").append(getType()).append("' ");			
+      buffer.append("name").append("='").append(getName()).append("' ");			
       buffer.append("petRaceId").append("='").append(getPetRaceId()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			

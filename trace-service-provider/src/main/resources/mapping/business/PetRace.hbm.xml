@@ -25,7 +25,7 @@
             <meta attribute="field-description">组织</meta>
         </property>
 
-        <property name="name" type="string" length="8">
+        <property name="name" type="string" length="64">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>

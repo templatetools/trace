@@ -18,7 +18,7 @@ export default function render (col, field) {
 			return text?text['label']:text;
 		}
 	}
-	if ('DatePicker' === field.itemType){
+	if ('DatePicker' === field.itemType || 'MonthPicker' === field.itemType){
 		col.render = function(text){return dateUtil.datetimeFormat(text, field.itemValue)}
 	}
 }

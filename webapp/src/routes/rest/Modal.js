@@ -1,7 +1,13 @@
 import React from 'react'
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
+import dateUtil from '../../utils/DateUtil'
 import PropTypes from 'prop-types'
-import { Form, Input, InputNumber, Radio, Modal, Cascader,Select } from 'antd'
+import { Form, Input, InputNumber, Radio, Modal, Cascader,Select,DatePicker } from 'antd'
 const { TextArea } = Input;
+const { MonthPicker, RangePicker } = DatePicker;
+
 import city from '../../utils/city'
 import UserRemoteSelect from '../../components/UserRemoteSelect'
 
@@ -38,6 +44,13 @@ const modal = ({
         key: item.key,
       }
       // data.address = data.address.join(' ')
+      modalProps.columns.map((col, index)=>{
+        if ('DatePicker' === col.itemType || 'MonthPicker' === col.itemType){
+          console.log('update data', data[col.key].seconds());
+           data[col.key]=data[col.key].seconds();
+        }
+      })
+      
       onOk(data)
     })
   }
@@ -106,6 +119,12 @@ const modal = ({
                   })}
                 </Radio.Group>)
       }
+      case 'DatePicker':{
+        return (<DatePicker />)
+      }
+      case 'MonthPicker':{
+        return (<MonthPicker />)
+      }
       default:{
         return val?<Input type={val}/>:<Input/>
       }
@@ -153,6 +172,9 @@ const modal = ({
 
           if (item.hasOwnProperty('id')){
               itemOption['initialValue'] = initValue;
+              if ('DatePicker' === col.itemType || 'MonthPicker' === col.itemType){
+                itemOption['initialValue'] = moment(dateUtil.datetimeFormat(initValue, col.itemValue), col.itemValue)
+              }
           }
           if ('label' === col.itemType){
             return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}><span className="ant-form-text">{initValue}</span></FormItem>)

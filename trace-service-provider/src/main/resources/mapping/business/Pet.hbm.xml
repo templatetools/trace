@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.food.safety.trace.entity.business">
+    <class name="Pet" table="t_pet">
+        <meta attribute="extends">org.food.safety.trace.dto.PetView</meta>
+
+        <meta attribute="class-description">商品服务</meta>
+
+        <id name="id"
+            length="128" type="string">
+            <meta attribute="field-description">id</meta>
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="organization" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Organization</meta>
+            <meta attribute="field-description">组织</meta>
+        </property>
+
+        <property name="gestId" column="gest_id" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">Gest</meta>
+            <meta attribute="field-description">会员信息</meta>
+        </property>
+
+        <property name="code" column="pet_code" type="string" length="32" insert="false" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="field-description">编号</meta>
+            <meta attribute="field-generated">Pet</meta>
+        </property>
+
+        <property name="name" column="pet_name" type="string" length="96">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">宠物昵称</meta>
+        </property>
+
+        <property name="petSex" column="pet_sex" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="ref-type">UserDictDetail</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"动物性别"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">性别</meta>
+        </property>
+
+        <property name="petBirthday" column="pet_birthday" type="java.util.Date">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="field-description">出生日期</meta>
+            <meta attribute="item-type">MonthPicker</meta>
+            <meta attribute="item-value">yyyy-MM</meta>
+        </property>
+        <property name="age" column="age" type="java.lang.Float" insert="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="field-description">宠物年龄</meta>
+            <meta attribute="item-type">label</meta>
+        </property>
+
+        <property name="birthStatus" column="birth_status" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="ref-type">DictTypeDetail</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"DictType","fieldName":"name","operator":"EQ","value":"绝育状态"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">绝育状态</meta>
+        </property>
+        <property name="petSkinColor" column="pet_skin_color" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">UserDictDetail</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"UserDict","fieldName":"name","operator":"EQ","value":"动物颜色"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">宠物颜色</meta>
+        </property>
+        <property name="petRace" column="pet_race" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">PetRace</meta>
+            <meta attribute="field-description">宠物品种</meta>
+        </property>
+        <property name="petBreed" column="pet_breed" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="ref-type">PetRaceSmall</meta>
+            <meta attribute="field-description">宠物种类</meta>
+        </property>
+
+        <property name="status" column="status" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">DictTypeDetail</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"DictType","fieldName":"name","operator":"EQ","value":"宠物状态"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">宠物状态</meta>
+        </property>
+        <property name="sickFileCode" column="sick_file_code" type="string" update="false" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="field-generated">Pet</meta>
+            <meta attribute="item-type">label</meta>
+            <meta attribute="field-description">宠物病例号</meta>
+        </property>
+
+        <property name="petWeight" column="pet_weight" type="java.lang.Float">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">体重</meta>
+        </property>
+        <property name="dogBandId" column="dog_band_id" type="string" length="36">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-description">宠物牌号</meta>
+        </property>
+
+        <property name="remark" column="remark" type="text">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">TextArea</meta>
+            <meta attribute="field-description">备注</meta>
+        </property>
+
+        <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">登记日期</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="create_date" default="CURRENT_TIMESTAMP" >
+                <comment>创建时间</comment>
+            </column>
+        </property>
+
+        <property name="createUserId" column="create_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">创建人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="updateDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">更新时间</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="update_date" default="CURRENT_TIMESTAMP" >
+                <comment>更新时间</comment>
+            </column>
+        </property>
+
+        <property name="updateUserId" column="update_user_id" type="string" insert="false" update="false" length="128">
+            <meta attribute="field-description">更新人</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="petHeight" column="pet_height" type="java.lang.Integer" insert="false" update="false" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">身高</meta>
+        </property>
+        <property name="petSwidth" column="pet_swidth" type="java.lang.Integer" insert="false" update="false" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">肩宽</meta>
+        </property>
+        <property name="petBodyLong" column="pet_body_long" type="java.lang.Integer" insert="false" update="false" length="11">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">体长</meta>
+        </property>
+
+        <property name="petHead" column="pet_head" type="string" insert="false" update="false" length="32">
+            <meta attribute="field-description">宠物头</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="petHeadId" column="pet_head_id" type="string" insert="false" update="false" length="32">
+            <meta attribute="field-description">宠物头id</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="mdicTypeName" column="mdic_type_name" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">医疗类型</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="gestCode" column="gest_code" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">会员编号</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+        <property name="gestName" column="gest_name" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">会员名称</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+    </class>
+</hibernate-mapping>

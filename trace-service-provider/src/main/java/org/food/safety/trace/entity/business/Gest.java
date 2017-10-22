@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-20 16:03:11 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-22 17:33:28 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -210,7 +210,7 @@ public class Gest extends org.food.safety.trace.dto.GestView implements java.io.
      */
 
     
-    @Column(name="gest_sex", length=128)
+    @Column(name="gest_sex", length=32)
     public String getGestSex() {
         return this.gestSex;
     }

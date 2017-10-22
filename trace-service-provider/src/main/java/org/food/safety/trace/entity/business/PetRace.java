@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-20 16:03:11 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-22 17:33:28 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -99,7 +99,7 @@ public class PetRace extends org.food.safety.trace.dto.BusinessView implements j
      */
 
     
-    @Column(name="name", length=8)
+    @Column(name="name", length=64)
     public String getName() {
         return this.name;
     }
