@@ -176,11 +176,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
                     referenceDao.deleteBySourceId(id);
 
                     for (int i = 0; i < selectItemViews.size();i++){
-                        Map<String, String> map = (Map<String, String>)selectItemViews.get(i);
+                        SelectItemView map = (SelectItemView)selectItemViews.get(i);
 
                         Reference reference = new Reference();
 
-                        reference.setTargetId(map.get(FIELD_SELECT_OPTION_KEY));
+                        reference.setTargetId(map.getKey());
                         reference.setTargetName(c.getRefType());
                         reference.setSourceName(name);
                         reference.setSourceId(id);
