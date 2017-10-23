@@ -12,7 +12,8 @@ export async function columns (params) {
 }
 
 export async function query (params) {
-  let page = {'pageNumber':params.data.pageNumber, 'pageSize':params.data.pageSize}
+  console.log('query params', params);
+  let page = {'pageNumber':params.data.pageNumber, 'pageSize':params.data.pageSize || 10}
 
   delete params.data.pageNumber
   delete params.data.pageSize

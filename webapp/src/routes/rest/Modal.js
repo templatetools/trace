@@ -46,9 +46,12 @@ const modal = ({
       // data.address = data.address.join(' ')
       modalProps.columns.map((col, index)=>{
         if ('DatePicker' === col.itemType || 'MonthPicker' === col.itemType){
-          console.log('update data', data[col.key].seconds());
-           data[col.key]=data[col.key].seconds();
+          let val = moment(data[col.key]).format('x');
+          console.log('update data', val);
+
+           data[col.key]=val;
         }
+        
       })
       
       onOk(data)

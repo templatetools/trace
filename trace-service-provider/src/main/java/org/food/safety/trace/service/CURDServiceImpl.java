@@ -1,7 +1,8 @@
 package org.food.safety.trace.service;
 
-import com.alibaba.dubbo.common.json.JSON;
-import com.alibaba.dubbo.common.json.ParseException;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.ParserConfig;
+import com.alibaba.fastjson.parser.deserializer.Jdk8DateCodec;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
@@ -18,7 +19,6 @@ import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,7 @@ import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -115,9 +116,12 @@ public class CURDServiceImpl implements CURDService,SearchService {
         Object entity = null;
         Class clazz = entityType.getBindableJavaType();
         try {
-            entity = JSON.parse(entityJson, clazz);
+            ParserConfig jcParserConfig = new ParserConfig();
+            jcParserConfig.putDeserializer(Date.class, Jdk8DateCodec.instance);
+
+            entity = JSON.parseObject(entityJson, clazz);
             createBefore(token, name, entity);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             log.warn("模型数据转换错误:{} to {}", entityJson, clazz);
         }
 
@@ -326,7 +330,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 selectItemView.setKey(refId);
 
                                 if (LISTVIEW_SELECT_TYPE_STATIC.equalsIgnoreCase(view.getRefType())){
-                                    List<Object> selects = JSON.parse(view.getItemValue(), List.class);
+                                    List<Object> selects = JSON.parseObject(view.getItemValue(), List.class);
                                     for (Object t: selects){
                                         if (key.equals(PropertyUtils.getProperty(t, FIELD_SELECT_OPTION_KEY)+"")){
                                             selectItemView.setLabel(PropertyUtils.getProperty(t, FIELD_SELECT_OPTION_LABEL)+"");
