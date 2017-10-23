@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 系统字典
+ * 应用配置
  */
 @Entity
-@Table(name="t_dict_type_detail"
+@Table(name="t_app_config"
 )
-public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView implements java.io.Serializable {
+public class AppConfig extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,25 +30,17 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
      */
      private String organization;
      /**
-      * 字典类别
-     */
-     private String dictTypeId;
-     /**
-      * 编号
-     */
-     private String code;
-     /**
       * 名称
      */
      private String name;
      /**
-      * 名称(英文)
+      * 值
      */
-     private String nameEn;
+     private String configValue;
      /**
-      * 备注
+      * 描述
      */
-     private String comments;
+     private String description;
      /**
       * 创建时间
      */
@@ -70,16 +62,14 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
      */
      private String status;
 
-    public DictTypeDetail() {
+    public AppConfig() {
     }
 
-    public DictTypeDetail(String organization, String dictTypeId, String code, String name, String nameEn, String comments, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public AppConfig(String organization, String name, String configValue, String description, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.dictTypeId = dictTypeId;
-       this.code = code;
        this.name = name;
-       this.nameEn = nameEn;
-       this.comments = comments;
+       this.configValue = configValue;
+       this.description = description;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -115,37 +105,11 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
         this.organization = organization;
     }
     /**       
-     *      * 字典类别
-     */
-
-    
-    @Column(name="dict_type_id", length=128)
-    public String getDictTypeId() {
-        return this.dictTypeId;
-    }
-    
-    public void setDictTypeId(String dictTypeId) {
-        this.dictTypeId = dictTypeId;
-    }
-    /**       
-     *      * 编号
-     */
-
-    
-    @Column(name="dict_detail_code", insertable=false, updatable=false, length=128)
-    public String getCode() {
-        return this.code;
-    }
-    
-    public void setCode(String code) {
-        this.code = code;
-    }
-    /**       
      *      * 名称
      */
 
     
-    @Column(name="value_name_cn", length=32)
+    @Column(name="config_name", length=256)
     public String getName() {
         return this.name;
     }
@@ -154,30 +118,30 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
         this.name = name;
     }
     /**       
-     *      * 名称(英文)
+     *      * 值
      */
 
     
-    @Column(name="value_name_en", length=32)
-    public String getNameEn() {
-        return this.nameEn;
+    @Column(name="config_value", length=512)
+    public String getConfigValue() {
+        return this.configValue;
     }
     
-    public void setNameEn(String nameEn) {
-        this.nameEn = nameEn;
+    public void setConfigValue(String configValue) {
+        this.configValue = configValue;
     }
     /**       
-     *      * 备注
+     *      * 描述
      */
 
     
-    @Column(name="comments", length=32)
-    public String getComments() {
-        return this.comments;
+    @Column(name="description", length=512)
+    public String getDescription() {
+        return this.description;
     }
     
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setDescription(String description) {
+        this.description = description;
     }
     /**       
      *      * 创建时间
@@ -236,7 +200,7 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
      */
 
     
-    @Column(name="status", insertable=false, updatable=false, length=128)
+    @Column(name="status", insertable=false, updatable=false, length=32)
     public String getStatus() {
         return this.status;
     }
@@ -254,11 +218,9 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("dictTypeId").append("='").append(getDictTypeId()).append("' ");			
-      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("nameEn").append("='").append(getNameEn()).append("' ");			
-      buffer.append("comments").append("='").append(getComments()).append("' ");			
+      buffer.append("configValue").append("='").append(getConfigValue()).append("' ");			
+      buffer.append("description").append("='").append(getDescription()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			

@@ -37,6 +37,7 @@
         <mapping resource="mapping/business/ItemType.hbm.xml"/>
         <mapping resource="mapping/business/Gest.hbm.xml"/>
         <mapping resource="mapping/business/Pet.hbm.xml"/>
+        <mapping resource="mapping/business/AppConfig.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
