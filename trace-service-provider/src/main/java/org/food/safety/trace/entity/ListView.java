@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-24 14:23:32 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-24 15:28:18 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -51,6 +51,10 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String name;
      /**
+      * 生成编号
+     */
+     private String generator;
+     /**
       * 规则
      */
      private String rules;
@@ -78,7 +82,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String rules, String itemType, String refType, String refField, String refFilter, String itemValue) {
+    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String generator, String rules, String itemType, String refType, String refField, String refFilter, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.listable = listable;
@@ -86,6 +90,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
        this.updateable = updateable;
        this.insertable = insertable;
        this.name = name;
+       this.generator = generator;
        this.rules = rules;
        this.itemType = itemType;
        this.refType = refType;
@@ -200,6 +205,19 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.name = name;
     }
     /**       
+     *      * 生成编号
+     */
+
+    
+    @Column(name="generator", length=32)
+    public String getGenerator() {
+        return this.generator;
+    }
+    
+    public void setGenerator(String generator) {
+        this.generator = generator;
+    }
+    /**       
      *      * 规则
      */
 
@@ -293,6 +311,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("updateable").append("='").append(isUpdateable()).append("' ");			
       buffer.append("insertable").append("='").append(isInsertable()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
+      buffer.append("generator").append("='").append(getGenerator()).append("' ");			
       buffer.append("rules").append("='").append(getRules()).append("' ");			
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
       buffer.append("refType").append("='").append(getRefType()).append("' ");			

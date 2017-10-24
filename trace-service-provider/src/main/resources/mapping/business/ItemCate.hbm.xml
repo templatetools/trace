@@ -31,7 +31,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">ItemCate</meta>
+            <meta attribute="field-generator">ItemCate</meta>
         </property>
 
         <property name="parentId" column="parent_id" type="string" insert="false" update="false" length="128">

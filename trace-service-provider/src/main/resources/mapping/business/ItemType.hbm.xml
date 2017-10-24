@@ -52,7 +52,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">UserDictDetail</meta>
+            <meta attribute="field-generator">UserDictDetail</meta>
         </property>
 
         <property name="barCode" column="bar_code" type="string" length="48">

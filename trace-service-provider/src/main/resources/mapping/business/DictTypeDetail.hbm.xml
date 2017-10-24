@@ -42,7 +42,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">UserDictDetail</meta>
+            <meta attribute="field-generator">字典项目</meta>
         </property>
 
         <property name="name" column="value_name_cn" type="string" length="32">

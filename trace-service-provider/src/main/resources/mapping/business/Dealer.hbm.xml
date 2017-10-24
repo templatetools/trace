@@ -31,7 +31,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">dealer</meta>
+            <meta attribute="field-generator">dealer</meta>
         </property>
 
         <property name="companyType" column="company_type" type="string" length="1">

@@ -48,7 +48,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">UserDictDetail</meta>
+            <meta attribute="field-generator">UserDictDetail</meta>
         </property>
 
         <property name="responseMan" column="response_man" type="string" length="32">

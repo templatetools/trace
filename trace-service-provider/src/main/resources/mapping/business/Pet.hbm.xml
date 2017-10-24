@@ -41,7 +41,7 @@
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
-            <meta attribute="field-generated">Pet</meta>
+            <meta attribute="field-generator">Pet</meta>
         </property>
 
         <property name="name" column="pet_name" type="string" length="96">
@@ -137,7 +137,7 @@
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
-            <meta attribute="field-generated">Pet</meta>
+            <meta attribute="field-generator">Pet</meta>
             <meta attribute="item-type">label</meta>
             <meta attribute="field-description">宠物病例号</meta>
         </property>

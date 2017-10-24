@@ -41,6 +41,10 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">列名</meta>
         </property>
+        <property name="generator" type="string" length="32">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">生成编号</meta>
+        </property>
         <property name="rules" type="string" length="512">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">规则</meta>
