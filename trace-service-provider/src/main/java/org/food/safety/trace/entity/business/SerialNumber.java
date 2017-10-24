@@ -13,12 +13,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 会员级别
+ * 应用配置
  */
 @Entity
-@Table(name="t_gest_level"
+@Table(name="t_serial_number"
 )
-public class GestLevel extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
+public class SerialNumber extends org.food.safety.trace.dto.BusinessView implements java.io.Serializable {
 
 
      /**
@@ -30,29 +30,13 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
      */
      private String organization;
      /**
-      * 编号
-     */
-     private String code;
-     /**
       * 名称
      */
      private String name;
      /**
-      * 可积分
+      * 值
      */
-     private String isCredit;
-     /**
-      * 可折扣
-     */
-     private String isDiscount;
-     /**
-      * 折扣
-     */
-     private String discountRate;
-     /**
-      * 备注
-     */
-     private String remark;
+     private Integer serialNum;
      /**
       * 创建时间
      */
@@ -74,17 +58,13 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
      */
      private String status;
 
-    public GestLevel() {
+    public SerialNumber() {
     }
 
-    public GestLevel(String organization, String code, String name, String isCredit, String isDiscount, String discountRate, String remark, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
+    public SerialNumber(String organization, String name, Integer serialNum, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
-       this.code = code;
        this.name = name;
-       this.isCredit = isCredit;
-       this.isDiscount = isDiscount;
-       this.discountRate = discountRate;
-       this.remark = remark;
+       this.serialNum = serialNum;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -120,24 +100,11 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
         this.organization = organization;
     }
     /**       
-     *      * 编号
-     */
-
-    
-    @Column(name="level_code", insertable=false, updatable=false, length=128)
-    public String getCode() {
-        return this.code;
-    }
-    
-    public void setCode(String code) {
-        this.code = code;
-    }
-    /**       
      *      * 名称
      */
 
     
-    @Column(name="level_name", length=32)
+    @Column(name="serial_number_style", length=48)
     public String getName() {
         return this.name;
     }
@@ -146,56 +113,17 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
         this.name = name;
     }
     /**       
-     *      * 可积分
+     *      * 值
      */
 
     
-    @Column(name="is_credit", insertable=false, updatable=false, length=5)
-    public String getIsCredit() {
-        return this.isCredit;
+    @Column(name="serial_num", length=11)
+    public Integer getSerialNum() {
+        return this.serialNum;
     }
     
-    public void setIsCredit(String isCredit) {
-        this.isCredit = isCredit;
-    }
-    /**       
-     *      * 可折扣
-     */
-
-    
-    @Column(name="is_discount", insertable=false, updatable=false, length=5)
-    public String getIsDiscount() {
-        return this.isDiscount;
-    }
-    
-    public void setIsDiscount(String isDiscount) {
-        this.isDiscount = isDiscount;
-    }
-    /**       
-     *      * 折扣
-     */
-
-    
-    @Column(name="discount_rate", length=32)
-    public String getDiscountRate() {
-        return this.discountRate;
-    }
-    
-    public void setDiscountRate(String discountRate) {
-        this.discountRate = discountRate;
-    }
-    /**       
-     *      * 备注
-     */
-
-    
-    @Column(name="remark", length=96)
-    public String getRemark() {
-        return this.remark;
-    }
-    
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setSerialNum(Integer serialNum) {
+        this.serialNum = serialNum;
     }
     /**       
      *      * 创建时间
@@ -254,7 +182,7 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
      */
 
     
-    @Column(name="status", insertable=false, updatable=false, length=128)
+    @Column(name="status", insertable=false, updatable=false, length=32)
     public String getStatus() {
         return this.status;
     }
@@ -272,12 +200,8 @@ public class GestLevel extends org.food.safety.trace.dto.BusinessView implements
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("name").append("='").append(getName()).append("' ");			
-      buffer.append("isCredit").append("='").append(getIsCredit()).append("' ");			
-      buffer.append("isDiscount").append("='").append(getIsDiscount()).append("' ");			
-      buffer.append("discountRate").append("='").append(getDiscountRate()).append("' ");			
-      buffer.append("remark").append("='").append(getRemark()).append("' ");			
+      buffer.append("serialNum").append("='").append(getSerialNum()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("status").append("='").append(getStatus()).append("' ");			
