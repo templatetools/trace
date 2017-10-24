@@ -31,7 +31,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: tom
@@ -116,9 +115,6 @@ public class CURDServiceImpl implements CURDService,SearchService {
         Object entity = null;
         Class clazz = entityType.getBindableJavaType();
         try {
-            ParserConfig jcParserConfig = new ParserConfig();
-            jcParserConfig.putDeserializer(Date.class, Jdk8DateCodec.instance);
-
             entity = JSON.parseObject(entityJson, clazz);
             createBefore(token, name, entity);
         } catch (Exception e) {

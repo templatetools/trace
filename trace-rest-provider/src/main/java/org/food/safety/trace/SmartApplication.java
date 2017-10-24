@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ServletComponentScan
+@EnableCaching
 @ImportResource({"classpath:META-INF/spring/trace-dubbo.xml"})
 public class SmartApplication {
 
