@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-24 15:28:18 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-26 18:42:43 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -73,6 +73,10 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
     public DictTypeDetail() {
     }
 
+	
+    public DictTypeDetail(String code) {
+        this.code = code;
+    }
     public DictTypeDetail(String organization, String dictTypeId, String code, String name, String nameEn, String comments, Date createDate, String createUserId, Date updateDate, String updateUserId, String status) {
        this.organization = organization;
        this.dictTypeId = dictTypeId;
@@ -132,7 +136,7 @@ public class DictTypeDetail extends org.food.safety.trace.dto.DictTypeDetailView
      */
 
     
-    @Column(name="dict_detail_code", insertable=false, updatable=false, length=128)
+    @Column(name="dict_detail_code", nullable=false, updatable=false, length=128)
     public String getCode() {
         return this.code;
     }

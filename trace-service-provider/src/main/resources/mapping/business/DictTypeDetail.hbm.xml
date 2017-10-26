@@ -36,12 +36,13 @@
         </property>
 
 
-        <property name="code" column="dict_detail_code" type="string" length="128" insert="false" update="false">
+        <property name="code" column="dict_detail_code" type="string" length="128" not-null="true" update="false">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
+            <meta attribute="item-type">label</meta>
             <meta attribute="field-generator">字典项目</meta>
         </property>
 

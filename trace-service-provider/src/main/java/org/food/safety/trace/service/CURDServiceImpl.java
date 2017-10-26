@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.food.safety.trace.dto.*;
 import org.food.safety.trace.entity.ListView;
 import org.food.safety.trace.entity.Reference;
@@ -19,6 +21,8 @@ import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -28,6 +32,7 @@ import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -143,8 +148,60 @@ public class CURDServiceImpl implements CURDService,SearchService {
                         log.warn("not found",e);
                     }
                 }
+                try {
+                    if (null == PropertyUtils.getProperty(entity, FIELD_ID) && StringUtils.isNotEmpty(c.getGenerator())){
+                        PropertyUtils.setProperty(entity, c.getName(), genCode(c.getGenerator()));
+                    }
+                }catch (Exception e) {
+                    log.warn("not found",e);
+                }
             }
         }
+    }
+
+    @Transactional
+    private String genCode(String generator) {
+        Dao appConfigDao = getDAO(BusinessView.APP_CONFIG);
+
+        Object prefixObject = Dao.findOneByKeyAndValue(appConfigDao, FIELD_DISPLAY, generator + "前缀");
+        Object lengthObject = Dao.findOneByKeyAndValue(appConfigDao, FIELD_DISPLAY, generator + "长度");
+        Integer length = 5;
+        String prefix = "";
+        try {
+            length = Integer.parseInt(PropertyUtils.getProperty(lengthObject, BusinessView.APP_CONFIG_CONFIG_VALUE)+"");
+            prefix = (String)PropertyUtils.getProperty(prefixObject, BusinessView.APP_CONFIG_CONFIG_VALUE);
+        }catch (Exception e){
+            log.info("{} gen code error!", generator);
+        }
+
+        String num = genNum(generator);
+        String result = "";
+
+        if (5 == length){
+            result = prefix + DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMdd") + num;
+        }else{
+            result = prefix;
+        }
+
+        result += StringUtils.leftPad(num + "", length, "0");
+
+        return result;
+    }
+
+    private String genNum(String generator) {
+        Dao serialNumberDao = getDAO(BusinessView.SERIAL_NUMBER);
+        Object serialNumber = Dao.findOneByKeyAndValue(serialNumberDao, FIELD_DISPLAY, generator);
+        Integer num = null;
+        try {
+            num = (Integer) PropertyUtils.getProperty(serialNumber, BusinessView.SERIAL_NUMBER_NUM);
+            num +=1;
+            PropertyUtils.setProperty(serialNumber, BusinessView.SERIAL_NUMBER_NUM, num);
+            serialNumberDao.save(serialNumber);
+        } catch (Exception e) {
+            log.info("{} gen code error!", generator);
+        }
+
+        return num+"";
     }
 
     @Override
@@ -335,7 +392,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 }else {
                                     Object target = this.detail(token, view.getRefType(), refId);
                                     if (StringUtils.isNotEmpty(view.getRefField())){
-                                        target = Dao.findOneByKeyAndValue(this.getDAO(view.getRefType()), view.getRefField(), refId);
+                                        target = queryRefObject(view.getRefType(), view.getRefField(), refId);
                                     }
                                     log.debug("{} find ref type:{}", key, target);
                                     selectItemView.setLabel(PropertyUtils.getProperty(target, FIELD_DISPLAY) + "");
@@ -350,6 +407,10 @@ public class CURDServiceImpl implements CURDService,SearchService {
                 }
             }
         }
+    }
+
+    private Object queryRefObject(String refType, String refField, String refId) {
+        return Dao.findOneByKeyAndValue(this.getDAO(refType), refField, refId);
     }
 
 }
