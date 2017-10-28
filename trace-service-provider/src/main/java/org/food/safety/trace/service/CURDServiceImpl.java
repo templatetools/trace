@@ -398,7 +398,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                         target = queryRefObject(view.getRefType(), view.getRefField(), refId);
                                     }
                                     log.debug("{} find ref type:{}", key, target);
-                                    selectItemView.setLabel(PropertyUtils.getProperty(target, FIELD_DISPLAY) + "");
+                                    if (null!= target) {
+                                        selectItemView.setLabel(PropertyUtils.getProperty(target, FIELD_DISPLAY) + "");
+                                    }
                                 }
 
                                 PropertyUtils.setProperty(d, view.getName() + FIELD_SELECT_ITEM, selectItemView);
