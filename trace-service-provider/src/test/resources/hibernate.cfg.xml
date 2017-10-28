@@ -39,6 +39,7 @@
         <mapping resource="mapping/business/Pet.hbm.xml"/>
         <mapping resource="mapping/business/AppConfig.hbm.xml"/>
         <mapping resource="mapping/business/SerialNumber.hbm.xml"/>
+        <mapping resource="mapping/business/MedicRegisterRecord.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

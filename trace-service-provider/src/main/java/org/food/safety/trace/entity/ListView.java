@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-10-26 18:42:43 by Hibernate Tools 5.2.5.Final
+// Generated 2017-10-28 14:57:04 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -71,6 +71,14 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
      private String refField;
      /**
+      * 回写字段
+     */
+     private String autowired;
+     /**
+      * 字段属性
+     */
+     private String attrs;
+     /**
       * 引用数据字段
      */
      private String refFilter;
@@ -82,7 +90,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
     public ListView() {
     }
 
-    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String generator, String rules, String itemType, String refType, String refField, String refFilter, String itemValue) {
+    public ListView(String entityName, String title, boolean listable, boolean searchable, boolean updateable, boolean insertable, String name, String generator, String rules, String itemType, String refType, String refField, String autowired, String attrs, String refFilter, String itemValue) {
        this.entityName = entityName;
        this.title = title;
        this.listable = listable;
@@ -95,6 +103,8 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
        this.itemType = itemType;
        this.refType = refType;
        this.refField = refField;
+       this.autowired = autowired;
+       this.attrs = attrs;
        this.refFilter = refFilter;
        this.itemValue = itemValue;
     }
@@ -270,6 +280,32 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
         this.refField = refField;
     }
     /**       
+     *      * 回写字段
+     */
+
+    
+    @Column(name="autowired", length=128)
+    public String getAutowired() {
+        return this.autowired;
+    }
+    
+    public void setAutowired(String autowired) {
+        this.autowired = autowired;
+    }
+    /**       
+     *      * 字段属性
+     */
+
+    
+    @Column(name="attrs", length=128)
+    public String getAttrs() {
+        return this.attrs;
+    }
+    
+    public void setAttrs(String attrs) {
+        this.attrs = attrs;
+    }
+    /**       
      *      * 引用数据字段
      */
 
@@ -316,6 +352,8 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
       buffer.append("itemType").append("='").append(getItemType()).append("' ");			
       buffer.append("refType").append("='").append(getRefType()).append("' ");			
       buffer.append("refField").append("='").append(getRefField()).append("' ");			
+      buffer.append("autowired").append("='").append(getAutowired()).append("' ");			
+      buffer.append("attrs").append("='").append(getAttrs()).append("' ");			
       buffer.append("refFilter").append("='").append(getRefFilter()).append("' ");			
       buffer.append("itemValue").append("='").append(getItemValue()).append("' ");			
       buffer.append("]");

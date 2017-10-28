@@ -131,13 +131,14 @@ export default modelExtend(pageColumnModel, {
         refFilter = JSON.parse(refFilterStr);
       }
 
-      const data = yield call(reference, {modalName:payload.modalName,data:payload.data,filter:refFilter})
+      const pageData = yield call(reference, {modalName:payload.modalName,data:payload.data,filter:refFilter})
+      const data = pageData.data.content
       const refField = null === payload.refField?'id':payload.refField;
       console.log('reference data:', data);
-      if (data.success) {
+      if (pageData.success) {
         const selectData = yield select(({ rest }) => rest.selectData)
         let source = [];
-        data.data.map((item,index)=>{
+        data.map((item,index)=>{
           source.push({key:item[refField], label:'[' + item.organizationSelectItem.label +']'+ item['name']});
         });
         selectData[payload.modalName]=source;

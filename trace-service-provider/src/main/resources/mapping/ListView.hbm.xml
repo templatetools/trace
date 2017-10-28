@@ -61,6 +61,15 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">引用数据字段</meta>
         </property>
+        <property name="autowired" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">回写字段</meta>
+        </property>
+        <property name="attrs" type="string" length="128">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="field-description">字段属性</meta>
+        </property>
+
         <property name="refFilter" type="string" length="256">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">引用数据字段</meta>

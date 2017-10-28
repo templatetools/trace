@@ -80,9 +80,9 @@ export async function reference (params) {
   }
 
   return request({
-    url: '/rest/api/v1/' + params.modalName + '/list',
+    url: '/rest/api/v1/' + params.modalName + '/page',
     method: 'post',
-    data: {filters:filters, andFilters:andFilter},
+    data: {filters:filters, andFilters:andFilter, 'pageNumber':1, 'pageSize':10},
   })
 }
 
