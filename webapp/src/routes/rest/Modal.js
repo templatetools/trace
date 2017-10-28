@@ -58,9 +58,9 @@ const modal = ({
     })
   }
 
-  const handleChange = (value) => {
+  const onSelect = (value) => {
     // onSelectFilterChange(value);
-    console.log('handleChange');
+    console.log('onSelect', value);
   }
   const onSearch = (value, typeName,refField,refFilter) => {
     console.log('val', value, typeName,refField,refFilter);
@@ -106,7 +106,9 @@ const modal = ({
               labelInValue
               placeholder="选择"
               optionFilterProp="children"
-              onFocus={(val)=>{onSearch('', refType,refField,refFilter)}}
+              onSelect={onSelect}
+              onSearch={(val)=>{onSearch(val, refType,refField,refFilter)}}
+              onFocus={(val)=>{onSearch(val, refType,refField,refFilter)}}
               filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
               {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
