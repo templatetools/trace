@@ -304,6 +304,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
             if (!Token.ADMIN.equalsIgnoreCase(token.getUserId()) && null != entityType.getAttribute(FIELD_ORGANIZATION)) {
                 SearchFilter organizationSearchFilter = new SearchFilter(FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
                 filters.addAndFilters(organizationSearchFilter);
+            }else{
+                SearchFilter organizationSearchFilter = new SearchFilter(FIELD_ORGANIZATION, SearchFilter.Operator.LIKE, '%');
+                filters.addAndFilters(organizationSearchFilter);
             }
         }catch (Exception e){
 
