@@ -31,6 +31,7 @@ const modal = ({
     getFieldDecorator,
     validateFields,
     getFieldsValue,
+    setFieldsValue
   },
   ...modalProps
 }) => {
@@ -58,16 +59,27 @@ const modal = ({
     })
   }
 
-  const onSelect = (value) => {
-    // onSelectFilterChange(value);
-    console.log('onSelect', value);
+  const onSelectHandle = (value,option,autowired) => {
+    console.log('autowired', value, option.props,autowired);
+    if (autowired){
+      JSON.parse(autowired).map((o,i)=>{
+        let setFieldOption = {}
+        setFieldOption[o] = option.props.source[o];
+        console.log('set field', option.props.source,setFieldOption)
+        setFieldsValue(setFieldOption); 
+      })
+    }
   }
   const onSearch = (value, typeName,refField,refFilter) => {
     console.log('val', value, typeName,refField,refFilter);
     onSelectFilterChange(value,typeName,refField,refFilter);
   }
 
-  const getItem = (item, refType, refField,refFilter, val) => {
+  const getItem = (item, refType, refField,refFilter, val,autowired,attrs) => {
+    let attrsOpt = {}
+    if (attrs){
+      attrsOpt = JSON.parse(attrs)
+    }
     switch(item){
       case 'InputNumber':{
         return <InputNumber />  
@@ -106,12 +118,12 @@ const modal = ({
               labelInValue
               placeholder="选择"
               optionFilterProp="children"
-              onSelect={onSelect}
+              onSelect={(value, option)=>{onSelectHandle(value, option, autowired)}}
               onSearch={(val)=>{onSearch(val, refType,refField,refFilter)}}
               onFocus={(val)=>{onSearch(val, refType,refField,refFilter)}}
               filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
-              {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
+              {selectData[refType]?selectData[refType].map(d => <Select.Option key={d.key} source={d.source}>{d.label}</Select.Option>):<Select.Option key='1' value='1'>选择</Select.Option>}
             </Select>
           }
         }
@@ -131,7 +143,7 @@ const modal = ({
         return (<MonthPicker />)
       }
       default:{
-        return val?<Input type={val}/>:<Input/>
+        return val?(<Input type={val} {...attrsOpt}/>):(<Input {...attrsOpt}/>)
       }
       
     }
@@ -185,7 +197,7 @@ const modal = ({
             return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}><span className="ant-form-text">{initValue}</span></FormItem>)
             }else{
             return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
-              {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue))}
+              {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue,col.autowired,col.attrs))}
             </FormItem>)
           }
         })

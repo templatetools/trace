@@ -53,7 +53,10 @@ export default modelExtend(pageColumnModel, {
             refFilter:item.refFilter,
             itemValue: item.itemValue,
             insertable:item.insertable,
-            listable:item.listable}
+            listable:item.listable,
+            attrs:item.attrs,
+            autowired:item.autowired
+          }
           render(c, item);
           listColumns.push(c);
         // }
@@ -139,7 +142,7 @@ export default modelExtend(pageColumnModel, {
         const selectData = yield select(({ rest }) => rest.selectData)
         let source = [];
         data.map((item,index)=>{
-          source.push({key:item[refField], label:'[' + item.organizationSelectItem.label +']'+ item['name']});
+          source.push({key:item[refField], label:'[' + item.organizationSelectItem.label +']'+ item['name'], source: item});
         });
         selectData[payload.modalName]=source;
         yield put({ type: 'updateState', payload: { selectData: selectData}})
