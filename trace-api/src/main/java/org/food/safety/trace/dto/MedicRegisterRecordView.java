@@ -14,13 +14,12 @@ import javax.persistence.Transient;
 @MappedSuperclass
 public class MedicRegisterRecordView extends BusinessView {
     public static final String TARGET_NAME = "MedicRegisterRecord";
+    public SelectItemView petIdSelectItem;
 
-//    public SelectItemView gestIdSelectItem;
-//
-//    @Transient
-//    public SelectItemView getGestIdSelectItem() {
-//        return gestIdSelectItem;
-//    }
+    @Transient
+    public SelectItemView getPetIdSelectItem() {
+        return petIdSelectItem;
+    }
 //
 //    public SelectItemView petSexSelectItem;
 //
