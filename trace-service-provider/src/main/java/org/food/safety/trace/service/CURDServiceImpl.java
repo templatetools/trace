@@ -64,38 +64,18 @@ public class CURDServiceImpl implements CURDService,SearchService {
     private static final String LISTVIEW_SELECT_TYPE_STATIC = "static";
     private static final String SEARCH_TEXT = "searchText";
 
+
     @Autowired
-    private EntityManager entityManager;
+    private DBService dbService;
     @Autowired
     protected ListViewDao listViewDao;
     @Autowired
     private ReferenceDao referenceDao;
 
-    private EntityType findEntiytyTypeByName(String name){
-        MetamodelImpl metamodel = (MetamodelImpl)entityManager.getEntityManagerFactory().getMetamodel();
-
-        EntityType entity = null;
-        for (EntityType entityType : metamodel.getEntities()){
-            if (entityType.getName().endsWith(name)){
-                entity = entityType;
-            }
-        }
-
-        if (null == entity){
-            throw new RuntimeException("not fond " + name + " entity!");
-        }
-
-        return entity;
-    }
-
-    private DaoBase createDao(@NotNull EntityType entity ){
-        return new DaoBase(entity.getBindableJavaType(), entityManager);
-    }
 
     @Override
     public Dao getDAO(String name) {
-        EntityType entityType = findEntiytyTypeByName(name);
-        return createDao(entityType);
+        return dbService.getDAO(name);
     }
 
     @Override
@@ -115,7 +95,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
     @Transactional
     public Viewable createOrUpdte(Token token, String name, String entityJson) {
         Dao dao = getDAO(name);
-        EntityType entityType = findEntiytyTypeByName(name);
+        EntityType entityType = dbService.findEntiytyTypeByName(name);
 
         Object entity = null;
         Class clazz = entityType.getBindableJavaType();
@@ -299,7 +279,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
         parseFilter(name, filters.getAndFilters());
 
         try {
-            EntityType entityType = findEntiytyTypeByName(name);
+            EntityType entityType = dbService.findEntiytyTypeByName(name);
 
             if (!Token.ADMIN.equalsIgnoreCase(token.getUserId()) && null != entityType.getAttribute(FIELD_ORGANIZATION)) {
                 SearchFilter organizationSearchFilter = new SearchFilter(FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
@@ -393,9 +373,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                         }
                                     }
                                 }else {
-                                    Object target = this.detail(token, view.getRefType(), refId);
+                                    Object target = null;
                                     if (StringUtils.isNotEmpty(view.getRefField())){
-                                        target = queryRefObject(view.getRefType(), view.getRefField(), refId);
+                                        target = dbService.queryRefObject(view.getRefType(), view.getRefField(), refId);
+                                    }else{
+                                        target = dbService.queryRefObject(view.getRefType(), FIELD_ID, refId);
                                     }
                                     log.debug("{} find ref type:{}", key, target);
                                     if (null!= target) {
@@ -412,10 +394,6 @@ public class CURDServiceImpl implements CURDService,SearchService {
                 }
             }
         }
-    }
-
-    private Object queryRefObject(String refType, String refField, String refId) {
-        return Dao.findOneByKeyAndValue(this.getDAO(refType), refField, refId);
     }
 
 }
