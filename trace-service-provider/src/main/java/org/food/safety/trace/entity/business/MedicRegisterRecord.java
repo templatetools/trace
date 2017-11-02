@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-2 15:23:30 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-2 15:51:50 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -29,6 +29,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       * 组织
      */
      private String organization;
+     /**
+      * 编号
+     */
+     private String code;
      /**
       * 会员名称
      */
@@ -61,8 +65,13 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord() {
     }
 
-    public MedicRegisterRecord(String organization, String gestName, String petId, String itemCode, Date createDate, String createUserId, Date updateDate, String updateUserId) {
+	
+    public MedicRegisterRecord(String code) {
+        this.code = code;
+    }
+    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, Date createDate, String createUserId, Date updateDate, String updateUserId) {
        this.organization = organization;
+       this.code = code;
        this.gestName = gestName;
        this.petId = petId;
        this.itemCode = itemCode;
@@ -98,6 +107,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+    /**       
+     *      * 编号
+     */
+
+    
+    @Column(name="register_no", nullable=false, updatable=false, length=48)
+    public String getCode() {
+        return this.code;
+    }
+    
+    public void setCode(String code) {
+        this.code = code;
     }
     /**       
      *      * 会员名称
@@ -200,6 +222,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
+      buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
       buffer.append("petId").append("='").append(getPetId()).append("' ");			
       buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			

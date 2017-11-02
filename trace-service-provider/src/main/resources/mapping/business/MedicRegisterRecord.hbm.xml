@@ -24,7 +24,15 @@
             <meta attribute="ref-type">Organization</meta>
             <meta attribute="field-description">组织</meta>
         </property>
-
+        <property name="code" column="register_no" type="string" length="48" not-null="true" update="false">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="field-description">编号</meta>
+            <meta attribute="item-type">label</meta>
+            <meta attribute="field-generator">门诊挂号</meta>
+        </property>
         <property name="gestName" column="gest_name" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>

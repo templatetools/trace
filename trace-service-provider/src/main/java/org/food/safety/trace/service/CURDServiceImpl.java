@@ -158,7 +158,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
         String result = "";
 
         if (5 == length){
-            result = prefix + DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMdd") + num;
+            result = prefix + DateFormatUtils.format(System.currentTimeMillis(), "yyyyMMdd");
         }else{
             result = prefix;
         }

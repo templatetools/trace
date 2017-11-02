@@ -36,7 +36,7 @@
         <property name="serialNum" column="serial_num" type="java.lang.Integer" length="11">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
+            <meta attribute="use-in-search">false</meta>
             <meta attribute="rules-required">true</meta>
             <meta attribute="item-type">label</meta>
             <meta attribute="field-description">值</meta>
