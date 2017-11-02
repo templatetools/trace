@@ -65,7 +65,8 @@ const modal = ({
     if (autowired){
       JSON.parse(autowired).map((o,i)=>{
         let setFieldOption = {}
-        if (typeof o === String){
+        console.log('typeof o', typeof o)
+        if (typeof o === 'string'){
           setFieldOption[o] = option.props.source[o];
           console.log('set field', option.props.source,setFieldOption)
           setFieldsValue(setFieldOption); 
