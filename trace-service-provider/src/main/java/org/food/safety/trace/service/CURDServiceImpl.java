@@ -320,7 +320,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                         BeanUtils.copyProperties(refSearchFilter, searchFilter.getValue());
                         Dao dao = getDAO(refSearchFilter.getType());
                         Object o = Dao.findOneByKeyAndValue(dao, refSearchFilter.getFieldName(), refSearchFilter.getValue());
-                        searchFilter.setValue(BeanUtils.getProperty(o, FIELD_ID));
+                        searchFilter.setValue(BeanUtils.getProperty(o, StringUtils.defaultString(refSearchFilter.getRefField(),FIELD_ID)));
                     } catch (Exception e) {
                         log.debug("filter parse error!", e);
                     }

@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-10-28 14:57:04 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-2 15:23:30 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -30,13 +30,17 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String organization;
      /**
+      * 会员名称
+     */
+     private String gestName;
+     /**
       * 宠物
      */
      private String petId;
      /**
-      * 会员
+      * 挂号类型
      */
-     private String gestName;
+     private String itemCode;
      /**
       * 登记日期
      */
@@ -57,10 +61,11 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord() {
     }
 
-    public MedicRegisterRecord(String organization, String petId, String gestName, Date createDate, String createUserId, Date updateDate, String updateUserId) {
+    public MedicRegisterRecord(String organization, String gestName, String petId, String itemCode, Date createDate, String createUserId, Date updateDate, String updateUserId) {
        this.organization = organization;
-       this.petId = petId;
        this.gestName = gestName;
+       this.petId = petId;
+       this.itemCode = itemCode;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -95,6 +100,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.organization = organization;
     }
     /**       
+     *      * 会员名称
+     */
+
+    
+    @Column(name="gest_name", length=48)
+    public String getGestName() {
+        return this.gestName;
+    }
+    
+    public void setGestName(String gestName) {
+        this.gestName = gestName;
+    }
+    /**       
      *      * 宠物
      */
 
@@ -108,17 +126,17 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.petId = petId;
     }
     /**       
-     *      * 会员
+     *      * 挂号类型
      */
 
     
-    @Column(name="gest_name", length=48)
-    public String getGestName() {
-        return this.gestName;
+    @Column(name="item_code", length=48)
+    public String getItemCode() {
+        return this.itemCode;
     }
     
-    public void setGestName(String gestName) {
-        this.gestName = gestName;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
     /**       
      *      * 登记日期
@@ -182,8 +200,9 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
 
       buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
-      buffer.append("petId").append("='").append(getPetId()).append("' ");			
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
+      buffer.append("petId").append("='").append(getPetId()).append("' ");			
+      buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("]");

@@ -25,6 +25,16 @@
             <meta attribute="field-description">组织</meta>
         </property>
 
+        <property name="gestName" column="gest_name" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="item-type">Input</meta>
+            <meta attribute="field-attrs">{"disabled":true}</meta>
+            <meta attribute="field-description">会员名称</meta>
+        </property>
+
         <property name="petId" column="pet_id" type="string" length="36">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -36,14 +46,16 @@
             <meta attribute="field-description">宠物</meta>
         </property>
 
-        <property name="gestName" column="gest_name" type="string" length="48">
+        <property name="itemCode" column="item_code" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
             <meta attribute="rules-required">true</meta>
-            <meta attribute="item-type">Input</meta>
-            <meta attribute="field-attrs">{"disabled":true}</meta>
-            <meta attribute="field-description">会员</meta>
+            <meta attribute="ref-type">ItemType</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="ref-filter">{"fieldName":"cateNo","operator":"EQ","type":"ref","value":{"type":"ItemCate","fieldName":"code","operator":"EQ","value":"ICate10","refField":"code"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">挂号类型</meta>
         </property>
 
 

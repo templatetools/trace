@@ -20,13 +20,13 @@ public class MedicRegisterRecordView extends BusinessView {
     public SelectItemView getPetIdSelectItem() {
         return petIdSelectItem;
     }
-//
-//    public SelectItemView petSexSelectItem;
-//
-//    @Transient
-//    public SelectItemView getPetSexSelectItem() {
-//        return petSexSelectItem;
-//    }
+
+    public SelectItemView itemCodeSelectItem;
+
+    @Transient
+    public SelectItemView getItemCodeSelectItem() {
+        return itemCodeSelectItem;
+    }
 //
 //    public SelectItemView statusSelectItem;
 //

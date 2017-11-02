@@ -35,6 +35,7 @@ public class SearchFilter implements Serializable {
     public SearchFilter.Operator operator;
 
     private String type;
+    private String refField;
 
     public SearchFilter() {
     }
