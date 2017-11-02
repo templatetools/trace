@@ -61,9 +61,20 @@
             <meta attribute="ref-type">ItemType</meta>
             <meta attribute="ref-field">code</meta>
             <meta attribute="ref-filter">{"fieldName":"cateNo","operator":"EQ","type":"ref","value":{"type":"ItemCate","fieldName":"code","operator":"EQ","value":"ICate10","refField":"code"}}</meta>
+            <meta attribute="field-autowired">[{"name":"itemName","refField":"name","type":"hidden"}]</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
             <meta attribute="field-description">挂号类型</meta>
+        </property>
+
+        <property name="itemName" column="item_name" type="string" length="96">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+            <meta attribute="field-description">挂号名称</meta>
         </property>
 
 
@@ -95,6 +106,12 @@
         <property name="updateUserId" column="update_user_id" type="string" insert="false" update="false" length="128">
             <meta attribute="field-description">更新人</meta>
             <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+        </property>
+
+        <property name="registerStyle" column="register_style" type="string" insert="false" update="false" length="48">
+            <meta attribute="field-description">挂号类型</meta>
+            <meta attribute="use-in-tostring">false</meta>
             <meta attribute="use-in-list">false</meta>
         </property>
     </class>

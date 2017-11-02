@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-2 15:51:50 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-2 17:01:59 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -46,6 +46,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String itemCode;
      /**
+      * 挂号名称
+     */
+     private String itemName;
+     /**
       * 登记日期
      */
      private Date createDate;
@@ -61,6 +65,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       * 更新人
      */
      private String updateUserId;
+     /**
+      * 挂号类型
+     */
+     private String registerStyle;
 
     public MedicRegisterRecord() {
     }
@@ -69,16 +77,18 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, Date createDate, String createUserId, Date updateDate, String updateUserId) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, String itemName, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
        this.petId = petId;
        this.itemCode = itemCode;
+       this.itemName = itemName;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
        this.updateUserId = updateUserId;
+       this.registerStyle = registerStyle;
     }
    
     /**       
@@ -161,6 +171,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.itemCode = itemCode;
     }
     /**       
+     *      * 挂号名称
+     */
+
+    
+    @Column(name="item_name", length=96)
+    public String getItemName() {
+        return this.itemName;
+    }
+    
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+    /**       
      *      * 登记日期
      */
 
@@ -212,6 +235,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public void setUpdateUserId(String updateUserId) {
         this.updateUserId = updateUserId;
     }
+    /**       
+     *      * 挂号类型
+     */
+
+    
+    @Column(name="register_style", insertable=false, updatable=false, length=48)
+    public String getRegisterStyle() {
+        return this.registerStyle;
+    }
+    
+    public void setRegisterStyle(String registerStyle) {
+        this.registerStyle = registerStyle;
+    }
 
     /**
      * toString
@@ -226,6 +262,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
       buffer.append("petId").append("='").append(getPetId()).append("' ");			
       buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			
+      buffer.append("itemName").append("='").append(getItemName()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("]");

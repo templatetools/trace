@@ -31,7 +31,8 @@ const modal = ({
     getFieldDecorator,
     validateFields,
     getFieldsValue,
-    setFieldsValue
+    setFieldsValue,
+    setFields
   },
   ...modalProps
 }) => {
@@ -64,9 +65,16 @@ const modal = ({
     if (autowired){
       JSON.parse(autowired).map((o,i)=>{
         let setFieldOption = {}
-        setFieldOption[o] = option.props.source[o];
-        console.log('set field', option.props.source,setFieldOption)
-        setFieldsValue(setFieldOption); 
+        if (typeof o === String){
+          setFieldOption[o] = option.props.source[o];
+          console.log('set field', option.props.source,setFieldOption)
+          setFieldsValue(setFieldOption); 
+        }else{
+          setFieldOption[o.name]={value:option.props.source[o.refField]}
+          console.log('set field', o, setFieldOption);
+          setFields(setFieldOption);
+        }
+        
       })
     }
   }
@@ -195,6 +203,8 @@ const modal = ({
           }
           if ('label' === col.itemType){
             return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}><span className="ant-form-text">{initValue}</span></FormItem>)
+            }else if ('hidden' === col.itemType){
+              return getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue,col.autowired,col.attrs))
             }else{
             return (<FormItem label={col.title} hasFeedback {...formItemLayout} key={index}>
               {getFieldDecorator(key, itemOption)(getItem(col.itemType,col.refType,col.refField,col.refFilter,col.itemValue,col.autowired,col.attrs))}
