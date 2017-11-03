@@ -27,13 +27,13 @@ public class MedicRegisterRecordView extends BusinessView {
     public SelectItemView getItemCodeSelectItem() {
         return itemCodeSelectItem;
     }
-//
-//    public SelectItemView statusSelectItem;
-//
-//    @Transient
-//    public SelectItemView getStatusSelectItem() {
-//        return statusSelectItem;
-//    }
+
+    public SelectItemView doctorIdSelectItem;
+
+    @Transient
+    public SelectItemView getDoctorIdSelectItem() {
+        return doctorIdSelectItem;
+    }
 //
 //    public SelectItemView birthStatusSelectItem;
 //

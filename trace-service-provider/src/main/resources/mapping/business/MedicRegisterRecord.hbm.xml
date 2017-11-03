@@ -43,17 +43,25 @@
             <meta attribute="field-description">会员名称</meta>
         </property>
 
+        <property name="sickFileCode" column="sick_file_code" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="use-in-search">true</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+            <meta attribute="field-description">病例号</meta>
+        </property>
         <property name="petId" column="pet_id" type="string" length="36">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-autowired">["gestName"]</meta>
+            <meta attribute="field-autowired">["gestName",{"name":"sickFileCode","refField":"sickFileCode","type":"hidden"}]</meta>
             <meta attribute="ref-type">Pet</meta>
             <meta attribute="field-description">宠物</meta>
         </property>
-
         <property name="itemCode" column="item_code" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
@@ -85,6 +93,17 @@
             <meta attribute="field-description">挂号名称</meta>
         </property>
 
+        <property name="doctorId" column="doctor_id" type="string" length="36">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="ref-type">UserEntity</meta>
+            <meta attribute="ref-field">id</meta>
+            <meta attribute="ref-filter">{"fieldName":"id","operator":"IN","type":"ref","value":{"type":"Role","fieldName":"name","operator":"EQ","value":"医生","refField":"id"}}</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">医生</meta>
+        </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">登记日期</meta>

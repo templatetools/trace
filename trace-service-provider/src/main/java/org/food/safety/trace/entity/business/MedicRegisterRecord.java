@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-3 9:46:45 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-3 11:27:14 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -38,6 +38,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String gestName;
      /**
+      * 病例号
+     */
+     private String sickFileCode;
+     /**
       * 宠物
      */
      private String petId;
@@ -53,6 +57,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       * 挂号名称
      */
      private String itemName;
+     /**
+      * 医生
+     */
+     private String doctorId;
      /**
       * 登记日期
      */
@@ -81,14 +89,16 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, Double registerPrice, String itemName, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
+       this.sickFileCode = sickFileCode;
        this.petId = petId;
        this.itemCode = itemCode;
        this.registerPrice = registerPrice;
        this.itemName = itemName;
+       this.doctorId = doctorId;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -150,6 +160,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.gestName = gestName;
     }
     /**       
+     *      * 病例号
+     */
+
+    
+    @Column(name="sick_file_code", length=48)
+    public String getSickFileCode() {
+        return this.sickFileCode;
+    }
+    
+    public void setSickFileCode(String sickFileCode) {
+        this.sickFileCode = sickFileCode;
+    }
+    /**       
      *      * 宠物
      */
 
@@ -200,6 +223,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+    /**       
+     *      * 医生
+     */
+
+    
+    @Column(name="doctor_id", length=36)
+    public String getDoctorId() {
+        return this.doctorId;
+    }
+    
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
     }
     /**       
      *      * 登记日期
@@ -278,10 +314,12 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("organization").append("='").append(getOrganization()).append("' ");			
       buffer.append("code").append("='").append(getCode()).append("' ");			
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
+      buffer.append("sickFileCode").append("='").append(getSickFileCode()).append("' ");			
       buffer.append("petId").append("='").append(getPetId()).append("' ");			
       buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			
       buffer.append("registerPrice").append("='").append(getRegisterPrice()).append("' ");			
       buffer.append("itemName").append("='").append(getItemName()).append("' ");			
+      buffer.append("doctorId").append("='").append(getDoctorId()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("]");

@@ -3,6 +3,8 @@ package org.food.safety.trace.repository;
 import org.food.safety.trace.dto.ListFilter;
 import org.food.safety.trace.dto.PageSearch;
 import org.food.safety.trace.dto.SearchFilter;
+import org.food.safety.trace.dto.Token;
+import org.food.safety.trace.service.CURDService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,13 +35,16 @@ public interface Dao<T, ID extends Serializable> extends JpaRepository<T, ID>, J
      */
     Page page(PageSearch pageSearch);
 
-    static <DTO> DTO findOneByKeyAndValue(Dao dao, String key, Object value) {
+    static <DTO> DTO findOneByKeyAndValue(Dao dao, Token token, String key, Object value) {
         DTO result = null;
 
         SearchFilter searchFilter = new SearchFilter(key, SearchFilter.Operator.EQ, value);
 
         ListFilter listFilter = new ListFilter();
         listFilter.addFilters(searchFilter);
+
+        SearchFilter organizationSearchFilter = new SearchFilter(CURDService.FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
+        listFilter.addAndFilters(organizationSearchFilter);
 
         List list = dao.findAllByFilter(listFilter);
 

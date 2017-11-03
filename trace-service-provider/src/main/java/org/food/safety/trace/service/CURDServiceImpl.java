@@ -1,13 +1,10 @@
 package org.food.safety.trace.service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.parser.deserializer.Jdk8DateCodec;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.food.safety.trace.dto.*;
@@ -17,24 +14,18 @@ import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.food.safety.trace.repository.ListViewDao;
 import org.food.safety.trace.repository.ReferenceDao;
-import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,13 +38,7 @@ import java.util.List;
 @Primary
 public class CURDServiceImpl implements CURDService,SearchService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CURDServiceImpl.class);
-    public static final String FIELD_ID = "id";
-    public static final String FIELD_ORGANIZATION="organization";
-    public static final String FIELD_DISPLAY="name";
-    public static final String FIELD_SELECT_ITEM="SelectItem";
-    public static final String FIELD_SELECT_LIST="List";
-    public static final String FIELD_SELECT_OPTION_KEY="key";
-    public static final String FIELD_SELECT_OPTION_LABEL="label";
+
 
     /**
      * 视图信息
@@ -130,7 +115,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
                 }
                 try {
                     if (null == PropertyUtils.getProperty(entity, FIELD_ID) && StringUtils.isNotEmpty(c.getGenerator())){
-                        PropertyUtils.setProperty(entity, c.getName(), genCode(c.getGenerator()));
+                        PropertyUtils.setProperty(entity, c.getName(), genCode(token, c.getGenerator()));
                     }
                 }catch (Exception e) {
                     log.warn("not found",e);
@@ -140,11 +125,11 @@ public class CURDServiceImpl implements CURDService,SearchService {
     }
 
     @Transactional
-    private String genCode(String generator) {
+    private String genCode(Token token, String generator) {
         Dao appConfigDao = getDAO(BusinessView.APP_CONFIG);
 
-        Object prefixObject = Dao.findOneByKeyAndValue(appConfigDao, FIELD_DISPLAY, generator + "前缀");
-        Object lengthObject = Dao.findOneByKeyAndValue(appConfigDao, FIELD_DISPLAY, generator + "长度");
+        Object prefixObject = Dao.findOneByKeyAndValue(appConfigDao,token,  FIELD_DISPLAY, generator + "前缀");
+        Object lengthObject = Dao.findOneByKeyAndValue(appConfigDao,token,  FIELD_DISPLAY, generator + "长度");
         Integer length = 5;
         String prefix = "";
         try {
@@ -154,7 +139,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
             log.info("{} gen code error!", generator);
         }
 
-        String num = genNum(generator);
+        String num = genNum(token, generator);
         String result = "";
 
         if (5 == length){
@@ -168,9 +153,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
         return result;
     }
 
-    private String genNum(String generator) {
+    private String genNum(Token token,String generator) {
         Dao serialNumberDao = getDAO(BusinessView.SERIAL_NUMBER);
-        Object serialNumber = Dao.findOneByKeyAndValue(serialNumberDao, FIELD_DISPLAY, generator);
+        Object serialNumber = Dao.findOneByKeyAndValue(serialNumberDao,token, FIELD_DISPLAY, generator);
         Integer num = null;
         try {
             num = (Integer) PropertyUtils.getProperty(serialNumber, BusinessView.SERIAL_NUMBER_NUM);
@@ -275,8 +260,8 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
     @Override
     public ListFilter searchBefore(Token token, @NotNull String name, @NotNull ListFilter filters) {
-        parseFilter(name, filters.getFilters());
-        parseFilter(name, filters.getAndFilters());
+        parseFilter(token,name, filters.getFilters());
+        parseFilter(token,name, filters.getAndFilters());
 
         try {
             EntityType entityType = dbService.findEntiytyTypeByName(name);
@@ -294,7 +279,7 @@ public class CURDServiceImpl implements CURDService,SearchService {
 
         return filters;
     }
-    private void parseFilter(@NotNull String name, @NotNull final List<SearchFilter> searchFilters){
+    private void parseFilter(Token token, @NotNull String name, @NotNull final List<SearchFilter> searchFilters){
         if (null != searchFilters){
             String searchText = null;
             for (SearchFilter searchFilter: searchFilters){
@@ -318,9 +303,20 @@ public class CURDServiceImpl implements CURDService,SearchService {
                     try {
                         SearchFilter refSearchFilter = new SearchFilter();
                         BeanUtils.copyProperties(refSearchFilter, searchFilter.getValue());
-                        Dao dao = getDAO(refSearchFilter.getType());
-                        Object o = Dao.findOneByKeyAndValue(dao, refSearchFilter.getFieldName(), refSearchFilter.getValue());
-                        searchFilter.setValue(BeanUtils.getProperty(o, StringUtils.defaultString(refSearchFilter.getRefField(),FIELD_ID)));
+                        if(SearchFilter.Operator.IN.equals(searchFilter.getOperator())){
+                            Dao dao = getDAO(refSearchFilter.getType());
+                            Object o = Dao.findOneByKeyAndValue(dao,token, refSearchFilter.getFieldName(), refSearchFilter.getValue());
+                            List<Reference> references = referenceDao.findBySourceNameAndTargetNameAndTargetId(name, refSearchFilter.getType(), PropertyUtils.getProperty(o, FIELD_ID) + "");
+                            List<String> sourceIds = new ArrayList<String>();
+                            for (Reference reference: references){
+                                sourceIds.add(reference.getSourceId());
+                            }
+                            searchFilter.setValue(sourceIds);
+                        }else {
+                            Dao dao = getDAO(refSearchFilter.getType());
+                            Object o = Dao.findOneByKeyAndValue(dao,token, refSearchFilter.getFieldName(), refSearchFilter.getValue());
+                            searchFilter.setValue(BeanUtils.getProperty(o, StringUtils.defaultString(refSearchFilter.getRefField(), FIELD_ID)));
+                        }
                     } catch (Exception e) {
                         log.debug("filter parse error!", e);
                     }
@@ -375,9 +371,9 @@ public class CURDServiceImpl implements CURDService,SearchService {
                                 }else {
                                     Object target = null;
                                     if (StringUtils.isNotEmpty(view.getRefField())){
-                                        target = dbService.queryRefObject(view.getRefType(), view.getRefField(), refId);
+                                        target = dbService.queryRefObject(token,view.getRefType(), view.getRefField(), refId);
                                     }else{
-                                        target = dbService.queryRefObject(view.getRefType(), FIELD_ID, refId);
+                                        target = dbService.queryRefObject(token,view.getRefType(), FIELD_ID, refId);
                                     }
                                     log.debug("{} find ref type:{}", key, target);
                                     if (null!= target) {

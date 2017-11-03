@@ -64,6 +64,7 @@ public class SearchFilter implements Serializable {
         LT,
         GTE,
         LTE,
+        IN,
         NOT_EQ;
 
         private Operator() {

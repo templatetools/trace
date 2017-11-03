@@ -17,6 +17,14 @@ import java.util.List;
  * Date: 2017/8/25
  */
 public interface CURDService {
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_ORGANIZATION="organization";
+    public static final String FIELD_DISPLAY="name";
+    public static final String FIELD_SELECT_ITEM="SelectItem";
+    public static final String FIELD_SELECT_LIST="List";
+    public static final String FIELD_SELECT_OPTION_KEY="key";
+    public static final String FIELD_SELECT_OPTION_LABEL="label";
+
     /**
      * 根据实体名称，获取 dao
      * @param name 实体名称

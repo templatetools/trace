@@ -111,6 +111,17 @@ public class DaoBase<T, ID extends Serializable> extends SimpleJpaRepository<T, 
                     case LTE:
                         predicates.add(builder.lessThanOrEqualTo(expression, (Comparable) filter.value));
                         break;
+                    case IN:
+                        CriteriaBuilder.In in = builder.in(expression);
+                        List vals = (List)filter.value;
+                        for(Object v: vals){
+                            in.value(v);
+                        }
+                        if (vals.size()==0) {
+                            in.value("");
+                        }
+                        predicates.add(in);
+                        break;
                     case NOT_EQ:
                         predicates.add(builder.notEqual(expression, (Comparable) filter.value));
                 }

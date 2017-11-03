@@ -44,12 +44,12 @@ public class UserServiceImpl extends CURDServiceImpl {
      * @param data
      * @return
      */
-    public String login(Map data){
+    public String login(Token token, Map data){
         log.debug("login:{}", data);
 
         Dao dao = getDAO("UserEntity");
 
-        UserEntity userEntity = Dao.findOneByKeyAndValue(dao, "name", data.get("username"));
+        UserEntity userEntity = Dao.findOneByKeyAndValue(dao, token, "name", data.get("username"));
 
         if (null == userEntity){
             throw new AuthenticationException("用户不存在!");

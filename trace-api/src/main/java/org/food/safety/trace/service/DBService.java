@@ -1,5 +1,6 @@
 package org.food.safety.trace.service;
 
+import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.repository.Dao;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,5 +37,5 @@ public interface DBService {
 
 //    @Cacheable(value = "queryRefObject", key = "#refType+'_'+#refField+'_'+#refId")
     @Cacheable("queryRefObject")
-    Object queryRefObject(String refType, String refField, String refId);
+    Object queryRefObject(Token token, String refType, String refField, String refId);
 }

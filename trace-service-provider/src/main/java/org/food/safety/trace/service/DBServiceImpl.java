@@ -2,6 +2,7 @@ package org.food.safety.trace.service;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.food.safety.trace.dto.Token;
 import org.food.safety.trace.repository.Dao;
 import org.food.safety.trace.repository.DaoBase;
 import org.hibernate.jpa.internal.metamodel.MetamodelImpl;
@@ -54,9 +55,9 @@ public class DBServiceImpl implements DBService {
 
     @Override
     @Cacheable(value = "queryRefObject", key = "#refType+'_'+#refField+'_'+#refId")
-    public Object queryRefObject(String refType, String refField, String refId) {
+    public Object queryRefObject(Token token, String refType, String refField, String refId) {
         log.debug("queryRefObject:{},{},{}",refType, refField, refId);
-        return Dao.findOneByKeyAndValue(this.getDAO(refType), refField, refId);
+        return Dao.findOneByKeyAndValue(this.getDAO(refType),token,refField, refId);
     }
 
     @Override
