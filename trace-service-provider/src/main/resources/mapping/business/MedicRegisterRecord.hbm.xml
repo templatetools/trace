@@ -61,10 +61,18 @@
             <meta attribute="ref-type">ItemType</meta>
             <meta attribute="ref-field">code</meta>
             <meta attribute="ref-filter">{"fieldName":"cateNo","operator":"EQ","type":"ref","value":{"type":"ItemCate","fieldName":"code","operator":"EQ","value":"ICate10","refField":"code"}}</meta>
-            <meta attribute="field-autowired">[{"name":"itemName","refField":"name","type":"hidden"}]</meta>
+            <meta attribute="field-autowired">[{"name":"itemName","refField":"name","type":"hidden"},{"name":"registerPrice","refField":"recipePrice","type":"input"}]</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
             <meta attribute="field-description">挂号类型</meta>
+        </property>
+
+        <property name="registerPrice" column="register_price" type="java.lang.Double">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="rules-required">true</meta>
+            <meta attribute="rules-type">number</meta>
+            <meta attribute="item-type">InputNumber</meta>
+            <meta attribute="field-description">挂号费</meta>
         </property>
 
         <property name="itemName" column="item_name" type="string" length="96">

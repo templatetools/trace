@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-2 17:01:59 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-3 9:46:45 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -46,6 +46,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String itemCode;
      /**
+      * 挂号费
+     */
+     private Double registerPrice;
+     /**
       * 挂号名称
      */
      private String itemName;
@@ -77,12 +81,13 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, String itemName, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String petId, String itemCode, Double registerPrice, String itemName, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
        this.petId = petId;
        this.itemCode = itemCode;
+       this.registerPrice = registerPrice;
        this.itemName = itemName;
        this.createDate = createDate;
        this.createUserId = createUserId;
@@ -169,6 +174,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     
     public void setItemCode(String itemCode) {
         this.itemCode = itemCode;
+    }
+    /**       
+     *      * 挂号费
+     */
+
+    
+    @Column(name="register_price")
+    public Double getRegisterPrice() {
+        return this.registerPrice;
+    }
+    
+    public void setRegisterPrice(Double registerPrice) {
+        this.registerPrice = registerPrice;
     }
     /**       
      *      * 挂号名称
@@ -262,6 +280,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
       buffer.append("petId").append("='").append(getPetId()).append("' ");			
       buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			
+      buffer.append("registerPrice").append("='").append(getRegisterPrice()).append("' ");			
       buffer.append("itemName").append("='").append(getItemName()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
