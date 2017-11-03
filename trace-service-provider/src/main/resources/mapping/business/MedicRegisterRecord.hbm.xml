@@ -151,5 +151,22 @@
             <meta attribute="use-in-tostring">false</meta>
             <meta attribute="use-in-list">false</meta>
         </property>
+        <property name="paidTime" column="paid_time" type="timestamp" insert="false"  generated="insert">
+            <meta attribute="field-description">支付时间</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+        </property>
+        <property name="paidStatus" column="paid_status" type="string" insert="false"  length="48">
+            <meta attribute="field-description">支付状态</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+        </property>
+        <property name="pauseSeason" column="pause_reason" type="string" insert="false"  length="48">
+            <meta attribute="field-description">暂停原因</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+        </property>
     </class>
 </hibernate-mapping>

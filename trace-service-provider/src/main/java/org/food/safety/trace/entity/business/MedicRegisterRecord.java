@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-3 15:04:05 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-3 15:34:07 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -85,6 +85,18 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       * 挂号类型
      */
      private String registerStyle;
+     /**
+      * 支付时间
+     */
+     private Date paidTime;
+     /**
+      * 支付状态
+     */
+     private String paidStatus;
+     /**
+      * 暂停原因
+     */
+     private String pauseSeason;
 
     public MedicRegisterRecord() {
     }
@@ -93,7 +105,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, String doctor, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, String doctor, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle, Date paidTime, String paidStatus, String pauseSeason) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
@@ -109,6 +121,9 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
        this.updateDate = updateDate;
        this.updateUserId = updateUserId;
        this.registerStyle = registerStyle;
+       this.paidTime = paidTime;
+       this.paidStatus = paidStatus;
+       this.pauseSeason = pauseSeason;
     }
    
     /**       
@@ -320,6 +335,45 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public void setRegisterStyle(String registerStyle) {
         this.registerStyle = registerStyle;
     }
+    /**       
+     *      * 支付时间
+     */
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="paid_time", insertable=false)
+    public Date getPaidTime() {
+        return this.paidTime;
+    }
+    
+    public void setPaidTime(Date paidTime) {
+        this.paidTime = paidTime;
+    }
+    /**       
+     *      * 支付状态
+     */
+
+    
+    @Column(name="paid_status", insertable=false, length=48)
+    public String getPaidStatus() {
+        return this.paidStatus;
+    }
+    
+    public void setPaidStatus(String paidStatus) {
+        this.paidStatus = paidStatus;
+    }
+    /**       
+     *      * 暂停原因
+     */
+
+    
+    @Column(name="pause_reason", insertable=false, length=48)
+    public String getPauseSeason() {
+        return this.pauseSeason;
+    }
+    
+    public void setPauseSeason(String pauseSeason) {
+        this.pauseSeason = pauseSeason;
+    }
 
     /**
      * toString
@@ -341,6 +395,8 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("doctor").append("='").append(getDoctor()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
+      buffer.append("paidStatus").append("='").append(getPaidStatus()).append("' ");			
+      buffer.append("pauseSeason").append("='").append(getPauseSeason()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();
