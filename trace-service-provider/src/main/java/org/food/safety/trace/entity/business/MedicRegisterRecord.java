@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-3 11:27:14 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-3 15:04:05 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -62,6 +62,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String doctorId;
      /**
+      * 医生名称
+     */
+     private String doctor;
+     /**
       * 登记日期
      */
      private Date createDate;
@@ -89,7 +93,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, String doctor, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
@@ -99,6 +103,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
        this.registerPrice = registerPrice;
        this.itemName = itemName;
        this.doctorId = doctorId;
+       this.doctor = doctor;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -238,6 +243,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.doctorId = doctorId;
     }
     /**       
+     *      * 医生名称
+     */
+
+    
+    @Column(name="doctor", length=48)
+    public String getDoctor() {
+        return this.doctor;
+    }
+    
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+    /**       
      *      * 登记日期
      */
 
@@ -320,6 +338,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("registerPrice").append("='").append(getRegisterPrice()).append("' ");			
       buffer.append("itemName").append("='").append(getItemName()).append("' ");			
       buffer.append("doctorId").append("='").append(getDoctorId()).append("' ");			
+      buffer.append("doctor").append("='").append(getDoctor()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("]");
