@@ -40,5 +40,13 @@ public class MedicRegisterRecordView extends BusinessView {
     public SelectItemView getDoctorIdSelectItem() {
         return doctorIdSelectItem;
     }
+    public SelectItemView paidStatusSelectItem;
+
+    @Transient
+    public SelectItemView getPaidStatusSelectItem() {
+        return paidStatusSelectItem;
+    }
+
+
 
 }

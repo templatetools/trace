@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-3 17:14:35 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-5 11:58:23 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -46,6 +46,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String petId;
      /**
+      * 宠物名称
+     */
+     private String petName;
+     /**
       * 挂号类型
      */
      private String itemCode;
@@ -74,6 +78,10 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private String assistantDoctorName;
      /**
+      * 登记人
+     */
+     private String operatorMan;
+     /**
       * 登记日期
      */
      private Date createDate;
@@ -98,13 +106,17 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
      */
      private Date paidTime;
      /**
-      * 支付状态
+      * 宠物状态
      */
      private String paidStatus;
      /**
       * 暂停原因
      */
      private String pauseSeason;
+     /**
+      * 状态
+     */
+     private String status;
 
     public MedicRegisterRecord() {
     }
@@ -113,12 +125,13 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public MedicRegisterRecord(String code) {
         this.code = code;
     }
-    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String itemCode, Double registerPrice, String itemName, String doctorId, String doctor, String assistantDoctorId, String assistantDoctorName, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle, Date paidTime, String paidStatus, String pauseSeason) {
+    public MedicRegisterRecord(String organization, String code, String gestName, String sickFileCode, String petId, String petName, String itemCode, Double registerPrice, String itemName, String doctorId, String doctor, String assistantDoctorId, String assistantDoctorName, String operatorMan, Date createDate, String createUserId, Date updateDate, String updateUserId, String registerStyle, Date paidTime, String paidStatus, String pauseSeason, String status) {
        this.organization = organization;
        this.code = code;
        this.gestName = gestName;
        this.sickFileCode = sickFileCode;
        this.petId = petId;
+       this.petName = petName;
        this.itemCode = itemCode;
        this.registerPrice = registerPrice;
        this.itemName = itemName;
@@ -126,6 +139,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
        this.doctor = doctor;
        this.assistantDoctorId = assistantDoctorId;
        this.assistantDoctorName = assistantDoctorName;
+       this.operatorMan = operatorMan;
        this.createDate = createDate;
        this.createUserId = createUserId;
        this.updateDate = updateDate;
@@ -134,6 +148,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
        this.paidTime = paidTime;
        this.paidStatus = paidStatus;
        this.pauseSeason = pauseSeason;
+       this.status = status;
     }
    
     /**       
@@ -214,6 +229,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     
     public void setPetId(String petId) {
         this.petId = petId;
+    }
+    /**       
+     *      * 宠物名称
+     */
+
+    
+    @Column(name="pet_name", length=48)
+    public String getPetName() {
+        return this.petName;
+    }
+    
+    public void setPetName(String petName) {
+        this.petName = petName;
     }
     /**       
      *      * 挂号类型
@@ -307,6 +335,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.assistantDoctorName = assistantDoctorName;
     }
     /**       
+     *      * 登记人
+     */
+
+    
+    @Column(name="operator_man", insertable=false, updatable=false, length=48)
+    public String getOperatorMan() {
+        return this.operatorMan;
+    }
+    
+    public void setOperatorMan(String operatorMan) {
+        this.operatorMan = operatorMan;
+    }
+    /**       
      *      * 登记日期
      */
 
@@ -385,11 +426,11 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
         this.paidTime = paidTime;
     }
     /**       
-     *      * 支付状态
+     *      * 宠物状态
      */
 
     
-    @Column(name="paid_status", insertable=false, length=48)
+    @Column(name="paid_status", insertable=false, length=32)
     public String getPaidStatus() {
         return this.paidStatus;
     }
@@ -410,6 +451,19 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
     public void setPauseSeason(String pauseSeason) {
         this.pauseSeason = pauseSeason;
     }
+    /**       
+     *      * 状态
+     */
+
+    
+    @Column(name="status", insertable=false, updatable=false, length=32)
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     /**
      * toString
@@ -424,6 +478,7 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("gestName").append("='").append(getGestName()).append("' ");			
       buffer.append("sickFileCode").append("='").append(getSickFileCode()).append("' ");			
       buffer.append("petId").append("='").append(getPetId()).append("' ");			
+      buffer.append("petName").append("='").append(getPetName()).append("' ");			
       buffer.append("itemCode").append("='").append(getItemCode()).append("' ");			
       buffer.append("registerPrice").append("='").append(getRegisterPrice()).append("' ");			
       buffer.append("itemName").append("='").append(getItemName()).append("' ");			
@@ -431,10 +486,12 @@ public class MedicRegisterRecord extends org.food.safety.trace.dto.MedicRegister
       buffer.append("doctor").append("='").append(getDoctor()).append("' ");			
       buffer.append("assistantDoctorId").append("='").append(getAssistantDoctorId()).append("' ");			
       buffer.append("assistantDoctorName").append("='").append(getAssistantDoctorName()).append("' ");			
+      buffer.append("operatorMan").append("='").append(getOperatorMan()).append("' ");			
       buffer.append("createUserId").append("='").append(getCreateUserId()).append("' ");			
       buffer.append("updateUserId").append("='").append(getUpdateUserId()).append("' ");			
       buffer.append("paidStatus").append("='").append(getPaidStatus()).append("' ");			
       buffer.append("pauseSeason").append("='").append(getPauseSeason()).append("' ");			
+      buffer.append("status").append("='").append(getStatus()).append("' ");			
       buffer.append("]");
       
       return buffer.toString();

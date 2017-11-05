@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="org.food.safety.trace.entity.business">
-    <class name="MedicRegisterRecord" table="t_medic_register_record">
-        <meta attribute="extends">org.food.safety.trace.dto.MedicRegisterRecordView</meta>
+    <class name="WarehouseInrecord" table="t_warehouse_inrecord">
+        <meta attribute="extends">org.food.safety.trace.dto.WarehouseInrecordView</meta>
 
-        <meta attribute="class-description">挂号服务</meta>
+        <meta attribute="class-description">入库管理</meta>
 
         <id name="id"
             length="128" type="string">
@@ -58,19 +58,9 @@
             <meta attribute="rules-required">true</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-autowired">["gestName",{"name":"sickFileCode","refField":"sickFileCode","type":"hidden"},{"name":"petName","refField":"name","type":"hidden"}]</meta>
+            <meta attribute="field-autowired">["gestName",{"name":"sickFileCode","refField":"sickFileCode","type":"hidden"}]</meta>
             <meta attribute="ref-type">Pet</meta>
             <meta attribute="field-description">宠物</meta>
-        </property>
-
-        <property name="petName" column="pet_name" type="string" length="48">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-            <meta attribute="use-in-search">false</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="item-type">hidden</meta>
-            <meta attribute="field-attrs">{"type":"hidden"}</meta>
-            <meta attribute="field-description">宠物名称</meta>
         </property>
         <property name="itemCode" column="item_code" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
@@ -146,11 +136,6 @@
             <meta attribute="field-description">助理名称</meta>
         </property>
 
-        <property name="operatorMan" column="operator_man" type="string" insert="false" update="false" length="48">
-            <meta attribute="field-description">登记人</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-        </property>
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">登记日期</meta>
@@ -193,29 +178,17 @@
             <meta attribute="use-in-list">true</meta>
             <meta attribute="item-type">hidden</meta>
         </property>
-        <property name="paidStatus" column="paid_status" type="string" length="32" insert="false">
+        <property name="paidStatus" column="paid_status" type="string" insert="false"  length="48">
+            <meta attribute="field-description">支付状态</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="ref-type">DictTypeDetail</meta>
-            <meta attribute="ref-field">code</meta>
-            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"DictType","fieldName":"name","operator":"EQ","value":"支付状态"}}</meta>
-            <meta attribute="item-type">Select</meta>
-            <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-description">宠物状态</meta>
+            <meta attribute="item-type">hidden</meta>
         </property>
-
         <property name="pauseSeason" column="pause_reason" type="string" insert="false"  length="48">
             <meta attribute="field-description">暂停原因</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="item-type">hidden</meta>
-        </property>
-
-        <property name="status" column="status" type="string" insert="false" update="false" length="32">
-            <meta attribute="field-description">状态</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
         </property>
     </class>
 </hibernate-mapping>
