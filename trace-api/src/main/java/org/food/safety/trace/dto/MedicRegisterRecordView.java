@@ -28,40 +28,17 @@ public class MedicRegisterRecordView extends BusinessView {
         return itemCodeSelectItem;
     }
 
+    public SelectItemView assistantDoctorIdSelectItem;
+
+    @Transient
+    public SelectItemView getAssistantDoctorIdSelectItem() {
+        return assistantDoctorIdSelectItem;
+    }
     public SelectItemView doctorIdSelectItem;
 
     @Transient
     public SelectItemView getDoctorIdSelectItem() {
         return doctorIdSelectItem;
     }
-//
-//    public SelectItemView birthStatusSelectItem;
-//
-//    @Transient
-//    public SelectItemView getBirthStatusSelectItem() {
-//        return birthStatusSelectItem;
-//    }
-//
-//    public SelectItemView petSkinColorSelectItem;
-//
-//    @Transient
-//    public SelectItemView getPetSkinColorSelectItem() {
-//        return petSkinColorSelectItem;
-//    }
-//
-//    public SelectItemView petRaceSelectItem;
-//
-//    @Transient
-//    public SelectItemView getPetRaceSelectItem() {
-//        return petRaceSelectItem;
-//    }
-//
-//    public SelectItemView petBreedSelectItem;
-//
-//    @Transient
-//    public SelectItemView getPetBreedSelectItem() {
-//        return petBreedSelectItem;
-//    }
-
 
 }

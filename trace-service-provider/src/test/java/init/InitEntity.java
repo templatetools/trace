@@ -12,9 +12,7 @@ import org.food.safety.trace.repository.MenuDaoTest;
 import org.food.safety.trace.service.CURDService;
 import org.hibernate.boot.Metadata;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.mapping.MetaAttribute;
-import org.hibernate.mapping.PersistentClass;
-import org.hibernate.mapping.Property;
+import org.hibernate.mapping.*;
 import org.hibernate.tool.hbm2x.MetaAttributeHelper;
 import org.hibernate.tool.hbm2x.POJOExporter;
 import org.hibernate.tool.util.MetadataHelper;
@@ -31,8 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 import java.util.Map;
 
 /**
@@ -62,6 +59,7 @@ public class InitEntity {
     public static final String FIELD_GENERATOR= "field-generator";
     public static final String FIELD_AUTOWIRED= "field-autowired";
     public static final String FIELD_ATTRS= "field-attrs";
+    public static final String FIELD_LENGTH= "length";
 
     @Autowired
     CURDService curdService;
@@ -133,6 +131,15 @@ public class InitEntity {
                     Object value = ArrayUtils.contains(booleanKeys,name)?MetaAttributeHelper.getMetaAsBool(map.getValue(), false):MetaAttributeHelper.getMetaAsString(map.getValue());
 
                     rules.put(name, value);
+                }
+                if ("Input".equalsIgnoreCase(MetaAttributeHelper.getMetaAsString(property.getMetaAttribute(FIELD_ITEM_TYPE), "Input"))){
+                    java.util.List columns = ((SimpleValue)property.getValue()).getConstraintColumns();
+                    for (Object o: columns){
+                        Column column = (Column)o;
+                        if (column.getLength()>0){
+                            rules.put("max", column.getLength());
+                        }
+                    }
                 }
             }
             return JSON.json(rules);

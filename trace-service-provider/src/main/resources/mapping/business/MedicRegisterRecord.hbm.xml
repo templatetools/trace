@@ -114,6 +114,28 @@
             <meta attribute="field-attrs">{"type":"hidden"}</meta>
             <meta attribute="field-description">医生名称</meta>
         </property>
+        <property name="assistantDoctorId" column="assistant_doctor_id" type="string" length="36">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="ref-type">UserEntity</meta>
+            <meta attribute="ref-field">id</meta>
+            <meta attribute="ref-filter">{"fieldName":"id","operator":"IN","type":"ref","value":{"type":"Role","fieldName":"name","operator":"EQ","value":"助理","refField":"id"}}</meta>
+            <meta attribute="field-autowired">[{"name":"assistantDoctorName","refField":"name","type":"hidden"}]</meta>
+            <meta attribute="item-type">Select</meta>
+            <meta attribute="item-value">combobox</meta>
+            <meta attribute="field-description">助理</meta>
+        </property>
+        <property name="assistantDoctorName" column="assistant_doctor_name" type="string" length="48">
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="use-in-search">false</meta>
+            <meta attribute="rules-required">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+            <meta attribute="field-description">助理名称</meta>
+        </property>
+
 
         <property name="createDate" type="timestamp" not-null="true" insert="false" update="false" generated="insert">
             <meta attribute="field-description">登记日期</meta>

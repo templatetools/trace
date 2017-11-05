@@ -44,10 +44,11 @@ public class UserServiceImpl extends CURDServiceImpl {
      * @param data
      * @return
      */
-    public String login(Token token, Map data){
+    public String login(Map data){
         log.debug("login:{}", data);
 
         Dao dao = getDAO("UserEntity");
+        Token token = new Token(data.get(TOKEN)+"");
 
         UserEntity userEntity = Dao.findOneByKeyAndValue(dao, token, "name", data.get("username"));
 
