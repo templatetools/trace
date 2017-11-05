@@ -38,6 +38,7 @@ const modal = ({
 }) => {
   const handleOk = () => {
     validateFields((errors) => {
+      console.log('validateFields', errors)
       if (errors) {
         return
       }
@@ -187,11 +188,21 @@ const modal = ({
           if (!col.insertable){
             return;
           }
-
+          
+          let rulesArray = []
+          for(let o in col.rules){
+            let r = {}
+            r[o]= col.rules[o]
+            if ('required' === o) {
+              r['message'] = `请填写 ${col.title}`;                  
+            } else if ('pattern' === o){
+              r['message'] = `${col.title} 无效`;                  
+            }
+            rulesArray.push(r);
+          }
+          console.log('rules:', rulesArray);
           let itemOption = {
-              rules: [
-                col.rules
-              ]
+              rules: rulesArray
           }
 
           console.log('key and value', key, initValue);
