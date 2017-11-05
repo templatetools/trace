@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-5 11:58:23 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-5 17:45:29 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -118,11 +118,11 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
      */
      private Integer exchangeRewardPoint;
      /**
-      * 生产商
+      * 经销商
      */
      private String dealerCode;
      /**
-      * 生产商名称
+      * 经销商名称
      */
      private String dealerName;
      /**
@@ -531,11 +531,11 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.exchangeRewardPoint = exchangeRewardPoint;
     }
     /**       
-     *      * 生产商
+     *      * 经销商
      */
 
     
-    @Column(name="dealer_code", length=128)
+    @Column(name="dealer_code", length=48)
     public String getDealerCode() {
         return this.dealerCode;
     }
@@ -544,11 +544,11 @@ public class ItemType extends org.food.safety.trace.dto.ItemTypeView implements 
         this.dealerCode = dealerCode;
     }
     /**       
-     *      * 生产商名称
+     *      * 经销商名称
      */
 
     
-    @Column(name="dealer_name", insertable=false, updatable=false, length=48)
+    @Column(name="dealer_name", length=128)
     public String getDealerName() {
         return this.dealerName;
     }
