@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-5 17:45:29 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-7 14:27:05 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -196,7 +196,7 @@ public class WarehouseInrecord extends org.food.safety.trace.dto.WarehouseInreco
      */
 
     
-    @Column(name="warehouse_id", length=32)
+    @Column(name="warehouse_id", length=64)
     public String getWarehouseId() {
         return this.warehouseId;
     }

@@ -35,7 +35,7 @@
         </property>
 
 
-        <property name="warehouseId" column="warehouse_id" type="string" length="32">
+        <property name="warehouseId" column="warehouse_id" type="string" length="64">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>

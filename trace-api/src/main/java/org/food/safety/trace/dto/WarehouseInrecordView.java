@@ -14,31 +14,29 @@ import javax.persistence.Transient;
 @MappedSuperclass
 public class WarehouseInrecordView extends BusinessView {
     public static final String TARGET_NAME = "WarehouseInrecord";
-//    public SelectItemView petIdSelectItem;
-//
-//    @Transient
-//    public SelectItemView getPetIdSelectItem() {
-//        return petIdSelectItem;
-//    }
-//
-//    public SelectItemView itemCodeSelectItem;
-//
-//    @Transient
-//    public SelectItemView getItemCodeSelectItem() {
-//        return itemCodeSelectItem;
-//    }
-//
-//    public SelectItemView assistantDoctorIdSelectItem;
-//
-//    @Transient
-//    public SelectItemView getAssistantDoctorIdSelectItem() {
-//        return assistantDoctorIdSelectItem;
-//    }
-//    public SelectItemView doctorIdSelectItem;
-//
-//    @Transient
-//    public SelectItemView getDoctorIdSelectItem() {
-//        return doctorIdSelectItem;
-//    }
+
+    public SelectItemView warehouseIdSelectItem;
+    @Transient
+    public SelectItemView getWarehouseIdSelectItem() {
+        return warehouseIdSelectItem;
+    }
+
+    public SelectItemView dealerCodeSelectItem;
+    @Transient
+    public SelectItemView getDealerCodeSelectItem() {
+        return dealerCodeSelectItem;
+    }
+
+    public SelectItemView paidStatusSelectItem;
+    @Transient
+    public SelectItemView getPaidStatusSelectItem() {
+        return paidStatusSelectItem;
+    }
+
+    public SelectItemView statusSelectItem;
+    @Transient
+    public SelectItemView getStatusSelectItem() {
+        return statusSelectItem;
+    }
 
 }
