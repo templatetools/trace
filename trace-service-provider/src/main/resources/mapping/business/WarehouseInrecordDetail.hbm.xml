@@ -31,7 +31,7 @@
             <meta attribute="rules-required">false</meta>
             <meta attribute="field-description">编号</meta>
             <meta attribute="item-type">label</meta>
-            <meta attribute="field-generator">入库单号</meta>
+            <meta attribute="field-generator">入库单</meta>
         </property>
 
 
@@ -153,7 +153,7 @@
             <meta attribute="field-description">审核时间</meta>
             <meta attribute="item-type">DatePicker</meta>
             <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
-            <column name ="check_date"  default="CURRENT_TIMESTAMP" >
+            <column name ="check_date" default="CURRENT_TIMESTAMP" >
                 <comment>审核时间</comment>
             </column>
         </property>
