@@ -27,15 +27,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "WarehouseInrecord",
-			"settings":
-			{
-				"buffer_size": 17,
-				"line_ending": "Unix",
-				"name": "WarehouseInrecord"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -304,37 +295,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								17
-							]
-						],
-						"settings":
-						{
-							"auto_name": "WarehouseInrecord",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

@@ -43,8 +43,10 @@ public interface Dao<T, ID extends Serializable> extends JpaRepository<T, ID>, J
         ListFilter listFilter = new ListFilter();
         listFilter.addFilters(searchFilter);
 
-        SearchFilter organizationSearchFilter = new SearchFilter(CURDService.FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
-        listFilter.addAndFilters(organizationSearchFilter);
+        if (null != token) {
+            SearchFilter organizationSearchFilter = new SearchFilter(CURDService.FIELD_ORGANIZATION, SearchFilter.Operator.EQ, token.getOrganizationId());
+            listFilter.addAndFilters(organizationSearchFilter);
+        }
 
         List list = dao.findAllByFilter(listFilter);
 
