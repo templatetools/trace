@@ -41,6 +41,6 @@
         <mapping resource="mapping/business/SerialNumber.hbm.xml"/>
         <mapping resource="mapping/business/MedicRegisterRecord.hbm.xml"/>
         <mapping resource="mapping/business/WarehouseInrecord.hbm.xml"/>
-
+        <mapping resource="mapping/business/WarehouseInrecordDetail.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

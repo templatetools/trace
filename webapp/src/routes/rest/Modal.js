@@ -4,7 +4,9 @@ import 'moment/locale/zh-cn';
 moment.locale('zh-cn');
 import dateUtil from '../../utils/DateUtil'
 import PropTypes from 'prop-types'
-import { Form, Input, InputNumber, Radio, Modal, Cascader,Select,DatePicker } from 'antd'
+import { Form, Input, InputNumber, Radio, Modal, Cascader,Select,DatePicker,AutoComplete,Row,Col } from 'antd'
+import EditableTable from '../../components/DataTable/EditableTable'
+
 const { TextArea } = Input;
 const { MonthPicker, RangePicker } = DatePicker;
 
@@ -224,7 +226,9 @@ const modal = ({
           }
         })
       }
+      <EditableTable sourceId="" sourceType="" refType="Warehouse"/> 
       </Form>
+
     </Modal>
   )
 }

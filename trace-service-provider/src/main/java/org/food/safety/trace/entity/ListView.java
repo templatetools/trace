@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity;
-// Generated 2017-11-7 14:50:12 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-14 14:51:05 by Hibernate Tools 5.2.5.Final
 
 
 import javax.persistence.Column;
@@ -284,7 +284,7 @@ public class ListView  implements org.food.safety.trace.dto.Viewable,java.io.Ser
      */
 
     
-    @Column(name="autowired", length=512)
+    @Column(name="autowired")
     public String getAutowired() {
         return this.autowired;
     }

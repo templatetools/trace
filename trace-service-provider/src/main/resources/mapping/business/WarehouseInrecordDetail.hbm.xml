@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="org.food.safety.trace.entity.business">
-    <class name="WarehouseInrecord" table="t_warehouse_inrecord">
-        <meta attribute="extends">org.food.safety.trace.dto.WarehouseInrecordView</meta>
+    <class name="WarehouseInrecordDetail" table="t_warehouse_inrecord_detail">
+        <meta attribute="extends">org.food.safety.trace.dto.WarehouseInrecordDetailView</meta>
 
-        <meta attribute="class-description">入库管理</meta>
+        <meta attribute="class-description">入库单条目</meta>
 
         <id name="id"
             length="128" type="string">
@@ -24,97 +24,180 @@
             <meta attribute="ref-type">Organization</meta>
             <meta attribute="field-description">组织</meta>
         </property>
-        <property name="code" column="in_warehouse_code" type="string" length="48" not-null="true" update="false">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="field-description">编号</meta>
-            <meta attribute="item-type">label</meta>
-            <meta attribute="field-generator">入库单</meta>
-        </property>
-
-
-        <property name="warehouseId" column="warehouse_id" type="string" length="64">
+        <property name="inWarehouseCode" column="in_warehouse_code" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
             <meta attribute="rules-required">true</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-autowired">[{"name":"inWarehouse","refField":"name","type":"hidden"}]</meta>
-            <meta attribute="ref-type">Warehouse</meta>
-            <meta attribute="field-description">入库仓库</meta>
+            <meta attribute="ref-type">WarehouseInrecord</meta>
+            <meta attribute="ref-field">code</meta>
+            <meta attribute="field-description">入库单号</meta>
         </property>
-
-        <property name="inWarehouse" column="in_warehouse" type="string" length="48">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-            <meta attribute="use-in-search">false</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="item-type">hidden</meta>
-            <meta attribute="field-attrs">{"type":"hidden"}</meta>
-            <meta attribute="field-description">仓库名称</meta>
-        </property>
-
-        <property name="inWarehouseMan" column="in_warehouse_man" type="string" insert="false" update="false" length="48">
-            <meta attribute="field-description">入库人</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-        </property>
-
-        <property name="inWarehouseTotalCost" column="in_warehouse_total_cost" type="java.lang.Double">
+        <property name="itemCode" column="item_code" type="string" length="48">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="field-description">总金额</meta>
-            <meta attribute="item-type">label</meta>
-        </property>
-        <property name="totalCount" column="total_count" type="java.lang.Integer">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="use-in-search">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="field-description">总项</meta>
-            <meta attribute="item-type">label</meta>
-        </property>
-
-        <property name="inWarehouseDate"  type="timestamp" not-null="true" insert="false" update="false" generated="insert">
-            <meta attribute="field-description">制单时间</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="item-type">DatePicker</meta>
-            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
-            <column name ="in_warehouse_date" default="CURRENT_TIMESTAMP" >
-                <comment>制单时间</comment>
-            </column>
-        </property>
-        <property name="dealerCode" column="Dealer_Code" type="string" length="48">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
+            <meta attribute="rules-required">true</meta>
             <meta attribute="item-type">Select</meta>
             <meta attribute="item-value">combobox</meta>
-            <meta attribute="ref-type">Dealer</meta>
+            <meta attribute="field-autowired">[{"name":"barCode","refField":"barCode","type":"hidden"},
+                {"name":"itemName","refField":"name","type":"hidden"},
+                {"name":"itemStandard","refField":"itemStandard","type":"hidden"},
+                {"name":"itemBulk","refField":"itemBulk","type":"hidden"},
+                {"name":"inputPrice","refField":"inputPrice","type":"hidden"},
+                {"name":"drugForm","refField":"drugForm","type":"hidden"},
+                {"name":"itemStyle","refField":"itemStyle","type":"hidden"},
+                {"name":"sellPrice","refField":"sellPrice","type":"hidden"},
+                {"name":"safeDay","refField":"safeDay","type":"hidden"},
+                {"name":"wareUpLimit","refField":"wareUpLimit","type":"hidden"},
+                {"name":"manufacturerName","refField":"manufacturerName","type":"hidden"},
+                {"name":"manufacturerCode","refField":"manufacturerCode","type":"hidden"},
+                {"name":"packageUnit","refField":"packageUnit","type":"hidden"},
+                {"name":"wareDownLimit","refField":"wareDownLimit","type":"hidden"}
+                ]</meta>
+            <meta attribute="ref-type">ItemType</meta>
             <meta attribute="ref-field">code</meta>
-            <meta attribute="field-autowired">[{"name":"dealerName","refField":"name","type":"hidden"}]</meta>
-            <meta attribute="field-description">经销商</meta>
+            <meta attribute="field-description">商品</meta>
         </property>
-
-        <property name="dealerName" column="Dealer_Name" type="string"  length="128">
-            <meta attribute="field-description">经销商名称</meta>
+        <property name="barCode" column="bar_code" type="string"  length="48">
+            <meta attribute="field-description">条码</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">false</meta>
             <meta attribute="item-type">hidden</meta>
             <meta attribute="field-attrs">{"type":"hidden"}</meta>
         </property>
-
-        <property name="remark" column="remark" type="text">
+        <property name="itemName" column="item_name" type="string"  length="96">
+            <meta attribute="field-description">商品名称</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="itemStandard" column="item_standard" type="string"  length="48">
+            <meta attribute="field-description">规格</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">label</meta>
+        </property>
+        <property name="packageUnit" column="package_unit" type="string"  length="48">
+            <meta attribute="field-description">销售单位</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">label</meta>
+        </property>
+        <property name="manufacturerName" column="manufacturer_name" type="string"  length="128">
+            <meta attribute="field-description">生产商</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">label</meta>
+        </property>
+        <property name="manufacturerCode" column="manufacturer_code" type="string"  length="48">
+            <meta attribute="field-description">生产商</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="itemBulk" column="item_bulk" type="java.lang.Integer"  length="11">
+            <meta attribute="field-description">零散比</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">false</meta>
-            <meta attribute="use-in-search">false</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="item-type">TextArea</meta>
-            <meta attribute="field-description">备注</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="inputPrice" column="input_price" type="java.lang.Double">
+            <meta attribute="field-description">进价</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">label</meta>
+        </property>
+        <property name="drugForm" column="drug_form" type="string"  length="48">
+            <meta attribute="field-description">剂型</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="itemStyle" column="item_style" type="string"  length="48">
+            <meta attribute="field-description">类型</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="sellPrice" column="sell_price" type="java.lang.Double">
+            <meta attribute="field-description">售价</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="inputCount" column="input_count" type="java.lang.Integer"  length="11">
+            <meta attribute="field-description">数量</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">number</meta>
+        </property>
+        <property name="batchNumber" column="batch_number" type="string"  length="48">
+            <meta attribute="field-description">批号</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">number</meta>
+        </property>
+        <property name="safeDay" column="safe_day" type="java.lang.Integer"  length="11">
+            <meta attribute="field-description">保质期</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="wareUpLimit" column="ware_up_limit" type="java.lang.Integer"  length="11">
+            <meta attribute="field-description">库存上线</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="wareDownLimit" column="ware_down_limit" type="java.lang.Integer"  length="11">
+            <meta attribute="field-description">库存下线</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="inputCost" column="input_cost" type="java.lang.Double">
+            <meta attribute="field-description">金额</meta>
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-list">true</meta>
+            <meta attribute="item-type">hidden</meta>
+            <meta attribute="field-attrs">{"type":"hidden"}</meta>
+        </property>
+        <property name="produceDate"  type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">生产日期</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="produce_date" default="CURRENT_TIMESTAMP" >
+                <comment>生产日期</comment>
+            </column>
+        </property>
+        <property name="inputDate"  type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">进货日期</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="input_date" default="CURRENT_TIMESTAMP" >
+                <comment>进货日期</comment>
+            </column>
+        </property>
+        <property name="outDateTime"  type="timestamp" not-null="true" insert="false" update="false" generated="insert">
+            <meta attribute="field-description">发货日期</meta>
+            <meta attribute="use-in-list">false</meta>
+            <meta attribute="item-type">DatePicker</meta>
+            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
+            <column name ="out_date_time" default="CURRENT_TIMESTAMP" >
+                <comment>发货日期</comment>
+            </column>
         </property>
 
         <property name="createDate"  type="timestamp" not-null="true" insert="false" update="false" generated="insert">
@@ -149,65 +232,15 @@
             <meta attribute="item-type">hidden</meta>
             <meta attribute="field-attrs">{"type":"hidden"}</meta>
         </property>
-        <property name="checkDate" type="timestamp" not-null="true" insert="false" generated="insert">
-            <meta attribute="field-description">审核时间</meta>
-            <meta attribute="item-type">DatePicker</meta>
-            <meta attribute="item-value">yyyy-MM-dd HH:mm:ss</meta>
-            <column name ="check_date" default="CURRENT_TIMESTAMP" >
-                <comment>审核时间</comment>
-            </column>
-        </property>
-
-        <property name="checkMan" column="check_man" type="string" insert="false" length="48">
-            <meta attribute="field-description">审核人</meta>
+        <property name="remark" column="remark" type="string" insert="false" update="false" length="96">
+            <meta attribute="field-description">备注</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">false</meta>
         </property>
-        <property name="toWarehouseName" column="To_Warehouse_Name" type="string" insert="false" length="48">
-            <meta attribute="field-description">移库名称</meta>
+        <property name="status" column="status" type="string" insert="false" update="false" length="32">
+            <meta attribute="field-description">备注</meta>
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="use-in-list">false</meta>
-        </property>
-        <property name="toWarehouseCode" column="To_Warehouse_Code" type="string" insert="false" length="48">
-            <meta attribute="field-description">移库编号</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-        </property>
-        <property name="inReason" column="in_reason" type="string" insert="false" update="false" length="96">
-            <meta attribute="field-description">建议</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-        </property>
-        <property name="inContent" column="in_content" type="text">
-            <meta attribute="field-description">入库条目</meta>
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">false</meta>
-            <meta attribute="item-type">hidden</meta>
-            <meta attribute="field-attrs">{"type":"hidden"}</meta>
-        </property>
-
-        <property name="paidStatus" column="paid_status" type="string" length="32" insert="false">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="ref-type">DictTypeDetail</meta>
-            <meta attribute="ref-field">code</meta>
-            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"DictType","fieldName":"name","operator":"EQ","value":"支付状态"}}</meta>
-            <meta attribute="item-type">Select</meta>
-            <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-description">支付状态</meta>
-        </property>
-
-        <property name="status" column="status" type="string" length="32" insert="false">
-            <meta attribute="use-in-tostring">true</meta>
-            <meta attribute="use-in-list">true</meta>
-            <meta attribute="rules-required">false</meta>
-            <meta attribute="ref-type">DictTypeDetail</meta>
-            <meta attribute="ref-field">code</meta>
-            <meta attribute="ref-filter">{"fieldName":"dictTypeId","operator":"EQ","type":"ref","value":{"type":"DictType","fieldName":"name","operator":"EQ","value":"仓库管理状态"}}</meta>
-            <meta attribute="item-type">Select</meta>
-            <meta attribute="item-value">combobox</meta>
-            <meta attribute="field-description">单据状态</meta>
         </property>
 
     </class>

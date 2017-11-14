@@ -7,7 +7,7 @@
     <class name="WarehouseInrecord" table="t_warehouse_inrecord">
         <meta attribute="extends">org.food.safety.trace.dto.WarehouseInrecordView</meta>
 
-        <meta attribute="class-description">入库管理</meta>
+        <meta attribute="class-description">入库单</meta>
 
         <id name="id"
             length="128" type="string">

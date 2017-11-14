@@ -1,5 +1,5 @@
 package org.food.safety.trace.entity.business;
-// Generated 2017-11-7 14:50:12 by Hibernate Tools 5.2.5.Final
+// Generated 2017-11-14 14:51:05 by Hibernate Tools 5.2.5.Final
 
 
 import java.util.Date;
@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 入库管理
+ * 入库单
  */
 @Entity
 @Table(name="t_warehouse_inrecord"

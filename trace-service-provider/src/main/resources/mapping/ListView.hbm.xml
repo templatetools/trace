@@ -61,7 +61,7 @@
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">引用数据字段</meta>
         </property>
-        <property name="autowired" type="string" length="512">
+        <property name="autowired" type="text">
             <meta attribute="use-in-tostring">true</meta>
             <meta attribute="field-description">回写字段</meta>
         </property>
